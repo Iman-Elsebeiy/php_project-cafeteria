@@ -1,10 +1,11 @@
-users [#user_id,name,email,password,room_no,ext,image,role,image,reg_date]
-product [#product_id,name,image,avilability,price,quantity ,category_id(fk)]
-category [#category_id,name]
-order [#order_id,status, date,user_id(fk)]
-order_products[#order_id(fk),#product_id(fk),quantity]
+-- users [#user_id,name,email,password,room_no,ext,image,role,image,reg_date]
+-- product [#product_id,name,image,avilability,price,quantity ,category_id(fk)]
+-- category [#category_id,name]
+-- order [#order_id,status, date,user_id(fk)]
+-- order_products[#order_id(fk),#product_id(fk),quantity]
 
-
+CREATE Database cafe;
+USE cafe;
 CREATE TABLE users (
     user_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,

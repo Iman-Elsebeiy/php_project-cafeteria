@@ -23,7 +23,7 @@ CREATE TABLE categories (
     name VARCHAR(255) NOT NULL UNIQUE
 );
 
-CREATE TABLE product (
+CREATE TABLE products (
     product_id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     image VARCHAR(255),
@@ -31,7 +31,7 @@ CREATE TABLE product (
     price DECIMAL(10,2) NOT NULL,
     quantity INT NOT NULL,
     category_id INT,
-    CONSTRAINT product_category_id_fk FOREIGN KEY (category_id) REFERENCES category(category_id) ON DELETE SET NULL
+    CONSTRAINT product_category_id_fk FOREIGN KEY (category_id) REFERENCES categories(category_id) ON DELETE SET NULL
 );
 
 CREATE TABLE orders (

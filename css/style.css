@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+:root {
+  --primary-100: #d4eaf7;
+  --primary-200: #b6ccd8;
+  --primary-300: #3b3c3d;
+  --accent-100: #71c4ef;
+  --accent-200: #00668c;
+  --text-100: #1d1c1c;
+  --text-200: #313d44;
+  --dng: #dc3545;
+  --bg-body: #fffefb;
+  --bg-200: #f5f4f1;
+  --bg-300: #cccbc8;
+  --bg-opacity-200: #f5f4f19d;
+  --primary-font: "Poppins", serif;
+}
+
+td {
+  padding: 15px !important; /* Adds spacing inside cells */
+  text-align: center; /* Centers text */
+  background-color: var(--bg-200) !important;
+}
+
+th {
+  text-align: center; /* Centers text */
+  background-color: var(--bg-300) !important;
+}
+
+body {
+  background-color: var(--bg-body);
+  font-family: var(--primary-font) !important;
+  color: var(--text-100);
+}
+
+div.form {
+  background-color: var(--bg-opacity-200);
+}
+.sub:hover {
+  /* background-color: var(--text-200); */
+  /* color: var(--bg-body); */
+  border: 1px solid var(--accent-200);
+}
+
+.sub {
+  background-color: var(--text-200);
+  color: var(--bg-body);
+}
+
+.res:hover {
+  /* background-color: var(--text-200); */
+  border: 1px solid var(--dng);
+}
+
+.res {
+  /* background-color: var(--text-200); */
+  border: 1px solid var(--primary-300);
+}
+
+input.form-control,
+.form-select {
+  outline: unset;
+  border: 1px solid var(--bg-200);
+  /* font-size: 15px; */
+}

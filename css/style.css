@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+:root {
+  --primary-100: #d4eaf7;
+  --primary-200: #b6ccd8;
+  --primary-300: #3b3c3d;
+  --accent-100: #71c4ef;
+  --accent-200: #00668c;
+  --text-100: #1d1c1c;
+  --text-200: #313d44;
+  --bg-body: #fffefb;
+  --bg-200: #f5f4f1;
+  --bg-300: #cccbc8;
+  --bg-opacity-200: #f5f4f19d;
+  --primary-font: "Poppins", serif;
+}
+body {
+  background-color: var(--bg-body);
+  font-family: var(--primary-font) !important;
+  color: var(--text-100);
+}
+div.form {
+  background-color: var(--bg-opacity-200);
+}
+input.form-control,
+.form-select {
+  outline: unset;
+  border: 1px solid var(--bg-200);
+  font-size: 15px;
+}
+input.form-control:focus,
+.form-select:focus {
+  box-shadow: 0 0 0 0.09rem var(--primary-100);
+}
+input.form-control::placeholder {
+  font-size: 12px;
+}
+.form-select,
+.form-select + button {
+  font-size: 12px;
+}
+.form-select + button {
+  border: 1px solid var(--text-200);
+  color: var(--text-200);
+}
+
+.form-select + button:hover {
+  background-color: var(--text-200);
+  color: var(--bg-body);
+}
+button.add,
+.reset {
+  font-size: 15px;
+}
+button.add {
+  background-color: var(--text-200);
+  color: var(--bg-body);
+}
+button.add:hover {
+  background-color: var(--text-200);
+  color: var(--bg-body);
+}
+.btn:disabled {
+  background-color: #3b4952;
+  color: var(--bg-body);
+  opacity: 0.2;
+}
+.image {
+  text-align: center;
+}
+.image img {
+  width: 100%;
+}
+h2 {
+  font-size: 16px;
+}
+.image p {
+  font-size: 8px;
+  color: var(--text-200);
+}
+.txt-sm {
+  font-size: 10px;
+}

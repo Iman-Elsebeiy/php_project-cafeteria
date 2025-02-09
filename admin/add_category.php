@@ -8,7 +8,6 @@ if(isset($_GET))
     {
          extract($errors);
     }
-     var_dump($errors);
   
    }
    if(isset($_GET["old"]))

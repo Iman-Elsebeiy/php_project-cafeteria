@@ -15,8 +15,11 @@ if(isset($_GET)) {
         }
     }
 if(isset($_GET["old"])) {
+   
         $old = json_decode($_GET["old"], true);
+        if (is_array($old)) {
         extract($old);
+    }
     }
 }
 ?>

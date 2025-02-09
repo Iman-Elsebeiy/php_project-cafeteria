@@ -1,5 +1,5 @@
 <?php
-require_once "db_product_operation.php";
+require_once "../DB/db_product_operation.php";
 try{
     $catgories =select_data("categories");
 }
@@ -47,7 +47,7 @@ if(isset($_GET["old"])) {
                              {
                                  echo "<p class='text-danger ' style='font-size:12px' > this product is already exist </p>";
                              }?>
-                <form action="add_product_validation.php" method="POST" enctype="multipart/form-data">
+                <form action="add_product_Logic.php" method="POST" enctype="multipart/form-data">
                     <div class="mb-3 d-flex col-12 gap-2 flex-wrap ">
                         <div class="d-flex align-items-baseline col-12 col-md-7">
                             <label for="product" class='form-label col-3'>Product:</label>

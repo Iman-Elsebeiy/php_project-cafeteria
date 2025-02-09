@@ -39,7 +39,7 @@ if(isset($_GET))
         <div class="row">
             <div class="col-12 col-md-6  p-md-5 p-3  rounded  form ">
                 <h1 class="fs-5 mb-4">Add New Category</h1>
-                <form action="add_category_validate.php" method="POST" enctype="multipart/form-data" class="p-2">
+                <form action="add_category_Logic.php" method="POST" enctype="multipart/form-data" class="p-2">
                     <div class="mb-4  col-12 gap-2 flex-wrap ">
                         <label for="category" class='form-label '>Category Name:</label>
                         <div>

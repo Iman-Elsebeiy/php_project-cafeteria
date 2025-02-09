@@ -1,16 +1,9 @@
 <?php
-require_once "db_product_operation.php";
- 
- if(!isset($_POST["c_name"]))
- {
-    $errors["c_name"] = "Category Name is required";
- }
- else if(isset($_POST["c_name"]) and ! preg_match("/^[a-zA-Z ]{4,}$/",$_POST["c_name"]))
- {
-    $errors["c_name"] = "Category Name is Not Vaild"; 
-    $old_data["o_cname"] = $_POST["c_name"];
- }
-if(isset($errors)){
+require_once "../DB/db_product_operation.php";
+require_once "../includes/Validtion.php";
+$validation = validate_Category($_POST);
+extract($validation);
+if(!empty($errors)){
     $errors_str= json_encode($errors);
     if($old_data)
     {
@@ -26,14 +19,13 @@ else{
         header("Location: add_product.php");
     }
     else{
-        $error["c_name"] ="this Category is already Exist"; 
-            $errors_str = json_encode($error); 
+        $errors["c_name"] ="this Category is already Exist"; 
+            $errors_str = json_encode($errors); 
             $old_data["o_cname"] = $_POST["c_name"];
             $old_str = json_encode($old_data);
             
             header("Location: add_category.php?errors=$errors_str&old=$old_str");
     }
-   
 
 }
  

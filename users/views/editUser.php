@@ -19,6 +19,12 @@ if (isset($_GET['ext'])) {
 $cafe=new dataBase();
 $cafe->connectToDB("localhost", "cafe", "abdo", "abdo");
 $data=$cafe->selectRowData('users',$_GET['id']);
+
+if (!count($data)) {   
+    header("Location: allUsers.php"); // No space after "Location:"
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -36,9 +42,13 @@ $data=$cafe->selectRowData('users',$_GET['id']);
 
 
 <body>
-    <div class="container mt-4 mb-2 col-12 p-5 rounded form  ">
 
-        <h2 class="">Edit User</h2>
+
+    <div class="container mt-4 mb-2 col-6 p-5  form  ">
+        <div class="text-end">
+            <a href="allUsers.php" class="btn add ">Users List</a>
+        </div>
+        <h2>Edit User</h2>
         <form action="../controller/edit2db.php?id=<?php echo $_GET['id'] ?>" method="post"
             enctype="multipart/form-data">
             <label for="name">Name:</label>
@@ -61,37 +71,43 @@ $data=$cafe->selectRowData('users',$_GET['id']);
 
 echo'
 
-        <label for="room">Room Number:</label>
-        <select selected name="room">
-            <option value="Application1" selected >Application1</option>
-            <option value="Application2">Application2</option>
-            <option value="Cloud">Cloud</option>
-        </select><br><br>
+<div class="col-3">
+    <label for="room" class="form-label">Room Number:</label>
+    <select name="room" class="form-select form-control mb-3">
+        <option value="Application1" selected>Application1</option>
+        <option value="Application2">Application2</option>
+        <option value="Cloud">Cloud</option>
+    </select>
+</div>
+
         
 ';
 
         }else if($data[0]['room_no']=='Application2'){
             echo'
 
-        <label for="room">Room Number:</label>
-        <select selected name="room">
-            <option value="Application1"  >Application1</option>
-            <option value="Application2" selected>Application2</option>
-            <option value="Cloud">Cloud</option>
-        </select><br><br>
-        
+            <div class="col-3">
+            <label for="room" class="form-label">Room Number:</label>
+            <select name="room" class="form-select form-control mb-3">
+                <option value="Application1" >Application1</option>
+                <option value="Application2"selected>Application2</option>
+                <option value="Cloud">Cloud</option>
+            </select>
+        </div>
 ';
 
         }
         else{
             echo'
 
-        <label for="room">Room Number:</label>
-        <select selected name="room">
-            <option value="Application1" selected >Application1</option>
-            <option value="Application2">Application2</option>
-            <option value="Cloud" selected>Cloud</option>
-        </select><br><br>
+            <div class="col-3">
+            <label for="room" class="form-label">Room Number:</label>
+            <select name="room" class="form-select form-control mb-3">
+                <option value="Application1" >Application1</option>
+                <option value="Application2">Application2</option>
+                <option value="Cloud" selected >Cloud</option>
+            </select>
+        </div>
         
 ';
 
@@ -105,8 +121,7 @@ echo'
             <label for="profile_picture">Profile Picture:</label>
             <input class="form-control" type="file" name="image" accept="image/*">
             <br>
-            <br>
-            <button type="submit" value="Submit" class="btn sub  ">Submit</button>
+            <button type="submit" value="Submit" class="btn add  ">Submit</button>
             <button type="reset" value="reset" class="btn res ">Reset</button>
 
 

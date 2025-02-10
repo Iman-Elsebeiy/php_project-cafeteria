@@ -22,7 +22,7 @@ require_once '../../includes/classDB.php';
 <body>
     <div class="container">
         <div class="mt-1 text-end">
-            <a href="add_user.php" class="btn btn-primary add "><b>Add Customer</b></a>
+            <a href="add_user.php" class="btn add ">Add User</a>
         </div>
 
         <?php

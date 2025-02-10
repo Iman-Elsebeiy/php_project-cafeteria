@@ -36,7 +36,7 @@
 
 function drawUsersTable($users){
     echo "<table class='table mt-1 border '>";
-    echo "<tr> <th>Picture</th><th>Name</th><th>Room</th> <th>Ext.</th> <th>Action</th>  </tr>";
+    echo "<tr> <th class=' d-none d-md-block' >Profile Picture</th><th>Name</th><th>Room</th> <th>Ext.</th> <th>Action</th>  </tr>";
     foreach($users as $user) {  
         echo "<tr>";
         $data = array("name", "room_no", "ext", "image");
@@ -45,13 +45,13 @@ function drawUsersTable($users){
             if (in_array($key, $data) && $key != "image") {
                 echo "<td>{$value}</td>";
             }else if($key == "image"){
-                echo "<td><img src='{$value}'  height='50'></td>";
+                echo "<td class=' d-none d-md-block' ><img  class='rounded-circle border border-dark '  src='{$value}'  width='70' height='70'></td>";
             }
 
         }
-        echo "<td>
-        <a class='btn sub   col-4 ' href='editUser.php?id={$user['user_id']}'>Edit</a>
-        <a class='btn res   col-4 ' href='deleteUser.php?id={$user['user_id']}&image={$user['image']}'>Delete</a>
+        echo "<td  >
+        <a class='btn add   col-4 ' href='editUser.php?id={$user['user_id']}'>Edit</a>
+        <a class='btn res   col-4 ' href='../controller/deleteUser.php?id={$user['user_id']}&image={$user['image']}'>Delete</a>
       </td>";
 
         echo "</tr>";

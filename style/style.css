@@ -15,15 +15,40 @@
   --primary-font: "Poppins", serif;
 }
 
-td {
-  padding: 15px !important; /* Adds spacing inside cells */
-  text-align: center; /* Centers text */
+/* td {
+  padding: 15px !important;
+  text-align: center; 
   background-color: var(--bg-200) !important;
 }
 
 th {
-  text-align: center; /* Centers text */
+  text-align: center; 
   background-color: var(--bg-300) !important;
+}
+
+table {
+  box-shadow: 2px 6px 6px rgba(0, 0, 0, 0.1);
+} */
+
+td {
+  padding: 15px !important;
+  text-align: center;
+  background-color: var(--bg-200, #f9f9f9) !important; /* Fallback color */
+}
+
+th {
+  padding: 15px;
+  text-align: center;
+  background-color: var(--bg-300, #e0e0e0) !important; /* Fallback color */
+  /* font-weight: bold; */
+}
+
+table {
+  width: 100%; /* Ensures the table takes full width */
+  border-collapse: collapse; /* Prevents double borders */
+  border-radius: 10px; /* Rounds corners */
+  overflow: hidden; /* Ensures border-radius applies properly */
+  box-shadow: 2px 6px 12px rgba(0, 0, 0, 0.15); /* Improved shadow */
 }
 
 body {
@@ -34,40 +59,52 @@ body {
 
 div.form {
   background-color: var(--bg-opacity-200);
-}
-.sub:hover {
-  /* background-color: var(--text-200); */
-  /* color: var(--bg-body); */
-  border: 1px solid var(--accent-200);
+  box-shadow: 2px 6px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
 }
 
+form button {
+  width: 333px;
+}
+
+/* .sub:hover { */
+/* background-color: var(--text-200); */
+/* color: var(--bg-body); */
+/* border: 1px solid var(--accent-200); */
+/* } */
+/* 
 .sub {
   background-color: var(--text-200);
   color: var(--bg-body);
-}
+} */
 
 .add:hover {
-  background-color: var(--bg-body);
-  color: var(--text-200);
-  border: 1px solid var(--accent-200);
-  /* font-size: ; */
-  font-weight: lighter;
-  /* width: 11%; */
+  background-color: var(--primary-300);
+  color: var(--accent-100);
+}
+
+.add {
+  background-color: var(--bg-opacity-200);
+  border: 2px solid var(--primary-300);
+  color: var(--primary-300);
 }
 
 .res:hover {
   /* background-color: var(--text-200); */
-  border: 1px solid var(--dng);
+  border: 2px solid var(--dng);
+  color: var(--dng);
 }
 
 .res {
   /* background-color: var(--text-200); */
-  border: 1px solid var(--primary-300);
+  border: 2px solid var(--primary-300);
+  color: var(--dng);
+}
+.form-control {
+  font-size: 15px;
 }
 
-input.form-control,
-.form-select {
-  outline: unset;
-  border: 1px solid var(--bg-200);
-  /* font-size: 15px; */
+.form-control:focus {
+  font-size: 15px;
+  box-shadow: 0 0 0 0.09rem var(--primary-100);
 }

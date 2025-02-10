@@ -1,7 +1,7 @@
 <?php
-require_once '../includes/helper.php';
-require_once '../includes/utils.php';
-require_once '../pdo/classDB.php';
+require_once '../../includes/helper.php';
+require_once '../../includes/utils.php';
+require_once '../../includes/classDB.php';
 
 
 ?>
@@ -15,18 +15,21 @@ require_once '../pdo/classDB.php';
     <title>All-Users</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../style/style.css">
 
 </head>
 
 <body>
     <div class="container">
+        <div class="mt-1 text-end">
+            <a href="add_user.php" class="btn btn-primary add "><b>Add Customer</b></a>
+        </div>
 
         <?php
         $cafe=new dataBase();
         $cafe->connectToDB("localhost", "cafe", "abdo", "abdo");
         $cafe->select_data('users');
-        drawUsersTable($cafe->select_data('users'));
+        drawUsersTable($cafe->select_data('user_details'));
         $cafe->closeConnection();
     ?>
     </div>
@@ -37,6 +40,3 @@ require_once '../pdo/classDB.php';
     </script>
 
 </body>
-
-
-<!-- <a href="addUser.php" class="btn btn-primary"><B>Add Customer</B></a> -->

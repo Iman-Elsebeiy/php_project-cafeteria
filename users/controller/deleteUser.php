@@ -1,9 +1,8 @@
 <?php
+require_once '../../includes/utils.php';
+require_once '../../includes/classDB.php';
 
-require "../includes/utils.php";
-require_once "../pdo/classDB.php";
-
-var_dump($_GET);
+// var_dump($_GET);
 
 if(isset($_GET["id"])){
     $id = $_GET["id"];
@@ -18,7 +17,7 @@ $cafe->connectToDB("localhost", "cafe", "abdo", "abdo");
         }
     }
     $cafe->closeConnection();
-    header("Location: allUsers.php");
+    header("Location: ../views/allUsers.php");
 }else{
     displayError("----- You did not enter an ID -----");
 }

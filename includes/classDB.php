@@ -1,6 +1,6 @@
 <?php
 
-require_once "../includes/utils.php";
+require_once "../../includes/utils.php";
 
 class dataBase{
 private $pdo;

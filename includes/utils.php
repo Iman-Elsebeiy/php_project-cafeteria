@@ -35,9 +35,9 @@
 
 
 function drawUsersTable($users){
-    echo "<table class='table mt-5 border '>";
-    echo "<tr> <th> Name</th><th>room</th><th>Ext.</th> <th>image</th> <th>Action</th>  </tr>";
-    foreach($users as $user) {   #EACH student is array of values
+    echo "<table class='table mt-1 border '>";
+    echo "<tr> <th>Picture</th><th>Name</th><th>Room</th> <th>Ext.</th> <th>Action</th>  </tr>";
+    foreach($users as $user) {  
         echo "<tr>";
         $data = array("name", "room_no", "ext", "image");
         foreach ($user as $key=>$value) {
@@ -45,7 +45,7 @@ function drawUsersTable($users){
             if (in_array($key, $data) && $key != "image") {
                 echo "<td>{$value}</td>";
             }else if($key == "image"){
-                echo "<td><img src='{$value}' width='100' height='100'></td>";
+                echo "<td><img src='{$value}'  height='50'></td>";
             }
 
         }

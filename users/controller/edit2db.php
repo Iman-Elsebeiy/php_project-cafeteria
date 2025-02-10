@@ -1,11 +1,9 @@
 <?php
-require_once "../includes/utils.php";
-require_once "../includes/helper.php";
-require_once "../pdo/classDB.php";
-
-
-
-$url='Location: editUser.php';
+require_once '../../includes/helper.php';
+require_once '../../includes/utils.php';
+require_once '../../includes/classDB.php';
+$url='Location: ../views/editUser.php';
+// users/views/editUser.php
 $url=$url.'?id='.$_GET['id'];
 
 
@@ -14,7 +12,8 @@ $img=$_FILES['image'];
 $cafe=new dataBase();
 $cafe->connectToDB("localhost", "cafe", "abdo", "abdo");
 $data=$cafe->selectRowData('users',$_GET['id']);
-
+$oldImage=$data[0]['image'];
+var_dump($oldImage);
 $file_errors=validateOnfile($img,["png","jpg","jpeg"],2000000);
 if(!$postErrorsOld["errors"])
 {
@@ -56,10 +55,11 @@ if(!$postErrorsOld["errors"])
                         {
                             if($img['tmp_name']!='')
                             {
+                                unlink($oldImage);
                                 move_uploaded_file($img['tmp_name'], "../imgs/" . $email.'.'.$fileExt);
 
                             }
-                            header("Location: allUsers.php");
+                            header("Location: ../views/allUsers.php");
                             
                         }
                                           

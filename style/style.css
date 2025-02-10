@@ -46,6 +46,15 @@ div.form {
   color: var(--bg-body);
 }
 
+.add:hover {
+  background-color: var(--bg-body);
+  color: var(--text-200);
+  border: 1px solid var(--accent-200);
+  /* font-size: ; */
+  font-weight: lighter;
+  /* width: 11%; */
+}
+
 .res:hover {
   /* background-color: var(--text-200); */
   border: 1px solid var(--dng);

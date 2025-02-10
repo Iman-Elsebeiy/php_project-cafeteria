@@ -1,7 +1,6 @@
 <?php
-
-require_once "../includes/utils.php";
-require_once "../pdo/classDB.php";
+require_once '../../includes/utils.php';
+require_once '../../includes/classDB.php';
 
 if (isset($_GET['errors'])) {
     $errors = json_decode($_GET['errors'],true);
@@ -20,7 +19,6 @@ if (isset($_GET['ext'])) {
 $cafe=new dataBase();
 $cafe->connectToDB("localhost", "cafe", "abdo", "abdo");
 $data=$cafe->selectRowData('users',$_GET['id']);
-// var_dump($data);
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +30,7 @@ $data=$cafe->selectRowData('users',$_GET['id']);
     <title>Edit-User</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../style/style.css">
 
 </head>
 
@@ -41,7 +39,8 @@ $data=$cafe->selectRowData('users',$_GET['id']);
     <div class="container mt-4 mb-2 col-12 p-5 rounded form  ">
 
         <h2 class="">Edit User</h2>
-        <form action="edit2db.php?id=<?php echo $_GET['id'] ?>" method="post" enctype="multipart/form-data">
+        <form action="../controller/edit2db.php?id=<?php echo $_GET['id'] ?>" method="post"
+            enctype="multipart/form-data">
             <label for="name">Name:</label>
             <input class="form-control" value="<?php echo $old['name'] ?? $data[0]['name'] ?>" type="name" name="name">
             <p class="text-danger"> <?php echo $errors['name'] ?? '' ?> </p>

@@ -1,7 +1,11 @@
 <?php
-require_once "../DB/db_product_operation.php";
+require_once "../../includes/classDB.php";
+require_once "../../includes/config.php";
 try{
-    $catgories =select_data("categories");
+    $db_conn = new DataBase();
+    $db_conn->connectToDB(DB_HOST,DB_NAME,DB_USER,DB_PASSWORD);
+    $catgories =$db_conn->select_data("categories");
+    $db_conn->closeConnection();
 }
 catch(  Exception $e)
 {
@@ -33,7 +37,7 @@ if(isset($_GET["old"])) {
     <title>add-product</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../style/style.css">
 
 </head>
 
@@ -43,11 +47,11 @@ if(isset($_GET["old"])) {
             <div class="col-12 col-md-8  p-md-5 p-3 rounded form">
                 <h1 class="fs-4 mb-4">Add New Product</h1>
                 <?php
-            if(isset($db))
+            if(isset($db_err))
                              {
                                  echo "<p class='text-danger ' style='font-size:12px' > this product is already exist </p>";
                              }?>
-                <form action="add_product_Logic.php" method="POST" enctype="multipart/form-data">
+                <form action="../controller/add_product_Logic.php" method="POST" enctype="multipart/form-data">
                     <div class="mb-3 d-flex col-12 gap-2 flex-wrap ">
                         <div class="d-flex align-items-baseline col-12 col-md-7">
                             <label for="product" class='form-label col-3'>Product:</label>
@@ -182,7 +186,7 @@ if(isset($_GET["old"])) {
                             ?>
             </div>
             <div class="col-4 d-none d-md-block image">
-                <img src="../image/addproduct.jpg" alt="add product">
+                <img src="../imgs/addproduct.jpg" alt="add product">
                 <h2>Seamless Product Management</h2>
                 <p>Easily add new products to your store with our user-friendly form. Manage your inventory efficiently
                     and provide customers with accurate product details to enhance their shopping experience. Stay

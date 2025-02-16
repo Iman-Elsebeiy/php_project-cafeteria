@@ -70,6 +70,10 @@ VALUES
     ('Mocha', 'mocha.png', 42.00, 25, 1),
     ('Milkshake Chocolate', 'milkshake_chocolate.png', 42.00, 1, 1)
     ;
+create or replace view product_with_category
+    as select product_id, product_name, image, price, quantity, name as category_name
+    from products, categories
+    where categories.category_id= products.category_id;
     
 
 

@@ -61,7 +61,7 @@ VALUES
     ('Espresso', 'espresso.png', 30.00, 1, 1), 
     ('Cappuccino', 'cappuccino.png', 40.00, 1, 1), 
     ('Latte', 'latte.png', 45.00, 1, 1), 
-    ('Green Tea', 'green_tea.png', 25.00, 1, 1), 
+    ('Green Tea', 'green_tea.png', 25.00, 1, 6), 
     ('Chocolate Ice Cream', 'chocolate_ice_cream.png', 25.00, 1, 2), 
     ('Vanilla Ice Cream', 'vanilla_ice_cream.png', 22.00, 1, 2), 
     ('Strawberry Ice Cream', 'strawberry_ice_cream.png', 28.00, 1, 2), 

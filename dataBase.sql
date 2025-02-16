@@ -49,4 +49,13 @@ CREATE TABLE order_products (
     CONSTRAINT order_products_order_id_fk FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE,
     CONSTRAINT order_products_product_id_fk FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE
 );
+INSERT INTO categories (name) VALUES 
+('Coffee'),
+('Ice Cream'),
+('Pastries'),
+('Sandwiches'),
+('Cold Beverages'),
+('Hot Drinks');
+
+
 

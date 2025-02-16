@@ -56,6 +56,22 @@ INSERT INTO categories (name) VALUES
 ('Sandwiches'),
 ('Cold Beverages'),
 ('Hot Drinks');
+INSERT INTO products (product_name, image, price, quantity, category_id) 
+VALUES 
+    ('Espresso', 'espresso.png', 30.00, 1, 1), 
+    ('Cappuccino', 'cappuccino.png', 40.00, 1, 1), 
+    ('Latte', 'latte.png', 45.00, 1, 1), 
+    ('Green Tea', 'green_tea.png', 25.00, 1, 1), 
+    ('Chocolate Ice Cream', 'chocolate_ice_cream.png', 25.00, 1, 2), 
+    ('Vanilla Ice Cream', 'vanilla_ice_cream.png', 22.00, 1, 2), 
+    ('Strawberry Ice Cream', 'strawberry_ice_cream.png', 28.00, 1, 2), 
+    ('Cheesecake', 'cheesecake.png', 50.00, 1, 3), 
+    ('Chocolate Cake', 'chocolate_cake.png', 55.00, 1, 3), 
+    ('Mocha', 'mocha.png', 42.00, 25, 1),
+    ('Milkshake Chocolate', 'milkshake_chocolate.png', 42.00, 1, 1)
+    ;
+    
+
 
 
 

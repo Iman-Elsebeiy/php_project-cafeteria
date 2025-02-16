@@ -18,7 +18,7 @@ if (isset($_GET['ext'])) {
 }
 $cafe=new dataBase();
 $cafe->connectToDB("localhost", "cafe", "abdo", "abdo");
-$data=$cafe->selectRowData('users',$_GET['id']);
+$data=$cafe->selectRowData('users','user_id',$_GET['id']);
 
 if (!count($data)) {   
     header("Location: allUsers.php"); // No space after "Location:"

@@ -49,4 +49,65 @@ CREATE TABLE order_products (
     CONSTRAINT order_products_order_id_fk FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE,
     CONSTRAINT order_products_product_id_fk FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE
 );
+-----------------------------------------------------------------------------------------------------------
+-- abdulrhman Used Views 
+-- DROP VIEW IF EXISTS viewname;
 
+
+-- CREATE VIEW pending_orders AS
+-- SELECT 
+--     orders.order_id,
+--     orders.date, 
+--     users.name, 
+--     users.room_no, 
+--     users.ext 
+-- FROM 
+--     orders 
+-- INNER JOIN 
+--     users 
+-- ON 
+--     orders.user_id = users.user_id 
+-- WHERE 
+--     orders.status = 'pending';
+
+
+-- CREATE VIEW user_details AS
+-- SELECT 
+--     user_id, 
+--     image, 
+--     name, 
+--     room_no, 
+--     ext 
+-- FROM 
+--     users ;
+
+
+
+-- CREATE VIEW pending_order_details AS
+
+-- SELECT 
+--     products.image, 
+--     products.product_name, 
+--     products.price,
+--     orders.order_id, 
+--     order_products.quantity
+-- FROM 
+--     orders
+-- JOIN 
+--     order_products 
+-- ON 
+--     orders.order_id = order_products.order_id
+-- JOIN 
+--     products 
+-- ON 
+--     order_products.product_id = products.product_id 
+-- WHERE 
+--     orders.status = 'pending';
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------------

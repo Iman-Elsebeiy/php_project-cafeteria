@@ -2,9 +2,8 @@
 require_once '../../includes/helper.php';
 require_once '../../includes/utils.php';
 require_once '../../includes/classDB.php';
-
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,23 +19,30 @@ require_once '../../includes/classDB.php';
 </head>
 
 <body>
-    <div class="container">
-        <div class="mt-1 text-end">
-            <a href="add_user.php" class="btn add ">Add User</a>
-        </div>
+    <div class="container  ">
+
 
         <?php
 
             $cafe=new dataBase();
             $cafe->connectToDB("localhost", "cafe", "abdo", "abdo");
-             // this is page for all users 
-            // i  created view for users details Except passwords 
-            //  i only created view with desierd data details 
-            //  at my Database then i will select the view and display it 
-           
-            drawUsersTable($cafe->select_data('user_details'));
-            $cafe->closeConnection();
+            // this is page for all pending orders 
+            // i will create view for pending orders at my Database then i will select the view and display it 
+            $pendingOrdersIds = $cafe->getPendingOrderIds();
 
+            foreach ($pendingOrdersIds as $orderId) {
+                // Fetch order details
+                $orderData = $cafe->selectRowData('pending_orders', 'order_id', $orderId);                
+                // Display order details table
+                drawActiveOrder($orderData);
+                // Fetch products within the order
+                $orderProducts = $cafe->selectRowData('pending_order_details', 'order_id', $orderId);
+                // Display products for this order
+                drawActiveOrderDetails($orderProducts);
+            }
+
+            $cafe->closeConnection();
+            
         ?>
     </div>
 

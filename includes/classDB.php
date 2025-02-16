@@ -56,10 +56,12 @@ function select_data($table){
         }
     }
 
-    function selectRowData($table,$id){
+
+
+    function selectRowData($table, $column, $value) {
         try{
        
-            $query = "SELECT * FROM $table Where user_id=$id";
+            $query = "SELECT * FROM $table Where $column=$value";
             $statement = $this->pdo->prepare($query);
             $res =$statement->execute();
             $result_set = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -124,6 +126,36 @@ function select_data($table){
         }
     
     }
+
+    function getPendingOrderIds() {
+        try {
+            $query = "SELECT order_id FROM orders WHERE status = 'pending'";
+            $statement = $this->pdo->query($query);
+            return $statement->fetchAll(PDO::FETCH_COLUMN);
+        } catch (PDOException $e) {
+            displayError($e->getMessage());
+        }
+    }
+
+    
+
+    function updateCell($table, $column, $value, $condCol, $condVal) {
+        try {
+            $query = "UPDATE $table SET $column = :value WHERE $condCol = :condVal";
+            $stmt = $this->pdo->prepare($query);
+    
+            $stmt->bindValue(":value", $value);
+            $stmt->bindValue(":condVal", $condVal);
+        $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            displayError($e->getMessage());
+            return false;
+        }
+    }
+    
+
+    
 
     function descTable($table){
         try{

@@ -64,6 +64,10 @@ function drawUsersTable($users){
 }
 
 
+
+
+
+
 function drawDescTable($users){
     echo "<table class='table'>";
     echo "<tr> <th> Field</th> <th> Type</th> <th> Null</th>   
@@ -84,6 +88,55 @@ function drawDescTable($users){
 
 }
 
+
+
+
+function drawActiveOrder($orders){
+    echo "<table class='table  mt-1 border '>";
+    echo "<tr> <th class=' d-none d-md-block' >order id</th><th>Date</th>  <th>Name</th>  <th>Room</th> <th>Ext.</th> <th>Action</th>  </tr>";
+    foreach($orders as $order) {  
+        echo "<tr>";
+        foreach ($order as $key=>$value) {
+            $id=$order['order_id'];
+            echo "<td>{$value}</td>";
+            
+        }
+        echo "<td  >
+        <a class='btn add   col-12 ' href='../controller/deliverOrder.php?id={$order['order_id']}'>Deliver</a>
+        </td>";
+        echo "</tr>";
+    }
+    echo "</table>";
+}
+
+function drawActiveOrderDetails($orderProducts) {
+    $totalPrice = 0;
+
+    echo '<div class="row gap-5 justify-content-start">';
+
+    foreach ($orderProducts as $product) {
+        // Calculate total price for this order
+        $orderTotal = (isset($product["price"]) ? $product["price"] : 0) * (isset($product["quantity"]) ? $product["quantity"] : 0);
+        $totalPrice += $orderTotal;
+
+        // Display product card
+        echo '
+            <div class="card shadow-lg m-1 p-2" style="width: 10rem;">
+                <img src="' . $product["image"] . '" class="card img-fluid rounded fixed-image " alt="Drink Image" style="height: 150px; width: 200px; object-fit: cover;">
+                <div class="card-body text-center p-1">
+                    <h5 class="card-title">' . $product["product_name"] . '</h5>
+                    <p class="card-text text-muted">L.E ' . number_format($product["price"], 2) . '</p>
+                    <p class="card-text text-muted">' . (isset($product["quantity"]) ? $product["quantity"] : 'N/A') . ' X</p>
+                </div>
+            </div>';
+    }
+
+    // Display total price at the end
+    echo '<div class="w-100"></div>';
+    echo '<h5 class="text-end w-100">Total Price: L.E ' . number_format($totalPrice, 2) . '</h5>';
+
+    echo '</div>';
+}
 
 //
 //    generate_title("iti", 1, 'red');

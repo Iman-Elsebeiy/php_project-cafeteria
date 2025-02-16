@@ -11,7 +11,7 @@ $postErrorsOld=validatePostedData($_POST);
 $img=$_FILES['image'];
 $cafe=new dataBase();
 $cafe->connectToDB("localhost", "cafe", "abdo", "abdo");
-$data=$cafe->selectRowData('users',$_GET['id']);
+$data=$cafe->selectRowData('users','user_id',$_GET['id']);
 $oldImage=$data[0]['image'];
 var_dump($oldImage);
 $file_errors=validateOnfile($img,["png","jpg","jpeg"],2000000);

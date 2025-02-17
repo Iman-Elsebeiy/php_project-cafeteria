@@ -154,7 +154,7 @@ class DataBase{
         }
         function select_product($product_name)
         {
-            $query = "SELECT * FROM `products` where product_name = :p_name";
+            $query = "SELECT * FROM `product_with_category` where product_name = :p_name";
             $statement =$this->pdo->prepare($query);
             $statement->bindParam(':p_name', $product_name);
             $res =$statement->execute();
@@ -187,6 +187,27 @@ class DataBase{
         
         }
 
+        function select_product_of_catgory($category_id)
+        {
+            $query = "SELECT * FROM `product_with_category` where category_id = :c_id";
+            $statement =$this->pdo->prepare($query);
+            $statement->bindParam(':c_id', $category_id);
+            $res =$statement->execute();
+            $result_set = $statement->fetchAll(PDO::FETCH_ASSOC);
+            return $result_set; 
+        }
+        function select_searched_product ($search)  
+        {
+            // SELECT column1, column2, ...FROM table_name';
+            $query = "SELECT * FROM `product_with_category`WHERE product_name LIKE :word" ;
+            $search = "%$search%";
+            $statement =$this->pdo->prepare($query);
+            $statement->bindParam(':word', $search);
+            $res =$statement->execute();
+            $result_set = $statement->fetchAll(PDO::FETCH_ASSOC);
+            return $result_set;
+        }
+        
         function closeConnection(){
             try{
                 if (!$this->pdo){

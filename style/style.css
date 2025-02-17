@@ -10,6 +10,7 @@
   --bg-body: #fffefb;
   --bg-200: #f5f4f1;
   --bg-300: #cccbc8;
+  --bage-color: #8f5f49;
   --bg-opacity-200: #f5f4f19d;
   --primary-font: "Poppins", serif;
 }
@@ -79,4 +80,109 @@ h2 {
 }
 .txt-sm {
   font-size: 10px;
+}
+nav.navbar ul {
+  font-size: 18px;
+}
+.navbar-toggler:focus {
+  text-decoration: none;
+  outline: 0;
+  box-shadow: none;
+  border-color: var(--primary-200);
+}
+.nav-link .active {
+  color: var(--bg-body) !important;
+}
+header {
+  background-color: var(--bg-200);
+  height: 100vh;
+  background-image: url("../app-images/header-bg.png");
+  background-position: left bottom;
+  background-repeat: no-repeat;
+}
+header h1 {
+  color: var(--text-100);
+  font-size: 65px;
+  text-shadow: 1px 1px 1px var(--text-200);
+  font-family: cursive;
+  font-weight: 600;
+}
+header p {
+  font-size: 17px;
+  color: var(--text-200);
+  /* font-family: cursive; */
+}
+header a.btn,
+.product-card a {
+  font-size: 18px;
+  background-color: var(--text-100);
+  color: var(--bg-body);
+  border-radius: 0%;
+}
+
+header a.btn:hover,
+.product-card a:hover {
+  background-color: var(--bage-color);
+  color: var(--bg-body);
+}
+.header-silde {
+  background-image: url("../app-images/h1.png");
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  transition: all 1s;
+}
+.hidden {
+  opacity: 0;
+  transform: scale(0.5);
+  transform: translateY(-80px);
+}
+.visible {
+  opacity: 1;
+  transform: scale(1);
+  transform: translateY(0px);
+}
+
+.categories button {
+  background-color: var(--text-100);
+  color: var(--bg-body);
+  border-radius: 0%;
+}
+.categories button:hover {
+  background-color: var(--bage-color);
+  color: var(--bg-body);
+}
+.category-list li a {
+  color: var(--primary-300);
+  font-size: 18px;
+}
+.category-list li a:hover {
+  color: var(--accent-200);
+}
+.product-card {
+  background-color: var(--bg-200);
+  /* box-shadow: 0px 0px 3px var(--text-200); */
+}
+
+.product-card p {
+  color: var(--bage-color);
+  font-size: 15px;
+}
+.product-card p span {
+  color: var(--text-100);
+}
+button.search {
+  background-color: var(--text-100);
+  color: var(--bg-body);
+  font-size: 15px;
+}
+button.search:hover {
+  background-color: var(--text-100);
+  color: var(--bg-body);
+}
+#products form input.form-control {
+  border: 1px solid var(--bage-color);
+}
+#products form input.form-control:focus {
+  border: 1px solid var(--bage-color);
+  box-shadow: none;
 }

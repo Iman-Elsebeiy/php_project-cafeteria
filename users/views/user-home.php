@@ -39,7 +39,7 @@
                         <a class='nav-link' href='#about'>About</a>
                     </li>
                     <li class='nav-item mx-2'>
-                        <a class='nav-link' href='#services'>Services</a>
+                        <a class='nav-link' href='#'>My Orders</a>
                     </li>
                     <li class='nav-item mx-2'>
                         <a class='nav-link' href='#contact'>Contact</a>
@@ -69,7 +69,7 @@
     <header id="home">
         <div class="container-fluid h-100 ">
             <div class="row border h-100 align-items-center px-5">
-                <div class=" col-12 col-md-6 px-5 ">
+                <div class=" col-12  col-md-6  px-5 ">
                     <h1 class="my-2 "> Start Your Day with the Perfect Coffee!</h1>
                     <p class="mb-4">Experience the rich aroma and taste of freshly brewed coffee.</p>
                     <a href="#products" class="btn px-5">Shop Now</a>
@@ -83,10 +83,10 @@
         <h1 class="fs-2 text-center">All Products </h1>
 
         <div class="container">
-            <div class="row g-3">
-                <div class="col-3">
+            <div class="row g-1 g-md-3 mt-2">
+                <div class="col-4 col-md-3">
                     <div class="categories w-100">
-                        <button class="btn font-bold fs-5 text-white w-100 category-btn ">All Categories
+                        <button class="btn font-bold  text-white w-100 category-btn ">All Categories
                             &#9776;</button>
                         <ul class="border navbar-nav category-list ">
                             <?php
@@ -95,18 +95,14 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-9 p-3 mt-3">
+                <div class="col-8 col-md-9  ">
                     <form class="d-flex  w-100 mb-3" role="search">
-                        <input class="form-control me-2 w-50 ms-auto py-2" type="search" placeholder="Search"
-                            aria-label="Search" name="search" value=<?php
-                            if(!empty($_GET["search"])){
-                                echo $_GET["search"];
-                             }
-                            
-                            ?>>
+                        <input class="form-control me-1 me-md-2 ms-auto p-0 px-2 py-md-2" type="search"
+                            placeholder="Search" aria-label="Search" name="search" value=<?php if(!empty($_GET["search"])){ echo
+                            $_GET["search"]; } ?>>
                         <button class=" btn search" type="submit">Search</button>
                     </form>
-                    <div class="row row-cols-3 g-3">
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 px-4 px-md-0 g-md-3 g-2 mt-3">
                         <?php
                      if(isset($_GET["category"])&&!isset($_GET["search"]))
                      {

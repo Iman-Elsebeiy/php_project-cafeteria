@@ -1,0 +1,232 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-100: #d4eaf7;
+    --primary-200: #b6ccd8;
+    --primary-300: #3b3c3d;
+    --accent-100: #43758f;
+    --accent-200: #d7ffff;
+    --text-100: #1d1c1c;
+    --text-200: #313d44;
+    --bg-100: #fffefb;
+    --bg-200: #f5f4f1;
+    --bg-300: #cccbc8;
+}
+
+body {
+    background-color: var(--bg-200);
+}
+
+/*nav  */
+.navbar-brand {
+    color: var(--accent-200);
+}
+
+.navbar {
+    background-color: var(--accent-100);
+    margin-bottom: 10px;
+}
+
+.navbar .nav-link {
+    color: var(--accent-200);
+
+}
+
+.navbar .person {
+    margin-right: 60px;
+
+}
+
+.navbar .person .dropdown {
+    list-style-type: none;
+
+}
+
+.navbar .person .dropdown .dropdown-toggle {
+    color: var(--accent-200);
+    text-decoration: none;
+    cursor: pointer;
+
+}
+
+.navbar .person .dropdown .dropdown-toggle img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.navbar .person .dropdown .dropdown-toggle::after {
+    display: none;
+}
+
+.navbar .person .dropdown-menu {
+    min-width: 30px;
+
+    background-color: red;
+    --bs-dropdown-link-hover-bg: none;
+    --bs-dropdown-link-active-bg: none;
+
+}
+
+.navbar .person .dropdown-menu .dropdown-item {
+    color: white;
+
+}
+
+
+/* add user */
+.adduser {
+    padding: 20px;
+    border-radius: 15px;
+    background-color: var(--accent-100);
+    font-weight: bold;
+    color: var(--accent-200);
+    accent-color: var(--accent-100);
+}
+
+.adduser button {
+    background-color: var(--accent-200);
+    color: var(--accent-100);
+    width: 100px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+}
+.login{
+ margin-top: 100px;
+}
+
+.error {
+    color: darkred;
+}
+/* my orders */
+.tablebx {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.tablebx .filterdate {
+    margin: 30px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.tablebx .filterdate label {
+
+    color: var(--text-200);
+    font-weight: bold;
+
+}
+
+.tablebx .filterdate button {
+    background-color: var(--accent-100);
+    color: var(--accent-200);
+    width: 100px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+
+}
+
+.tablebx h1 {
+    color: var(--text-200);
+
+}
+
+.tablebx table {
+    --bs-table-color: var(--accent-100);
+}
+
+.tablebx table thead {
+    --bs-table-bg: var(--accent-100);
+    --bs-table-color: var(--accent-200);
+
+}
+
+.tablebx .productbx {
+    margin-top: 20px;
+    padding: 30px;
+
+}
+
+.tablebx .productbx .row {
+    justify-content: space-around;
+    align-items: center;
+}
+
+.tablebx .productbx .total {
+    background-color: var(--accent-100);
+    color: var(--accent-200);
+}
+
+.tablebx .productbx .product {
+
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    color: var(--accent-100);
+
+
+}
+
+.tablebx .productbx .product img {
+    width: 100px;
+    height: 90px;
+
+}
+
+.tablebx .productbx .product .price {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 10px;
+    right: 0;
+    z-index: 100;
+    background-color: var(--accent-100);
+    color: var(--accent-200);
+
+
+}
+
+.tablebx .productbx .product .name {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.tablebx .productbx .product .order {
+
+    background-color: var(--accent-200);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+footer{
+    background-color: var(--accent-100);
+    color: var(--accent-200);
+
+   
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* position: absolute;
+    bottom: 0; */
+}

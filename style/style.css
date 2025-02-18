@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 * {
     margin: 0;
     padding: 0;
@@ -8,31 +10,36 @@
     --primary-100: #d4eaf7;
     --primary-200: #b6ccd8;
     --primary-300: #3b3c3d;
-    --accent-100: #43758f;
-    --accent-200: #d7ffff;
+    --accent-100: #71c4ef;
+    --accent-200: #00668c;
     --text-100: #1d1c1c;
     --text-200: #313d44;
-    --bg-100: #fffefb;
+    --bg-body: #fffefb;
     --bg-200: #f5f4f1;
     --bg-300: #cccbc8;
-}
+    --bage-color: #8f5f49;
+    --bg-opacity-200: #f5f4f19d;
+    --primary-font: "Poppins", serif;
+  }
 
 body {
-    background-color: var(--bg-200);
-}
+    background-color: var(--bg-body);
+    font-family: var(--primary-font) !important;
+    color: var(--text-100);
+  }
 
 /*nav  */
 .navbar-brand {
-    color: var(--accent-200);
+    color: var(--bg-300);
 }
 
 .navbar {
-    background-color: var(--accent-100);
+    background-color: var(--text-100);
     margin-bottom: 10px;
 }
 
 .navbar .nav-link {
-    color: var(--accent-200);
+    color: var(--bg-300);
 
 }
 
@@ -82,16 +89,16 @@ body {
 .adduser {
     padding: 20px;
     border-radius: 15px;
-    background-color: var(--accent-100);
+    background-color: var(--bg-300);
     font-weight: bold;
-    color: var(--accent-200);
+    color: var(--text-100);
     accent-color: var(--accent-100);
     margin-bottom: 10px;
 }
 
 .adduser button {
-    background-color: var(--accent-200);
-    color: var(--accent-100);
+    background-color: #1d1c1c;
+    color: var(--primary-100);
     width: 100px;
     height: 40px;
     border: none;
@@ -222,8 +229,8 @@ body {
 }
 
 footer{
-    background-color: var(--accent-100);
-    color: var(--accent-200);
+    background-color: var(--text-100);
+    color: var(--bg-300);
 
    
     width: 100%;

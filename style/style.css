@@ -86,6 +86,7 @@ body {
     font-weight: bold;
     color: var(--accent-200);
     accent-color: var(--accent-100);
+    margin-bottom: 10px;
 }
 
 .adduser button {
@@ -101,6 +102,9 @@ body {
 }
 
 .error {
+    color: darkred;
+}
+.forget a {
     color: darkred;
 }
 /* my orders */

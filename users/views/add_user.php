@@ -8,6 +8,7 @@ try {
         $name = filtervalidation($_POST['name']);
         $email = filtervalidation($_POST['email']);
         $password = filtervalidation($_POST['password']);
+       $hashpassword= password_hash( $password, PASSWORD_DEFAULT);
         $room_no = filtervalidation($_POST['room']);
         $ext = filtervalidation($_POST['ext']);
         $image = $_FILES['img']['name'];
@@ -52,14 +53,27 @@ try {
 
         if (empty($errors)) {
             move_uploaded_file($_FILES['img']['tmp_name'], $img_location);
-            $insert = "INSERT INTO `users`( `name`, `email`, `password`, `room_no`, `ext`, `image`, `role`) VALUES ('$name', '$email', '$password', '$room_no', '$ext', '$image', 'user')";
+            $insert = "INSERT INTO `users` (`name`, `email`, `password`, `room_no`, `ext`, `image`, `role`) 
+            VALUES (:name, :email, :password, :room_no, :ext, :image, 'user')";
+
+           
             $stm = $pdo->prepare($insert);
+
+        
+            $stm->bindParam(':name', $name);
+            $stm->bindParam(':email', $email);
+            $stm->bindParam(':password', $hashpassword);
+            $stm->bindParam(':room_no', $room_no);
+            $stm->bindParam(':ext', $ext);
+            $stm->bindParam(':image', $image);
+
+        
             $stm->execute();
+
+    
             $pdo = null;
             // header("Location:allUsers");
         }
-       
-      
     }
 } catch (PDOException $e) {
     echo $e->getMessage();
@@ -126,16 +140,16 @@ AdminOnlyPage();
             <div class="d-flex person">
                 <li class="nav-item dropdown">
                     <a class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                       
+
 
                         <?php echo $_SESSION['name'] ?>
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <form >
-                            <button name="logout" class="dropdown-item">logout</button>
+                            <form>
+                                <button name="logout" class="dropdown-item">logout</button>
                             </form>
-                          
+
                         </li>
 
                     </ul>
@@ -172,7 +186,7 @@ AdminOnlyPage();
                 <p class="error"><?php if (isset($errors['password'])) echo $errors['password'] ?></p>
 
             </div>
-           
+
 
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">room no</label>
@@ -229,8 +243,8 @@ AdminOnlyPage();
 
 
     <footer>
-    <h3>copyright &copy cafeteria All rights reserved</h3>
-</footer>
+        <h3>copyright &copy cafeteria All rights reserved</h3>
+    </footer>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">

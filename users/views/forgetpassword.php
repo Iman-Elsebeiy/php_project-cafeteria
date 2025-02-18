@@ -6,10 +6,14 @@ try {
     if (isset($_POST['send'])) {
 
         $email = filtervalidation($_POST['email']);
-        $password = filtervalidation($_POST['password']);
-    
+        $oldpassword = filtervalidation($_POST['oldpassword']);
+        $newpassword = filtervalidation($_POST['newpassword']);
+        $newpasswordhashed = password_hash($newpassword, PASSWORD_DEFAULT);
 
         $errors = [];
+
+
+
 
         if (strvalid($email)) {
             $errors['email'] = "please enter email";
@@ -17,39 +21,50 @@ try {
         if (validemail($email)) {
             $errors['validemail'] = "please enter a valid email";
         }
-        if (strvalid($password)) {
-            $errors['password'] = "please enter password";
+        if (strvalid($oldpassword)) {
+            $errors['oldpassword'] = "please enter old password";
+        }
+        if (strvalid($newpassword)) {
+            $errors['newpassword'] = "please enter new password";
         }
 
 
         if (empty($errors)) {
-            $select_query = "SELECT * FROM `users` WHERE `email`='$email' ";
+            $select_query = "SELECT * FROM `users` WHERE `email` = :email ";
             $stm = $pdo->prepare($select_query);
+
+
+            $stm->bindParam(':email', $email, PDO::PARAM_STR);
+
+
             $stm->execute();
             $users = $stm->fetchAll(PDO::FETCH_ASSOC);
             $numofrows = $stm->rowCount();
-            $pdo = null;
 
 
-       
 
-           
+
+
             if ($numofrows == 1) {
+                if (password_verify($oldpassword, $users[0]['password'])) {
+                    $update = "UPDATE `users` SET `password` = :newpassword WHERE `email` = :email ";
+                    $stm2 = $pdo->prepare($update);
 
-                if (password_verify($password, $users[0]['password'])) {
-                session_start();
-                $_SESSION['id'] = $users[0]['user_id'];
-                $_SESSION['name'] = $users[0]['name'];
-                $_SESSION['image'] = $users[0]['image'];
-                $_SESSION['role'] = $users[0]['role'];
-                $_SESSION['login'] = true;
-                header('Location: home.php');
-                exit;
+
+                    $stm2->bindParam(':newpassword',  $newpasswordhashed, PDO::PARAM_STR);
+                    $stm2->bindParam(':email', $email, PDO::PARAM_STR);
+
+
+                    $stm2->execute();
+
+                    $pdo = null;
+                    header('Location:login.php');
+                    exit;
+                } else {
+                    $errors['dontmatch'] = "the old password is wrong";
+                }
             } else {
-                $errors['invalid'] = "invalid email or password";
-            }
-            } else {
-                $errors['invalid'] = "invalid email or password";
+                $errors['dontmatch'] = "the old password is wrong";
             }
         }
     }
@@ -81,9 +96,9 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
 <body>
 
     <div class="container adduser login col-lg-5">
-        <h1 class="text-center">log in</h1>
+        <h1 class="text-center">forget password</h1>
         <form class="pd-3" method="POST">
-            <p class="error text-center"><?php if (isset($errors['invalid'])) echo $errors['invalid']  ?></p>
+
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">email</label>
                 <input type="text" class="form-control" name="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
@@ -96,12 +111,19 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
 
 
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" name="password" id="exampleInputPassword1">
-                <p class="error"><?php if (isset($errors['password'])) echo $errors['password'] ?></p>
+                <label for="exampleInputPassword1" class="form-label">old Password</label>
+                <input type="password" class="form-control" name="oldpassword">
+                <p class="error"><?php if (isset($errors['oldpassword'])) echo $errors['oldpassword'] ?></p>
+                <?php if (!isset($errors['oldpassword'])): ?>
+                    <p class="error"><?php if (isset($errors['dontmatch'])) echo $errors['dontmatch'] ?></p>
+                <?php endif; ?>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">new password</label>
+                <input type="password" class="form-control" name="newpassword">
+                <p class="error"><?php if (isset($errors['newpassword'])) echo $errors['newpassword'] ?></p>
 
             </div>
-
 
 
 
@@ -111,9 +133,7 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
             <div class="d-flex justify-content-center">
                 <button type="submit" name="send">Submit</button>
             </div>
-            <div class="d-flex justify-content-center mt-3 forget">
-                <a href="./forgetpassword.php">forget password ?</a>
-            </div>
+
 
         </form>
     </div>

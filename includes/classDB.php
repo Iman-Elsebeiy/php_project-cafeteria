@@ -14,13 +14,14 @@ function connectToDB($db_host,$db_name,$db_user,$db_password) {
     }
 }
 
-function insert($table,$user){
+function insert($table,$data){
+    // data is associateve  array  key => value , 
     try{
-        $columns =implode(",", array_keys($user),);
-        $placeholders = ":" . implode(", :", array_keys($user));
+        $columns =implode(",", array_keys($data),);
+        $placeholders = ":" . implode(", :", array_keys($data));
         $inst_query =  "INSERT INTO $table($columns) values ($placeholders) ";
         $stmt = $this->pdo->prepare($inst_query);
-        foreach($user as $key => $value)
+        foreach($data as $key => $value)
         {
         $stmt->bindValue(':'.$key,$value); 
         }
@@ -28,7 +29,7 @@ function insert($table,$user){
         if($this->pdo->lastInsertId()){
             displaySuccess("Student inserted successfully {$this->pdo->lastInsertId()}");
         }
-        return 0;}
+        return $this->pdo->lastInsertId();}
         
         catch(PDOException $e){
         displayError($e->getMessage());
@@ -76,7 +77,7 @@ function select_data($table){
 
 
     function update($table,$id,$user) {
-        # $user is array holds kry value pair name-> namevalue and sooo on
+        # $user is array holds key value pair name-> namevalue and sooo on
         try {
             $inst_query = "UPDATE $table 
                            SET name = :name, 
@@ -137,6 +138,29 @@ function select_data($table){
         }
     }
 
+
+    function selectCell($table, $column, $condCol, $condVal) {
+        try {
+            $query = "SELECT $column FROM $table WHERE $condCol = :condVal LIMIT 1";
+            $stmt = $this->pdo->prepare($query);
+    
+            $stmt->bindValue(":condVal", $condVal);
+            $stmt->execute();
+    
+            // Fetch the result
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            if ($result) {
+                return $result[$column];  // Return the value of the selected column
+            } else {
+                return null;  // Return null if no result found
+            }
+        } catch (PDOException $e) {
+            displayError($e->getMessage());
+            return false;
+        }
+    }
+    
     
 
     function updateCell($table, $column, $value, $condCol, $condVal) {
@@ -169,6 +193,8 @@ function select_data($table){
         }
     
     }
+
+    
 
 
 

@@ -122,7 +122,7 @@ function drawActiveOrderDetails($orderProducts) {
         // Display product card
         echo '
             <div class="card shadow-lg m-1 p-2" style="width: 10rem;">
-                <img src="' . $product["image"] . '" class="card img-fluid rounded fixed-image " alt="Drink Image" style="height: 150px; width: 200px; object-fit: cover;">
+                <img src="../../products/imgs/'. $product["image"] . '" class="card img-fluid rounded fixed-image " alt="Drink Image" style="height: 150px; width: 200px; object-fit: cover;">
                 <div class="card-body text-center p-1">
                     <h5 class="card-title">' . $product["product_name"] . '</h5>
                     <p class="card-text text-muted">L.E ' . number_format($product["price"], 2) . '</p>
@@ -138,7 +138,44 @@ function drawActiveOrderDetails($orderProducts) {
     echo '</div>';
 }
 
+function cartItem($productsData,$quantity){
+    foreach($productsData as $productData)
+    {
+    echo '
+            <div class="card shadow-lg m-1 p-2 " style="width: 10rem;">
+                <img src="../../products/imgs/' . $productData["image"] . '" class="card img-fluid rounded fixed-image " alt="Drink Image" style="height: 150px; width: 200px; object-fit: cover;">
+                <div class="card-body text-center p-2">
+                    <h5 class="card-title">' . $productData["product_name"] . '</h5>
+                    <p class="card-text text-muted ">L.E ' . number_format($productData["price"], 2) . '</p>
+                   <span><a href="../controller/incQan.php?id=' . $productData['product_id'] . '" type="button" class="btn btn-sm m-2 res ">+</a></span>
+                    <span class="card-text text-muted">' . (isset($quantity) ? $quantity: 'N/A') . '</span>
+                    <span><a href="../controller/decQan.php?id=' . $productData['product_id']. '" type="button" class="btn res m-2 btn-sm">-</a></span>
+                </div>
+            <a href="../controller/remove_from_cart.php?id='.$productData['product_id'] .'" class="btn res m-2 fw-bold">
+            <i class="bi bi-trash"></i></a>
+
+                </div>
+            ';
+
+        }
+        
+}
+function itemSummary($productData,$productTotalPrice){
+        echo '
+            <div class="row mb-3">
+                <div class="col-8">
+                    <p><strong>'. $productData[0]['product_name'] .'</strong></p>
+                </div>
+
+                <div class="col-4 text-end">
+                    <p><strong>'. number_format($productTotalPrice, 1).'L.E</strong></p>
+                </div>
+
+            </div>
+        ';
+
+}
 //
-//    generate_title("iti", 1, 'red');
-//    generate_title("iti", 2, 'blue');
-//    generate_title("iti", 3, 'green');
+// generate_title("iti", 1, 'red');
+// generate_title("iti", 2, 'blue');
+// generate_title("iti", 3, 'green');

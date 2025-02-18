@@ -65,9 +65,10 @@ button.add:hover {
   color: var(--bg-body);
 }
 .btn:disabled {
-  background-color: #3b4952;
-  color: var(--bg-body);
-  opacity: 0.2;
+  background-color: var(--bage-color);
+  color: white;
+  opacity: 0.6;
+  font-size: 14px;
 }
 .image {
   text-align: center;
@@ -117,7 +118,8 @@ header p {
   /* font-family: cursive; */
 }
 header a.btn,
-.product-card a {
+.product-card button,
+ul.cart-items a {
   font-size: 18px;
   background-color: var(--text-100);
   color: var(--bg-body);
@@ -125,7 +127,8 @@ header a.btn,
 }
 
 header a.btn:hover,
-.product-card a:hover {
+.product-card button:hover,
+ul.cart-items a:hover {
   background-color: var(--bage-color);
   color: var(--bg-body);
 }
@@ -199,6 +202,46 @@ button.search:hover {
   border: 1px solid var(--bage-color);
   box-shadow: none;
 }
+ul.cart-items {
+  background-color: var(--bg-200);
+  position: absolute;
+  right: 10px;
+  /* left: 0; */
+  top: 100%;
+  padding-left: 0;
+  width: 400px;
+  border: 2px solid var(--bg-300);
+  max-height: 400px;
+  min-height: 200px;
+  overflow-y: auto;
+}
+ul.cart-items li {
+  border-bottom: 1px solid var(--bg-300);
+}
+ul.cart-items li div {
+  width: 50px;
+  height: 50px;
+  border: 2px solid var(--bg-300);
+  background-color: var(--bg-300);
+}
+ul.cart-items li img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  object-position: center;
+}
+ul.cart-items h6 {
+  font-size: 14px;
+  margin-bottom: 0;
+}
+ul.cart-items p {
+  font-size: 13px;
+  color: var(--bage-color);
+}
+.cart-icon {
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 600px) {
   header h1 {
     font-size: 35px;
@@ -294,7 +337,7 @@ button.search:hover {
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
   header h1 {
-    font-size: 65px;
+    font-size: 55px;
   }
   header p {
     font-size: 18px;

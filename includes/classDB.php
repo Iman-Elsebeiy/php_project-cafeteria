@@ -207,7 +207,16 @@ class DataBase{
             $result_set = $statement->fetchAll(PDO::FETCH_ASSOC);
             return $result_set;
         }
-        
+        function select_cart_product($products_id)
+        {
+          $products_id_str =  join(",",$products_id);
+          $query=  "SELECT * FROM `product_with_category` where product_id IN($products_id_str)";
+          $statement =$this->pdo->prepare($query);
+        //   $statement->bindParam(':arr', $products_id_str);
+          $res =$statement->execute();
+          $result_set = $statement->fetchAll(PDO::FETCH_ASSOC);
+           return $result_set;
+        }
         function closeConnection(){
             try{
                 if (!$this->pdo){

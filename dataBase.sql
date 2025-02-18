@@ -49,6 +49,15 @@ CREATE TABLE order_products (
     CONSTRAINT order_products_order_id_fk FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE,
     CONSTRAINT order_products_product_id_fk FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE
 );
+
+
+
+
+ALTER TABLE `order`
+ADD COLUMN notes TEXT;
+
+
+
 -----------------------------------------------------------------------------------------------------------
 -- abdulrhman Used Views 
 -- DROP VIEW IF EXISTS viewname;

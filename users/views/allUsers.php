@@ -3,21 +3,21 @@ require_once '../../includes/helper.php';
 require_once '../../includes/utils.php';
 require_once '../../includes/classDB.php';
 session_start();
-$_SESSION['try']='asdasd'; 
+
 $_SESSION['cart'] = [
     // 'product_id'=>'quantity'
     'products'=>[
-        '1' => 99,
-        '5' => 2,
-        '6' => 2,
-        '7' => 2,
-        '8' => 2,
-        '2' => 79,
-        '9' => 2
+        '2' => 102,
+        '5' => 9,
+        '6' => 3,
+        '7' => 4,
+        '8' => 5,
+        '9' => 7
     ],
     "user_id"=>'19'
 
 ];
+$_SESSION['login'] = true ;
 
 ?>
 

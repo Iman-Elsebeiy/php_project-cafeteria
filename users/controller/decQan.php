@@ -1,13 +1,10 @@
 <?php
-
 require_once '../../includes/helper.php';
 require_once '../../includes/utils.php';
 require_once '../../includes/classDB.php';
-
-
-
 session_start();
 $id=$_GET['id'];
+
 
 $cafe=new dataBase();
 $cafe->connectToDB("localhost", "cafe", "abdo", "abdo");

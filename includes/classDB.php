@@ -111,11 +111,11 @@ function select_data($table){
     }
     
 
-    function delete_data($table,$id){
+    function delete_data($table,$colCond,$colVal){
         try{
-            $delete_query = "delete from $table where user_id = :id";
+            $delete_query = "delete from $table where $colCond = :colVal";
             $stmt = $this->pdo->prepare($delete_query);
-            $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':colVal', $colVal);
             $stmt->execute();
             if($stmt->rowCount()){
                 displaySuccess("Delete Successful");

@@ -96,8 +96,8 @@ function drawActiveOrder($orders){
     echo "<tr> <th class=' d-none d-md-block' >order id</th><th>Date</th>  <th>Name</th>  <th>Room</th> <th>Ext.</th> <th>Action</th>  </tr>";
     foreach($orders as $order) {  
         echo "<tr>";
-        foreach ($order as $key=>$value) {
-            $id=$order['order_id'];
+        foreach ($order as$value) {
+            
             echo "<td>{$value}</td>";
             
         }

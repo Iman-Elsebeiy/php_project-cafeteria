@@ -64,7 +64,7 @@ div.form {
 }
 
 form button {
-  width: 333px;
+  width: 150px;
 }
 
 /* .sub:hover { */
@@ -78,15 +78,10 @@ form button {
   color: var(--bg-body);
 } */
 
-.add:hover {
-  background-color: var(--primary-300);
-  color: var(--accent-100);
-}
-
 .add {
-  background-color: var(--bg-opacity-200);
+  background-color: var(--text-100) !important ;
   border: 2px solid var(--primary-300);
-  color: var(--primary-300);
+  color: var(--primary-100);
 }
 
 .res:hover {

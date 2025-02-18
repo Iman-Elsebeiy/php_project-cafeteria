@@ -212,10 +212,24 @@ class DataBase{
           $products_id_str =  join(",",$products_id);
           $query=  "SELECT * FROM `product_with_category` where product_id IN($products_id_str)";
           $statement =$this->pdo->prepare($query);
-        //   $statement->bindParam(':arr', $products_id_str);
           $res =$statement->execute();
           $result_set = $statement->fetchAll(PDO::FETCH_ASSOC);
            return $result_set;
+        }
+        function selectAllUser ()
+        {
+            try{
+                $query = "SELECT * FROM `users` where role =:r_user";
+                $statement = $this->pdo->prepare($query);
+                $statement->bindValue(':r_user', "user");
+                $res =$statement->execute();
+                $result_set = $statement->fetchAll(PDO::FETCH_ASSOC);
+                return $result_set;
+                
+            }
+            catch (PDOException $e){
+                    displayError($e->getMessage());
+                }
         }
         function closeConnection(){
             try{

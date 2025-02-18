@@ -241,6 +241,14 @@ ul.cart-items p {
 .cart-icon {
   cursor: pointer;
 }
+select#user {
+  border: 1px solid var(--bage-color);
+  outline: none;
+}
+select#user {
+  outline: none;
+  border: 1px solid var(--bage-color);
+}
 
 @media only screen and (max-width: 600px) {
   header h1 {

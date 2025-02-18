@@ -2,7 +2,6 @@
  require_once "classDB.php";
  require_once "config.php";
   
-
   function displayUserNavbar($userImage,$cart){
         echo '
         <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body fixed-top left-0 right-0" id="navbar-example2" data-bs-theme="dark">
@@ -84,7 +83,7 @@
             </div>
         </nav>';
    }
- function displayAdminNavbar($userImage,$cart,$userName){
+  function displayAdminNavbar($userImage,$cart,$userName){
         echo '
         <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body " id="navbar-example2" data-bs-theme="dark">
             <div class="container-fluid px-5">
@@ -140,10 +139,10 @@
                             <a class="nav-link" href="#about">Products</a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link" href="#">Uesrs</a>
+                            <a class="nav-link" href="./allUsers.php">Uesrs</a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link" href="#">Orders</a>
+                            <a class="nav-link" href="../../orders/views/pendingOrders.php">Orders</a>
                         </li>
                         
                         <li class="nav-item mx-2">
@@ -185,131 +184,171 @@
             </div>
         </nav>';
   }
-  function displayCategoriesLinks(){
-    $db_conn= new DataBase();
-    $db_conn->connectToDB(DB_HOST,DB_NAME,DB_USER,DB_PASSWORD);
-    $categories=$db_conn->select_data("categories");
-    $categories_list ="<li class='p-2'>
-                                    <a href='?category=all' class='text-decoration-none'>All</a>
-                                 </li>";
-    
-        foreach ($categories as $category) {
-            $categories_list .= "<li class='p-2'>
-                                    <a href='?category=" . $category['category_id'] . "' class='text-decoration-none'>" . $category['name'] . "</a>
-                                 </li>";
-        }
-        $db_conn->closeConnection();
-    
-     echo $categories_list;  
-  }
-  function getProducts($category_id="all",$search=""){
-    $db_conn= new DataBase();
-    $db_conn->connectToDB(DB_HOST,DB_NAME,DB_USER,DB_PASSWORD);
-    if($category_id!="all"){
-       $products= $db_conn->select_product_of_catgory($category_id);
+
+    echo '<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>';
+
+    function generate_title($message, $size=1, $color='black'){
+        echo '<hr>';
+        echo "<h{$size}  style='color:{$color}' class='text-center'>{$message}</h{$size}>";
     }
-    elseif(trim($search)!="" ){
-        $products= $db_conn->select_searched_product($search);    
+
+    function displayError($errormessage){
+        echo "<br>";
+        echo "<h4 style='color: red'>{$errormessage}</h4>";
     }
-    else{
-        $products= $db_conn->select_data("product_with_category");
+
+
+    function draw_empty_lines(){
+        echo str_repeat("<br>", 10);
     }
-     displayProduct($products);
-    $db_conn->closeConnection();
-  }
-  function displayProduct($products){
-    if(!empty($products)){ 
-        foreach($products as $product)
+
+
+    function drawlines()
     {
-       echo'<div class="col">
-                   <div class="product-card p-3 rounded">
-                       <img src="../../products/imgs/'."{$product['image']}".  '
-                       "  alt="cafe image">
-                       <h5 class=" my-2 text-center">'."{$product['product_name']}".'</h5>
-                       <p class="text-center mb-2">
-                           <span>Price:</span>'
-                           ."{$product['price']}".'</p>
-                       <p class="text-center mb-2">
-                           <span>Category:</span>'."{$product['category_name']}".'
-                           
-                       </p>
-                      <form action="../controller/add_to_cart.php" method="post">
-                                    <input type="text" value="'."{$product['product_id']}".'" name="product_id" hidden>
-                       <button class="btn w-100 p-2 " data-product-id="'."{$product['product_id']}".'" >Add To Cart</button>
-                         </form>
-                   </div>
-            </div>';
+        echo "<hr>";
     }
-    }
-    else{
-        echo '<h4 class="p-3 mt-2 col-10 mx-auto fs-5"> No Products in Founded !</h4>';
-   }
-  }
-  function getUserData($user_id) { 
-    $db_conn= new DataBase();
-    $db_conn->connectToDB(DB_HOST,DB_NAME,DB_USER,DB_PASSWORD);
-    $user_data= $db_conn->selectRowData("users",$user_id);
-    $user_data=reset($user_data);
-    $db_conn->closeConnection();
-    return ["name"=>$user_data["name"],"email"=>$user_data["email"],"image"=>$user_data["image"],"role"=>$user_data["role"]];
-  }
-  function getCartProducts($cart_product_id){
-    $products_ids = array_keys($cart_product_id);
-    $db_conn= new DataBase();
-    $db_conn->connectToDB(DB_HOST,DB_NAME,DB_USER,DB_PASSWORD);
-    $cart_product_data= $db_conn->select_cart_product($products_ids);
-    displayCartList($cart_product_data);
-    $db_conn->closeConnection();
-   
-  }
-  function displayCartList($products){
-     if(sizeof($products)>0)
-     {
-        foreach($products as $product)
-        {
-            echo  '
-             <li class="d-flex  gap-2  p-2  w-100">
-                <div>
-                    <img src="../../products/imgs/'."{$product["image"]}".'" alt="product-imge">
-                </div>
-                <span>
-                    <h6>'."{$product["product_name"]}".'</h6>
-                    <p>'."{$product["price"]}".'</p>
-                </span>
-            </li>';
-        }
-        echo ' <a class="btn w-100 " href="#cart.php"> Go To Cart</a>';
-     }
-     else{
-      echo  '
-      <li class="d-flex  gap-2  p-5  w-100">
-          <h4> Cart Is Empty</h4>
-      </li>';
-      echo ' <a class="btn w-100 " href="#products"> Shop Now </a>';
-     }
-  }
-  function getAllUserForSelect ($value="")
-  {
-    $db_conn= new DataBase();
-    $db_conn->connectToDB(DB_HOST,DB_NAME,DB_USER,DB_PASSWORD);
-    $users= $db_conn->selectAllUser(); 
-    displayUser($users,$value);
-    $db_conn->closeConnection(); 
-  }
-  function displayUser($users,$value){
-    if(sizeof($users)>0)
+
+    function displaySuccess($message)
     {
-      foreach($users as $user)
-      {
-        echo '<option value="' . $user["user_id"] . '" ' . 
-             ($value == $user["user_id"] ? 'selected' :'') . 
-              '>' . $user["name"] . '</option>';
-      }
-     
-    }
-    else{
-      echo '<option disabled> No User Found </option>';
+        echo "<h4 style='color: green'>{$message}</h4>";
 
     }
-  }
+
+
+function drawUsersTable($users){
+    echo "<table class='table mt-1 border '>";
+    echo "<tr> <th class=' d-none d-md-block' >Profile Picture</th><th>Name</th><th>Room</th> <th>Ext.</th> <th>Action</th>  </tr>";
+    foreach($users as $user) {  
+        echo "<tr>";
+        $data = array("name", "room_no", "ext", "image");
+        foreach ($user as $key=>$value) {
+
+            if (in_array($key, $data) && $key != "image") {
+                echo "<td>{$value}</td>";
+            }else if($key == "image"){
+                echo "<td class=' d-none d-md-block' ><img  class='rounded-circle border border-dark '  src='{$value}'  width='70' height='70'></td>";
+            }
+
+        }
+        echo "<td  >
+        <a class='btn add   col-4 ' href='editUser.php?id={$user['user_id']}'>Edit</a>
+        <a class='btn res   col-4 ' href='../controller/deleteUser.php?id={$user['user_id']}&image={$user['image']}'>Delete</a>
+      </td>";
+
+        echo "</tr>";
+
+    }
+
+    echo "</table>";
+
+
+}
+
+function drawDescTable($users){
+    echo "<table class='table'>";
+    echo "<tr> <th> Field</th> <th> Type</th> <th> Null</th>   
+        <th>Key</th><th>Default</th><th>Extra</th>  </tr>";
+    foreach($users as $user) {   #EACH student is array of values
+        echo "<tr>";
+        foreach ($user as $key=>$value) {
+
+                echo "<td>{$value}</td>";
+            
+        }
+        echo "</tr>";
+
+    }
+
+    echo "</table>";
+
+
+}
+
+function drawActiveOrder($orders){
+    echo "<table class='table  mt-1 border '>";
+    echo "<tr> <th class=' d-none d-md-block' >order id</th><th>Date</th>  <th>Name</th>  <th>Room</th> <th>Ext.</th> <th>Action</th>  </tr>";
+    foreach($orders as $order) {  
+        echo "<tr>";
+        foreach ($order as$value) {
+            
+            echo "<td>{$value}</td>";
+            
+        }
+        echo "<td  >
+        <a class='btn add   col-12 ' href='../controller/deliverOrder.php?id={$order['order_id']}'>Deliver</a>
+        </td>";
+        echo "</tr>";
+    }
+    echo "</table>";
+}
+
+function drawActiveOrderDetails($orderProducts) {
+    $totalPrice = 0;
+
+    echo '<div class="row gap-5 justify-content-start">';
+
+    foreach ($orderProducts as $product) {
+        // Calculate total price for this order
+        $orderTotal = (isset($product["price"]) ? $product["price"] : 0) * (isset($product["quantity"]) ? $product["quantity"] : 0);
+        $totalPrice += $orderTotal;
+
+        // Display product card
+        echo '
+            <div class="card shadow-lg m-1 p-2" style="width: 10rem;">
+                <img src="../../products/imgs/'. $product["image"] . '" class="card img-fluid rounded fixed-image " alt="Drink Image" style="height: 150px; width: 200px; object-fit: cover;">
+                <div class="card-body text-center p-1">
+                    <h5 class="card-title">' . $product["product_name"] . '</h5>
+                    <p class="card-text text-muted">L.E ' . number_format($product["price"], 2) . '</p>
+                    <p class="card-text text-muted">' . (isset($product["quantity"]) ? $product["quantity"] : 'N/A') . ' X</p>
+                </div>
+            </div>';
+    }
+
+    // Display total price at the end
+    echo '<div class="w-100"></div>';
+    echo '<h5 class="text-end w-100">Total Price: L.E ' . number_format($totalPrice, 2) . '</h5>';
+
+    echo '</div>';
+}
+
+function cartItem($productsData,$quantity){
+    foreach($productsData as $productData)
+    {
+    echo '
+            <div class="card shadow-lg m-1 p-2 " style="width: 10rem;">
+                <img src="../../products/imgs/' . $productData["image"] . '" class="card img-fluid rounded fixed-image " alt="Drink Image" style="height: 150px; width: 200px; object-fit: cover;">
+                <div class="card-body text-center p-2">
+                    <h5 class="card-title">' . $productData["product_name"] . '</h5>
+                    <p class="card-text text-muted ">L.E ' . number_format($productData["price"], 2) . '</p>
+                   <span><a href="../controller/incQan.php?id=' . $productData['product_id'] . '" type="button" class="btn btn-sm m-2 res ">+</a></span>
+                    <span class="card-text text-muted">' . (isset($quantity) ? $quantity: 'N/A') . '</span>
+                    <span><a href="../controller/decQan.php?id=' . $productData['product_id']. '" type="button" class="btn res m-2 btn-sm">-</a></span>
+                </div>
+            <a href="../controller/remove_from_cart.php?id='.$productData['product_id'] .'" class="btn res m-2 fw-bold">
+            <i class="bi bi-trash"></i></a>
+
+                </div>
+            ';
+
+        }
+        
+}
+function itemSummary($productData,$productTotalPrice){
+        echo '
+            <div class="row mb-3">
+                <div class="col-8">
+                    <p><strong>'. $productData[0]['product_name'] .'</strong></p>
+                </div>
+
+                <div class="col-4 text-end">
+                    <p><strong>'. number_format($productTotalPrice, 1).'L.E</strong></p>
+                </div>
+
+            </div>
+        ';
+
+}
 ?>
+     
+

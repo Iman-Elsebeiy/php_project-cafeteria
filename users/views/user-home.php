@@ -1,5 +1,6 @@
 <?php
    require_once "../../includes/utils.php";
+   require_once "../controller/home.php";
    session_start();
     $_SESSION["user_id"]=1;
     extract(getUserData(  $_SESSION["user_id"]));
@@ -8,7 +9,6 @@
     {
         header("Location: ./admin-home.php");
     }
-   
     if(isset($_SESSION["cart"])){
         $cart = $_SESSION["cart"];
     }

@@ -1,5 +1,6 @@
 <?php
    require_once "../../includes/utils.php";
+   require_once "../controller/home.php";
    session_start();
     $_SESSION["user_id"]=1;
     extract(getUserData($_SESSION["user_id"]));

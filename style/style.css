@@ -13,11 +13,54 @@
   --bage-color: #8f5f49;
   --bg-opacity-200: #f5f4f19d;
   --primary-font: "Poppins", serif;
+  --dng: #dc3545;
+  --bg-body: #fffefb;
+  --bg-200: #f5f4f1;
+  --bg-300: #cccbc8;
+  --bg-opacity-200: #f5f4f19d;
+  --primary-font: "Poppins", serif;
 }
 * {
   box-sizing: border-box;
   list-style: none;
 }
+
+/* td {
+  padding: 15px !important;
+  text-align: center; 
+  background-color: var(--bg-200) !important;
+}
+
+th {
+  text-align: center; 
+  background-color: var(--bg-300) !important;
+}
+
+table {
+  box-shadow: 2px 6px 6px rgba(0, 0, 0, 0.1);
+} */
+
+td {
+  padding: 15px !important;
+  text-align: center;
+  background-color: var(--bg-200, #f9f9f9) !important; /* Fallback color */
+}
+
+th {
+  padding: 15px;
+  text-align: center;
+  background-color: var(--bg-300, #e0e0e0) !important; /* Fallback color */
+  /* font-weight: bold; */
+}
+
+table {
+  width: 100%; /* Ensures the table takes full width */
+  border-collapse: collapse; /* Prevents double borders */
+  border-radius: 10px; /* Rounds corners */
+  overflow: hidden; /* Ensures border-radius applies properly */
+  box-shadow: 2px 6px 12px rgba(0, 0, 0, 0.15); /* Improved shadow */
+}
+
 body {
   background-color: var(--bg-body);
   font-family: var(--primary-font) !important;
@@ -365,4 +408,46 @@ select#user {
   button.search {
     font-size: 16px;
   }
+}
+
+div.form {
+  background-color: var(--bg-opacity-200);
+  box-shadow: 2px 6px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+}
+
+form button {
+  width: 150px;
+}
+
+.add {
+  background-color: var(--text-100) !important ;
+  border: 2px solid var(--primary-300);
+  color: var(--primary-100);
+}
+
+.res:hover {
+  /* background-color: var(--text-200); */
+  border: 2px solid var(--dng);
+  color: var(--dng);
+}
+
+.res {
+  /* background-color: var(--text-200); */
+  border: 2px solid var(--primary-300);
+  color: var(--dng);
+}
+.form-control {
+  font-size: 15px;
+}
+
+.form-control:focus {
+  font-size: 15px;
+  box-shadow: 0 0 0 0.09rem var(--primary-100);
+}
+
+.fixed-image {
+  width: 20px; /* Adjust as needed */
+  height: 20px; /* Keep it square */
+  object-fit: cover; /* Crop the image while maintaining aspect ratio */
 }

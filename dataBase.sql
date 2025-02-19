@@ -70,11 +70,13 @@ VALUES
     ('Mocha', 'mocha.png', 42.00, 25, 1),
     ('Milkshake Chocolate', 'milkshake_chocolate.png', 42.00, 1, 1)
     ;
+--Alaa View
 create or replace view product_with_category
     as select product_id, product_name, image, price, quantity, name as category_name ,products.category_id
     from products, categories
     where categories.category_id= products.category_id;
     select * from product_with_category;
+---------------------------------------------------------
 ALTER TABLE orders
 ADD COLUMN notes TEXT;
 -- abdulrhman Used Views 
@@ -128,7 +130,13 @@ ON
     order_products.product_id = products.product_id 
 WHERE 
     orders.status = 'pending';
-    
+---------------------------------------------------------
+---george views 
+CREATE  VIEW `order_detail`  AS 
+SELECT `orders`.`order_id` AS `order_id`, `products`.`product_id` AS `product_id`, `products`.`image` AS `image`, `products`.`product_name` AS `product_name`, `products`.`price` AS `price`, `orders`.`status` AS `status`, `orders`.`date` AS `date`, `orders`.`user_id` AS `user_id`, `order_products`.`quantity` AS `quantity`, `products`.`price`* `order_products`.`quantity` AS `total` FROM ((`order_products` join `orders` on(`orders`.`order_id` = `order_products`.`order_id`)) join `products` on(`products`.`product_id` = `order_products`.`product_id`)) 
+CREATE  VIEW `orders_total`  AS 
+SELECT `orders`.`order_id` AS `order_id`, `orders`.`status` AS `status`, `orders`.`date` AS `date`, `orders`.`user_id` AS `user_id`, sum(`products`.`price` * `order_products`.`quantity`) AS `total` FROM ((`order_products` join `orders` on(`orders`.`order_id` = `order_products`.`order_id`)) 
+join `products` on(`products`.`product_id` = `order_products`.`product_id`)) GROUP BY `orders`.`order_id`, `orders`.`date`, `orders`.`status` ;    
 
 
 

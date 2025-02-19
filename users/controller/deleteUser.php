@@ -7,7 +7,7 @@ require_once '../../includes/classDB.php';
 if(isset($_GET["id"])){
     $id = $_GET["id"];
 $cafe=new dataBase();
-$cafe->connectToDB("localhost", "root", "root", "root");
+$cafe->connectToDB("localhost", "cafe", "root", "root");
     $cafe->delete_data('users','user_id',$id);
     if(isset($_GET['image'])){
         try{

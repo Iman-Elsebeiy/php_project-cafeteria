@@ -352,5 +352,3 @@ function itemSummary($productData,$productTotalPrice){
 
 }
 ?>
-     
-

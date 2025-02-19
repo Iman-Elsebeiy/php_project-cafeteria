@@ -1,4 +1,6 @@
 <?php
+ require_once "../../includes/classDB.php";
+ require_once "../../includes/config.php";
 function displayCategoriesLinks(){
     $db_conn= new DataBase();
     $db_conn->connectToDB(DB_HOST,DB_NAME,DB_USER,DB_PASSWORD);
@@ -34,25 +36,29 @@ function displayCategoriesLinks(){
   function displayProduct($products){
     if(!empty($products)){ 
         foreach($products as $product)
-    {
-       echo'<div class="col">
-                   <div class="product-card p-3 rounded">
-                       <img src="../../products/imgs/'."{$product['image']}".  '
-                       "  alt="cafe image">
-                       <h5 class=" my-2 text-center">'."{$product['product_name']}".'</h5>
-                       <p class="text-center mb-2">
-                           <span>Price:</span>'
-                           ."{$product['price']}".'</p>
-                       <p class="text-center mb-2">
-                           <span>Category:</span>'."{$product['category_name']}".'
-                           
-                       </p>
-                      <form action="../controller/add_to_cart.php" method="post">
-                                    <input type="text" value="'."{$product['product_id']}".'" name="product_id" hidden>
-                       <button class="btn w-100 p-2 " data-product-id="'."{$product['product_id']}".'" >Add To Cart</button>
-                         </form>
-                   </div>
-            </div>';
+    { 
+       if($product["quantity"]>0)
+       {
+        echo'<div class="col">
+        <div class="product-card p-3 rounded">
+            <img src="../../products/imgs/'."{$product['image']}".  '
+            "  alt="cafe image">
+            <h5 class=" my-2 text-center">'."{$product['product_name']}".'</h5>
+            <p class="text-center mb-2">
+                <span>Price:</span>'
+                ."{$product['price']}".'</p>
+            <p class="text-center mb-2">
+                <span>Category:</span>'."{$product['category_name']}".'
+                
+            </p>
+           <form action="../controller/add_to_cart.php" method="post">
+                         <input type="text" value="'."{$product['product_id']}".'" name="product_id" hidden>
+            <button class="btn w-100 p-2 " data-product-id="'."{$product['product_id']}".'" >Add To Cart</button>
+              </form>
+        </div>
+         </div>';
+       }
+      
     }
     }
     else{

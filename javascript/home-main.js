@@ -1,5 +1,4 @@
 let categoryList = $(".category-list");
-
 categoryList.slideUp(0);
 document.querySelector(".category-btn").addEventListener("click", function () {
   categoryList.slideToggle(200);

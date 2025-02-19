@@ -4,14 +4,13 @@
  {
     if(isset($_SESSION["cart"]))
     {
-       if(isset($_SESSION["cart"]["products"][$_POST['product_id']]))
+       if(isset($_SESSION["cart"]["products"]))
        {
-           $_SESSION["cart"]["products"][$_POST['product_id']]=++$_SESSION["cart"]["products"][$_POST['product_id']] ;
-           
+           $_SESSION["cart"]["products"][$_POST['product_id']]=1 ;    
        }
        else
        {
-           $_SESSION["cart"]["products"][$_POST['product_id']]=1;
+           $_SESSION["cart"]["products"]=[[$_POST['product_id']]=>1];
        }
     }
     else{
@@ -29,12 +28,7 @@
         {
             if(isset($_SESSION["cart"]["products"]))
             {
-                if(isset($_SESSION["cart"]["products"][$_POST['product_id']])){
-                    $_SESSION["cart"]["products"][$_POST['product_id']]=++$_SESSION["cart"]["products"][$_POST['product_id']] ; 
-                }
-                else{
-                    $_SESSION["cart"]["products"][$_POST['product_id']]=1;
-                }
+                $_SESSION["cart"]["products"][$_POST['product_id']]=1 ;   
             }
             else{
                 $_SESSION["cart"]["products"]=[[$_POST['product_id']]=>1];

@@ -4,19 +4,19 @@ require_once '../../includes/utils.php';
 require_once '../../includes/classDB.php';
 session_start();
 
-$_SESSION['cart'] = [
-    // 'product_id'=>'quantity'
-    'products'=>[
-        '2' => 102,
-        '5' => 9,
-        '6' => 3,
-        '7' => 4,
-        '8' => 5,
-        '9' => 7
-    ],
-    "user_id"=>'19'
+// $_SESSION['cart'] = [
+//     // 'product_id'=>'quantity'
+//     'products'=>[
+//         '2' => 102,
+//         '5' => 9,
+//         '6' => 3,
+//         '7' => 4,
+//         '8' => 5,
+//         '9' => 7
+//     ],
+//     "user_id"=>'19'
 
-];
+// ];
 $_SESSION['login'] = true ;
 
 ?>

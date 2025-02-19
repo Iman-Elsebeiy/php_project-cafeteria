@@ -1,7 +1,12 @@
 <?php
+<<<<<<< HEAD
 
 require_once "../includes/utils.php";
 require_once "../includes/connect_to_db.php";
+=======
+require_once "../includes/conn.php";
+require_once "../includes/utils.php";
+>>>>>>> 209fa927db9eae09195ea702b946066decaf42bd
 
 try {
     $pdo = connectToDB();
@@ -11,7 +16,11 @@ try {
     $stmt->execute();
 
     $products = $stmt->fetchAll();
+<<<<<<< HEAD
     // var_dump($products);
+=======
+    var_dump($products);
+>>>>>>> 209fa927db9eae09195ea702b946066decaf42bd
 
 }catch (PDOException $e){
     displayError($e->getMessage());
@@ -46,8 +55,13 @@ try {
                            echo 'Unvailable';
                      	}?></td>
                  <td><?php echo $product['name'] ?></td>
+<<<<<<< HEAD
                 <td><a href="edit_product.php?id=<?php echo $product['product_id'] ?>" class="text-decoration-none"><i><img src="../imgs/edit(1).png" style="max-width: 30px" alt=""></i></a></td>
                 <td><a href="deletetech.php?id=<?php echo $product['product_id'] ?>" onclick="return confirm('Are you sure you want to delete <?php echo $product['product_name'] ?>?')"class="text-decoration-none"><img src="../imgs/images.png" alt="" style="max-width: 30px"></a></td>
+=======
+                <td><a href="edit_product.php?id=<?php echo $product['product_id'] ?>" class="text-decoration-none"><i><img src="../imgs/edit.png" style="max-width: 30px" alt=""></i></a></td>
+                <td><a href="deletetech.php?id=<?php echo $product['product_id'] ?>" onclick="return confirm('Are you sure you want to delete <?php echo $product['product_name'] ?>?')"class="text-decoration-none"><img src="../imgs/delete.png" alt="" style="max-width: 30px"></a></td>
+>>>>>>> 209fa927db9eae09195ea702b946066decaf42bd
               </tr>
               <?php
                  }

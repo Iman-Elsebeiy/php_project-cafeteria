@@ -5,12 +5,19 @@ require_once '../../includes/classDB.php';
 $url='Location: ../views/editUser.php';
 // users/views/editUser.php
 $url=$url.'?id='.$_GET['id'];
+session_start();
+$loginStatus=$_SESSION["login"];
+if($loginStatus==false)
+{
+    // header("Location: ./login.php");
+    // exit();
 
+}
 
 $postErrorsOld=validatePostedData($_POST);
 $img=$_FILES['image'];
 $cafe=new dataBase();
-$cafe->connectToDB("localhost", "cafe", "root", "root");
+$cafe->connectToDB(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
 $data=$cafe->selectRowData('users','user_id',$_GET['id']);
 $oldImage=$data[0]['image'];
 var_dump($oldImage);
@@ -30,7 +37,7 @@ if(!$postErrorsOld["errors"])
                         {
                             $fileExt = explode(".", $img['name']);
                             $fileExt=strtolower(end($fileExt));
-                            $imageName="../imgs/" . $email.'.'.$fileExt;
+                            $imageName="" . $email.'.'.$fileExt;
                             $data = ["name"=>$name,"email"=>$email,"room_no"=>$room,"ext"=>$ext,"image"=>$imageName];
 
                         }
@@ -55,7 +62,7 @@ if(!$postErrorsOld["errors"])
                         {
                             if($img['tmp_name']!='')
                             {
-                                unlink($oldImage);
+                                unlink('../imgs/'.$oldImage);
                                 move_uploaded_file($img['tmp_name'], "../imgs/" . $email.'.'.$fileExt);
 
                             }

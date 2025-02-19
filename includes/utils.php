@@ -44,7 +44,7 @@
                             <a class="nav-link" aria-current="page" href="#home">Home</a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link" href="#products">Products</a>
+                            <a class="nav-link" href="user-home.php?#about">Products</a>
                         </li>
                         <li class="nav-item mx-2">
                             <a class="nav-link" href="#about">About</a>
@@ -87,7 +87,7 @@
         echo '
         <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body " id="navbar-example2" data-bs-theme="dark">
             <div class="container-fluid px-5">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="admin-home.php">
                     <img src="../../app-images/logo.png" alt="logo" width="85" height="50">
                 </a>
                 <div class="d-flex align-items-center gap-2 d-block d-lg-none">
@@ -133,10 +133,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                         <li class="nav-item mx-2">
-                            <a class="nav-link" href="#products">Shop</a>
+                            <a class="nav-link" href="admin-home.php?#products">Shop</a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link" href="#about">Products</a>
+                            <a class="nav-link" href="admin-home.php?#about">Products</a>
                         </li>
                         <li class="nav-item mx-2">
                             <a class="nav-link" href="./allUsers.php">Uesrs</a>
@@ -146,6 +146,7 @@
                         </li>
                         
                         <li class="nav-item mx-2">
+                            
                             <a class="nav-link" href="#contact">Checks</a>
                         </li>
                     </ul>
@@ -184,6 +185,55 @@
             </div>
         </nav>';
   }
+
+  function displayAdminNavbarAtPendingOrders($userImage){
+    echo '
+    <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body " id="navbar-example2" data-bs-theme="dark">
+        <div class="container-fluid px-5">
+            <a class="navbar-brand" href="../../users/views/admin-home.php">
+                <img src="../../app-images/logo.png" alt="logo" width="85" height="50">
+            </a>
+            <div class="d-flex align-items-center gap-2 d-block d-lg-none">
+                <button class="navbar-toggler justify-content-center" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation" style="width: 50px; height:40px;">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="image border rounded-circle" style="width:40px;height:40px">
+                    <img src="../../users/imgs/' . $userImage . '" alt="" class="rounded-circle w-100 h-100">
+                </div>
+
+            </div>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="../../users/views/admin-home.php">Shop</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="../../users/views/admin-home.php">Products</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="../../users/views/allUsers.php">Uesrs</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="#">Orders</a>
+                    </li>
+                    
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="#contact">Checks</a>
+                    </li>
+                </ul>
+                <div class="align-items-center gap-2 d-none d-lg-flex">
+                    <div class="image border rounded-circle" style="width:40px;height:40px">
+                        <img src="../../users/imgs/' . $userImage . '" alt="" class="rounded-circle w-100 h-100">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </nav>';
+}
 
     echo '<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>';
@@ -227,12 +277,12 @@ function drawUsersTable($users){
             if (in_array($key, $data) && $key != "image") {
                 echo "<td>{$value}</td>";
             }else if($key == "image"){
-                echo "<td class=' d-none d-md-block' ><img  class='rounded-circle border border-dark '  src='{$value}'  width='70' height='70'></td>";
+                echo "<td class=' d-none d-md-block' ><img  class='rounded-circle border border-dark '  src='../imgs/{$value}'  width='70' height='70'></td>";
             }
 
         }
         echo "<td  >
-        <a class='btn add   col-4 ' href='editUser.php?id={$user['user_id']}'>Edit</a>
+        <a class='btn ad   col-4 ' href='editUser.php?id={$user['user_id']}'>Edit</a>
         <a class='btn res   col-4 ' href='../controller/deleteUser.php?id={$user['user_id']}&image={$user['image']}'>Delete</a>
       </td>";
 
@@ -276,7 +326,7 @@ function drawActiveOrder($orders){
             
         }
         echo "<td  >
-        <a class='btn add   col-12 ' href='../controller/deliverOrder.php?id={$order['order_id']}'>Deliver</a>
+        <a class='btn ad   col-12 ' href='../controller/deliverOrder.php?id={$order['order_id']}'>Deliver</a>
         </td>";
         echo "</tr>";
     }
@@ -350,5 +400,3 @@ function itemSummary($productData,$productTotalPrice){
 
 }
 ?>
-     
-

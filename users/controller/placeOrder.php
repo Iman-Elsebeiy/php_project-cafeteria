@@ -9,11 +9,12 @@ require_once '../../includes/utils.php';
 require_once '../../includes/classDB.php';
 session_start();
 
+
 // validation 
 if (!isset($_SESSION['login']) || $_SESSION['login'] == false || !isset($_SESSION['cart']['user_id'])){   
 
-    header("Location:LOGIN"); 
-    exit();
+    // header("Location:LOGIN"); 
+    // exit();
 }
 
 if (!isset($_SESSION['cart']['products']) || empty($_SESSION['cart']['products']))  {
@@ -25,7 +26,7 @@ if (!isset($_SESSION['cart']['products']) || empty($_SESSION['cart']['products']
 // start connection
 
 $cafe=new dataBase();
-$cafe->connectToDB("localhost", "cafe", "root", "root");
+$cafe->connectToDB(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
 $date = date('Y-m-d H:i:s');
 // $order_details='';
 // $order_data='';
@@ -104,5 +105,13 @@ unset($_SESSION['cart']);
 // مؤقتا هنروح علي ال pending orders to check 
 
 // No space after "Location:"
-
-header("Location: ../../orders/views/pendingOrders.php"); 
+$_SESSION["role"]=$role;
+if($role=="user")
+{
+    // after place order at the cart where will user go ????
+    header("Location: ../../orders/views/pendingOrders.php"); 
+}
+if($role=="admin")
+{
+    header("Location: ../../orders/views/pendingOrders.php"); 
+}

@@ -2,16 +2,22 @@
 require_once '../../includes/utils.php';
 require_once '../../includes/classDB.php';
 
-// var_dump($_GET);
+session_start();
+$loginStatus=$_SESSION["login"];
+if($loginStatus==false)
+{
+    // header("Location: ./login.php");
+    // exit();
 
+}
 if(isset($_GET["id"])){
     $id = $_GET["id"];
 $cafe=new dataBase();
-$cafe->connectToDB("localhost", "root", "root", "root");
+$cafe->connectToDB(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
     $cafe->delete_data('users','user_id',$id);
     if(isset($_GET['image'])){
         try{
-            unlink($_GET['image']);
+            unlink('../imgs/'.$_GET['image']);
         }catch (Exception $e){
             displayError($e->getMessage());
         }

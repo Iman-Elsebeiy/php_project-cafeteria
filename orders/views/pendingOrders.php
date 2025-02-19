@@ -3,7 +3,24 @@ require_once '../../includes/helper.php';
 require_once '../../includes/utils.php';
 require_once '../../includes/classDB.php';
 $cafe=new dataBase();
-$cafe->connectToDB("localhost", "cafe", "root", "root");
+$cafe->connectToDB(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
+require_once "../../users/controller/home.php";
+session_start();
+ $_SESSION["user_id"]=37;
+ extract(getUserData($_SESSION["user_id"]));
+ $_SESSION["role"]=$role;
+ if($role=="user")
+ {
+     header("Location: ./user-home.php");
+ }
+$loginStatus=$_SESSION["login"];
+if($loginStatus==false)
+{
+    // header("Location: ./login.php");
+    // exit();
+
+}
+ 
 ?>
 
 
@@ -21,7 +38,12 @@ $cafe->connectToDB("localhost", "cafe", "root", "root");
 </head>
 
 <body>
-    <div class="container  ">
+    <?php 
+
+
+displayAdminNavbarAtPendingOrders($image);
+    ?>
+    <div class="container">
 
 
         <?php

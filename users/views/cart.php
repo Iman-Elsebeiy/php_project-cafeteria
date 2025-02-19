@@ -2,30 +2,25 @@
 require_once '../../includes/helper.php';
 require_once '../../includes/utils.php';
 require_once '../../includes/classDB.php';
+require_once "../controller/home.php";
+
 $cafe = new dataBase();
-$cafe->connectToDB("localhost", "cafe", "root", "root");
+$cafe->connectToDB(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
 session_start();
+$_SESSION["user_id"]=37;
+extract(getUserData($_SESSION["user_id"]));
+$_SESSION["role"]=$role;
+$loginStatus=$_SESSION["login"];
 
-// Handle error messages
+if($loginStatus==false)
+{
+    // header("Location: ./login.php");
+    // exit();
 
-if (isset($_GET['error'])){
-    $errors = json_decode($_GET['error']);
-    foreach ($errors as $key => $error) {
-    $productData = $cafe->selectRowData('products', 'product_id', $key);           
-    echo '<div class="alert alert-danger mb-3 mt-1" role="alert" style="font-weight: bold;">'
-    . $error . ' of ' . $productData[0]["product_name"]
-    . ' The Maximum Quantity that we can provide is '
-    . $productData[0]['quantity'] . ' cup</div>';
-    }
 }
-if (isset($_GET['error1'])){
-    $errors = json_decode($_GET['error1']);
-echo'
-    <div class="alert alert-danger">'
-    . htmlspecialchars($_GET['error1'])
-    . '</div>
-';
-}
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,6 +36,46 @@ echo'
 </head>
 
 <body>
+    <?php
+    
+if($role=="user")
+{
+    displayUserNavbar($image,$cart);}
+if($role=="admin")
+{
+    displayAdminNavbar($image,$cart,$cart_userName);
+}
+
+if (isset($_GET['error'])){
+    $errors = json_decode($_GET['error']);
+    foreach ($errors as $key => $error) {
+    $productData = $cafe->selectRowData('products', 'product_id', $key);           
+    echo '<div class="alert alert-danger mb-3 mt-1" role="alert" style="font-weight: bold;">'
+    . $error . ' of ' . $productData[0]["product_name"]
+    . ' The Maximum Quantity that we can provide is '
+    . $productData[0]['quantity'] . ' cup</div>';
+    }
+}
+
+    if (isset($_GET['error1'])){
+    $errors = json_decode($_GET['error1']);
+    echo'
+    <div class="alert alert-danger">'
+        . htmlspecialchars($_GET['error1'])
+        . '</div>
+    ';
+    }
+    if (isset($_GET['succ'])){
+    $errors = json_decode($_GET['succ']);
+    echo'
+    <div class="alert alert-success">'
+        . htmlspecialchars($_GET['succ'])
+        . '</div>
+    ';
+    }
+
+    ?>
+
     <div class="container">
         <div class="row p-1 m-5">
             <h1 class="my-4">Your Cart</h1>
@@ -66,7 +101,7 @@ echo'
             <!-- Display total price if cart is not empty -->
             <?php if (empty($_SESSION['cart']['products'])): ?>
             <div class="alert alert-info">Your cart is empty.</div>
-            <a href="user-home.php" class="btn btn-info add">Go to Home Page to Place Order</a>
+            <a href="user-home.php" class="btn btn-info ad">Go to Home Page to Place Order</a>
             <?php else: ?>
             <div class="col-6">
                 <div class="card p-4">
@@ -94,10 +129,12 @@ echo'
                             <?php
                         
                         if (isset($_GET['error']) || isset($_GET['error1'])){
-                            echo '<a class="btn btn-danger btn-lg disabled">Place Order</a>';
+                            // echo '<a class="btn btn-danger btn-lg ">Place Order</a>';
+                            echo '<a  href="../controller/placeOrder.php" class="btn ad  btn-lg ">Place Order</a>';
+
 
                         }else{
-                            echo '<a  href="../controller/placeOrder.php" class="btn add  btn-lg ">Place Order</a>';
+                            echo '<a  href="../controller/placeOrder.php" class="btn ad  btn-lg ">Place Order</a>';
 
                         }
                         ?>

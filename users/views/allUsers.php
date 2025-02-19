@@ -2,22 +2,26 @@
 require_once '../../includes/helper.php';
 require_once '../../includes/utils.php';
 require_once '../../includes/classDB.php';
+require_once "../controller/home.php";
+
 session_start();
+$_SESSION["user_id"]=37;
+extract(getUserData($_SESSION["user_id"]));
+$_SESSION["role"]=$role;
+$loginStatus=$_SESSION["login"];
+if($loginStatus==false)
+{
+    // header("Location: ./login.php");
+    // exit();
 
-$_SESSION['cart'] = [
-    // 'product_id'=>'quantity'
-    'products'=>[
-        '2' => 102,
-        '5' => 9,
-        '6' => 3,
-        '7' => 4,
-        '8' => 5,
-        '9' => 7
-    ],
-    "user_id"=>'19'
+}
 
-];
-$_SESSION['login'] = true ;
+if($role=="user")
+{
+    header("Location: ./user-home.php");
+    exit();
+
+}
 
 ?>
 
@@ -35,16 +39,19 @@ $_SESSION['login'] = true ;
 </head>
 
 <body>
+    <?php 
+     displayAdminNavbar($image,$cart,$cart_userName);
+    ?>
     <div class="container">
         <div class="mt-1 text-end">
-            <a href="add_user.php" class="btn add ">Add User</a>
+            <a href="add_user.php" class="btn ad ">Add User</a>
         </div>
 
         <?php
 
             $cafe=new dataBase();
-            $cafe->connectToDB("localhost", "cafe", "root", "root");
-             // this is page for all users 
+            $cafe->connectToDB(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
+            // this is page for all users 
             // i  created view for users details Except passwords 
             //  i only created view with desierd data details 
             //  at my Database then i will select the view and display it 

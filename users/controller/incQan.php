@@ -5,10 +5,18 @@ require_once '../../includes/utils.php';
 require_once '../../includes/classDB.php';
 
 session_start();
+$loginStatus=$_SESSION["login"];
+if($loginStatus==false)
+{
+    // header("Location: ./login.php");
+    // exit();
+
+}
 $id=$_GET['id'];
 
 $cafe=new dataBase();
-$cafe->connectToDB("localhost", "cafe", "root", "root");
+$cafe->connectToDB(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
+
 $quan=$cafe->selectCell('products','quantity','product_id',$id);
 if ( $quan >$_SESSION['cart']['products'][$id])
 {

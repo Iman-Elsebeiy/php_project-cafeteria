@@ -1,8 +1,8 @@
 <?php
     // forgot_password.php
-    require_once '../includes/connect_to_db.php';
+    require_once '../../includes/connect_to_db.php';
     // require_once "../includes/utils.php";
-    require '../vendor/autoload.php'; // Load PHPMailer
+    require '../../vendor/autoload.php'; // Load PHPMailer
 
     use PHPMailer\PHPMailer\Exception;
     use PHPMailer\PHPMailer\PHPMailer;
@@ -34,7 +34,7 @@
                 $insert->execute([$email, $token]);
 
                 // Construct reset link
-                $resetLink = "localhost/php_project-cafeteria/admin/reset_password.php?token=" . $token;
+                $resetLink = "localhost/php_project-cafeteria/views/reset_password.php?token=" . $token;
 
                 // Send email using PHPMailer
                 $mail = new PHPMailer(true);
@@ -83,7 +83,10 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <!-- Animate.css for animations -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Animate.css for animations -->
+ <link rel="stylesheet" href="../../style/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 </head>
 <body>
 

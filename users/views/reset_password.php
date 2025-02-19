@@ -1,6 +1,6 @@
 <?php
 // reset_password.php
-require_once '../includes/connect_to_db.php';
+require_once '../../includes/connect_to_db.php';
 // require_once "../includes/utils.php";
  
 $pdo = connectToDB();
@@ -107,7 +107,7 @@ if ($token) {
 <input type="password" name="password" id="password" class="form-control" required>
 </div>
 <div class="d-flex justify-content-center">
-  <button type="submit" name="send">Send reset link</button>
+  <button type="submit" name="send">Submit</button>
  </div>
 </form>
 <?php endif; ?>

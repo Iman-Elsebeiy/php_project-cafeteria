@@ -1,7 +1,7 @@
 <?php
 
 require_once "../../includes/connect_to_db.php";
-
+ 
 try {
     $pdo = connectToDB();
     $sql="SELECT * FROM `categories`";

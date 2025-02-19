@@ -124,8 +124,6 @@ $customerTotalSpent = $customerTotalStmt->fetchColumn();
     }
  
     .productbx .product img {
-      width: 100px;
-      height: 100px;
       object-fit: cover;
       border-radius: var(--border-radius);
       margin-bottom: 1rem;
@@ -138,10 +136,10 @@ $customerTotalSpent = $customerTotalStmt->fetchColumn();
       border-radius: 50%;
       display: inline-block;
       width: 55px;
-      height: 55px;
-      line-height: 55px;
+      height: 50px;
+      line-height: 40px;
       font-weight: bold;
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
     }
  
     .productbx .product .name {
@@ -159,7 +157,7 @@ $customerTotalSpent = $customerTotalStmt->fetchColumn();
     }
  
     .btn-secondary:hover {
-      background-color: #1a252f;
+      background-color:rgb(43, 60, 77);
     }
 </style>
 </head>
@@ -169,7 +167,6 @@ $customerTotalSpent = $customerTotalStmt->fetchColumn();
 <h2 class="mb-4">Order Details</h2>
 <p><strong>Customer Name:</strong> <?= htmlspecialchars($order['name']) ?></p>
 <p><strong>Room No:</strong> <?= htmlspecialchars($order['room_no']) ?></p>
-<p><strong>Status:</strong> <?= htmlspecialchars($order['status']) ?></p>
 <p><strong>Date:</strong> <?= htmlspecialchars($order['date']) ?></p>
 </div>
  
@@ -206,11 +203,10 @@ $customerTotalSpent = $customerTotalStmt->fetchColumn();
 <?php foreach ($items as $product): ?>
 <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
 <div class="product">
-<p class="price"><?= htmlspecialchars(number_format($product['price'])) ?> LE</p>
-<img src="<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['product_name']) ?>">
+<p class="price"><?= htmlspecialchars(number_format($product['price']))?> <small>LE</small></p>
+<img src="<?= htmlspecialchars($product['image']) ?>" width="110px" height="100px" alt="<?= htmlspecialchars($product['product_name']) ?>">
 <p class="name"><?= htmlspecialchars($product['product_name']) ?></p>
 <p class="amount">Quantity: <?= htmlspecialchars($product['quantity']) ?></p>
-<p class="order">Order Id<?= htmlspecialchars($product['order_id']) ?></p>
 </div>
 </div>
 <?php endforeach; ?>
@@ -219,8 +215,8 @@ $customerTotalSpent = $customerTotalStmt->fetchColumn();
  
     <!-- Total -->
 <div class="card">
-<h4>Total Order Price: <strong><?= htmlspecialchars(number_format($totalOrderPrice, 2)) ?> LE</strong></h4>
-<h4>Total Spent by Customer: <strong><?= htmlspecialchars(number_format($customerTotalSpent, 2)) ?> LE</strong></h4>
+<h5>Total Order Price: <strong><?= htmlspecialchars(number_format($totalOrderPrice, 2)) ?> </strong>LE</h5>
+<h5>Total Spent by Customer: <strong><?= htmlspecialchars(number_format($customerTotalSpent, 2)) ?> </strong>LE</h5>
 </div>
  
     <a href="checks.php" class="btn btn-secondary mt-3">🔙 Back to Orders</a>

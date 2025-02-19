@@ -23,6 +23,33 @@ body {
   font-family: var(--primary-font) !important;
   color: var(--text-100);
 }
+.adduser {
+  padding: 20px;
+  border-radius: 15px;
+  background-color: var(--bg-300);
+  font-weight: bold;
+  color: var(--text-100);
+  accent-color: var(--accent-100);
+  margin-bottom: 10px;
+}
+
+.adduser button {
+  background-color: #1d1c1c;
+  color: var(--primary-100);
+  width: 150px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+}
+.login {
+  margin-top: 100px;
+}
+.error {
+  color: darkred;
+}
+.forget a {
+  color: darkred;
+}
 div.form {
   background-color: var(--bg-opacity-200);
 }

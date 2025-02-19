@@ -1,7 +1,7 @@
 <?php
 
-require_once "../includes/utils.php";
-require_once "../includes/connect_to_db.php";
+// require_once "../includes/utils.php";
+require_once "../../includes/connect_to_db.php";
 
 try {
     $pdo = connectToDB();
@@ -52,5 +52,6 @@ try {
               <?php
                  }
                 ?>
+                    <script src="js/bootstrap.bundle.min.js"></script>
             </tbody>
           </table>

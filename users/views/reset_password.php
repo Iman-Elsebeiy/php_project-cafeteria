@@ -1,7 +1,7 @@
 <?php
 // reset_password.php
 require_once '../includes/connect_to_db.php';
-require_once "../includes/utils.php";
+// require_once "../includes/utils.php";
  
 $pdo = connectToDB();
 $token = $_GET['token'] ?? '';
@@ -40,7 +40,7 @@ if ($token) {
         }
     }
 } else {
-    $error = "Token missing.";
+    $error = "check your link for a valid token.";
 }
 ?>
 <!DOCTYPE html>
@@ -52,10 +52,11 @@ if ($token) {
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <!-- Animate.css for animations -->
+ <link rel="stylesheet" href="../style/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <style>
     body {
-      background: linear-gradient(135deg, #667eea, #764ba2);
+     
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -66,6 +67,7 @@ if ($token) {
       border: none;
       border-radius: 1rem;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      background-color:#cccbc8;
     }
     .card-body {
       padding: 2rem;
@@ -104,9 +106,9 @@ if ($token) {
 <label for="password" class="form-label">Enter your new password:</label>
 <input type="password" name="password" id="password" class="form-control" required>
 </div>
-<div class="d-grid">
-<button type="submit" class="btn btn-primary">Reset Password</button>
-</div>
+<div class="d-flex justify-content-center">
+  <button type="submit" name="send">Send reset link</button>
+ </div>
 </form>
 <?php endif; ?>
 </div>

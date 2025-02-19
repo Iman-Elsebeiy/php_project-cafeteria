@@ -1,10 +1,21 @@
 <?php
 
-require_once '../includes/db.php';
-require_once "../includes/utils.php";
+require_once "../../includes/connect_to_db.php";
 
-$categories= $db->select('categories');
+try {
+    $pdo = connectToDB();
+    $sql="SELECT * FROM `categories`";
 
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+
+    $categories = $stmt->fetchAll();
+    // var_dump($categories);
+
+}catch (PDOException $e){
+    displayError($e->getMessage());
+    return false;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +26,9 @@ $categories= $db->select('categories');
   </head>
   <body>
     <main>
+    <?php
+    //  require_once "../includes/nav.php";
+     ?>
       <div class="container my-5">
         <div class="bg-light p-5 rounded">
           <h2 class="fw-bold fs-2 mb-5 pb-2">All categories</h2>
@@ -35,21 +49,11 @@ $categories= $db->select('categories');
               <tr>
                 <th scope="row"><?php echo $category['category_id']?></th>
                  <td><?php echo $category['name'] ?></td>
-                 <td>
-                <a href="edit_category.php?id=<?php echo $category['category_id']; ?>" class="text-decoration-none">
-                    <img src="../imgs/edit(1).png" style="max-width: 30px" alt="Edit">
-                </a>
-            </td>
-            <td>
-                <a href="delete_category.php?id=<?php echo $category['category_id']; ?>"
-                   onclick="return confirm('Are you sure you want to delete <?php echo $category['name']; ?>?')"
-                   class="text-decoration-none">
-                    <img src="../imgs/images.png" alt="Delete" style="max-width: 30px">
-                </a>
-            </td>  </tr>
+                <td><a href="edit_category.php?id=<?php echo $category['category_id'] ?>" class="text-decoration-none"><i><img src="../imgs/edit.png" style="max-width: 35px" alt="edit.png"></i></a></td>
+                <td><a href="deletetech.php?id=<?php echo $category['category_id'] ?>" onclick="return confirm('Are you sure you want to delete?')" class="text-decoration-none"><img src="../imgs/delete.png" alt="" style="max-width: 35px"></a></td>
+              </tr>
               <?php
                  }
-                  $db->close();
                 ?>
             </tbody>
           </table>

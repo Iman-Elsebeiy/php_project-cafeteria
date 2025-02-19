@@ -65,51 +65,8 @@ function displayCategoriesLinks(){
         echo '<h4 class="p-3 mt-2 col-10 mx-auto fs-5"> No Products in Founded !</h4>';
    }
   }
-  function getUserData($user_id) { 
-    $db_conn= new DataBase();
-    $db_conn->connectToDB(DB_HOST,DB_NAME,DB_USER,DB_PASSWORD);
-    $user_data= $db_conn->selectRowData("users","user_id",$user_id);
-    $user_data=reset($user_data);
-    $db_conn->closeConnection();
-    return [
-        "name"=>$user_data["name"],"email"=>$user_data["email"],"image"=>$user_data["image"],"role"=>$user_data["role"]
-    ];
-  }
-  function getCartProducts($cart_product_id){
-    $products_ids = array_keys($cart_product_id);
-    $db_conn= new DataBase();
-    $db_conn->connectToDB(DB_HOST,DB_NAME,DB_USER,DB_PASSWORD);
-    $cart_product_data= $db_conn->select_cart_product($products_ids);
-    displayCartList($cart_product_data);
-    $db_conn->closeConnection();
-   
-  }
-  function displayCartList($products){
-     if(sizeof($products)>0)
-     {
-        foreach($products as $product)
-        {
-            echo  '
-             <li class="d-flex  gap-2  p-2  w-100">
-                <div>
-                    <img src="../../products/imgs/'."{$product["image"]}".'" alt="product-imge">
-                </div>
-                <span>
-                    <h6>'."{$product["product_name"]}".'</h6>
-                    <p>'."{$product["price"]}".'</p>
-                </span>
-            </li>';
-        }
-        echo ' <a class="btn w-100 " href="./cart.php"> Go To Cart</a>';
-     }
-     else{
-      echo  '
-      <li class="d-flex  gap-2  p-5  w-100">
-          <h4> Cart Is Empty</h4>
-      </li>';
-      echo ' <a class="btn w-100 " href="#products"> Shop Now </a>';
-     }
-  }
+ 
+ 
   function getAllUserForSelect ($value="")
   {
     $db_conn= new DataBase();

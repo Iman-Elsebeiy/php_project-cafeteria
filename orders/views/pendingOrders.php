@@ -21,7 +21,10 @@ $cafe->connectToDB("localhost", "cafe", "root", "root");
 </head>
 
 <body>
-    <div class="container  ">
+    <?php 
+    displayAdminNavbarAtPendingOrders($_SESSION["image"]);
+    ?>
+    <div class="container mt-100 ">
 
 
         <?php

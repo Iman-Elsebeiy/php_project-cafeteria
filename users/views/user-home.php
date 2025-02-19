@@ -1,20 +1,13 @@
 <?php
    require_once "../../includes/utils.php";
    require_once "../controller/home.php";
-   session_start();
-    $_SESSION["user_id"]=1;
-    extract(getUserData(  $_SESSION["user_id"]));
-    $_SESSION["role"]=$role;
-    if($role=="admin")
+   require_once "../../includes/functions.php";
+   NotAuthRedirectToLogin();
+    if( $_SESSION["role"]=="admin")
     {
         header("Location: ./admin-home.php");
     }
-    if(isset($_SESSION["cart"])){
-        $cart = $_SESSION["cart"];
-    }
-    else{
-        $cart=null;
-    }
+    // unset($_SESSION);
    ?>
 
 <!DOCTYPE html>
@@ -30,7 +23,7 @@
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#navbar-example2">
-    <?php displayUserNavbar($image,$cart);?>
+    <?php displayUserNavbar($_SESSION['image']);?>
     <header id=" home">
         <div class="container-fluid h-100 ">
             <div class="row border h-100 align-items-center px-5">
@@ -93,13 +86,14 @@
     </main>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-        </script>
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
-        </script>
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="../../javascript/user-home.js"></script>
     <script src="../../javascript/home-main.js"></script>
+    <script src="../../javascript/index.js"></script>
 
 </body>
 

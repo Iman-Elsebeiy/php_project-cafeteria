@@ -2,9 +2,10 @@
 require_once '../../includes/helper.php';
 require_once '../../includes/utils.php';
 require_once '../../includes/classDB.php';
+require_once "../../includes/functions.php";
+NotAuthRedirectToLogin();
 $cafe = new dataBase();
 $cafe->connectToDB("localhost", "cafe", "root", "root");
-session_start();
 
 // Handle error messages
 
@@ -41,7 +42,16 @@ echo'
 </head>
 
 <body>
-    <div class="container">
+    <?php
+    if($_SESSION["role"]=="user")
+    {
+        displayUserNavbar($_SESSION["image"]);
+    }
+    else if($_SESSION["role"]=="admin"){
+        displayAdminNavbar($_SESSION["image"]);
+    }
+  ?>
+    <div class="container mt-100">
         <div class="row p-1 m-5">
             <h1 class="my-4">Your Cart</h1>
             <div class="row col-6">
@@ -91,16 +101,8 @@ echo'
                     <div class="row mt-4">
 
                         <div class="col-12 text-center">
-                            <?php
-                        
-                        if (isset($_GET['error']) || isset($_GET['error1'])){
-                            echo '<a class="btn btn-danger btn-lg disabled">Place Order</a>';
+                            <a href="../controller/placeOrder.php" class="btn add  btn-lg ">Place Order</a>
 
-                        }else{
-                            echo '<a  href="../controller/placeOrder.php" class="btn add  btn-lg ">Place Order</a>';
-
-                        }
-                        ?>
                         </div>
 
                     </div>
@@ -112,9 +114,14 @@ echo'
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../../javascript/index.js"></script>
 </body>
 
 </html>

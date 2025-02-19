@@ -1,6 +1,18 @@
 <?php
 require_once '../../includes/utils.php';
 require_once '../../includes/classDB.php';
+require_once "../controller/home.php";
+$role=$_SESSION["role"];
+if($role=="user")
+{
+    header("Location: ./user-home.php");
+}
+$loginStatus=$_SESSION["login"];
+if($loginStatus==false)
+{
+    header("Location: ./login.php");
+}
+
 
 if (isset($_GET['errors'])) {
     $errors = json_decode($_GET['errors'],true);
@@ -12,12 +24,20 @@ if (isset($_GET['old'])) {
 if (isset($_GET['email'])) {
     $email = $_GET['email'];
 }
+else{
+    $email = '';
+
+}
 
 if (isset($_GET['ext'])) {
     $ext = $_GET['ext'];
 }
+else{
+    $ext = '';
+
+}
 $cafe=new dataBase();
-$cafe->connectToDB("localhost", "cafe", "root", "root");
+$cafe->connectToDB(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
 $data=$cafe->selectRowData('users','user_id',$_GET['id']);
 
 if (!count($data)) {   
@@ -43,10 +63,13 @@ if (!count($data)) {
 
 <body>
 
+    <?php 
+     displayAdminNavbar($_SESSION["image"]);
 
+    ?>
     <div class="container mt-4 mb-2 col-6 p-5  form  ">
         <div class="text-end">
-            <a href="allUsers.php" class="btn add ">Users List</a>
+            <a href="allUsers.php" class="btn ad ">Users List</a>
         </div>
         <h2>Edit User</h2>
         <form action="../controller/edit2db.php?id=<?php echo $_GET['id'] ?>" method="post"
@@ -121,7 +144,7 @@ echo'
             <label for="profile_picture">Profile Picture:</label>
             <input class="form-control" type="file" name="image" accept="image/*">
             <br>
-            <button type="submit" value="Submit" class="btn add  ">Submit</button>
+            <button type="submit" value="Submit" class="btn ad  ">Submit</button>
             <button type="reset" value="reset" class="btn res ">Reset</button>
 
 
@@ -129,5 +152,14 @@ echo'
     </div>
 
 </body>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script src="../../javascript/index.js"></script>
 
 </html>

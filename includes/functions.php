@@ -35,6 +35,7 @@ function numvalid($inputvalue){
     //  سواء علي رقم او دونمين او ايميل او فلوت والمزيد هناfilterتقوم بعمل 
     // https://www.php.net/manual/en/filter.filters.validate.php
     // تقوم بأرسال عدد الاحرف التي كتبتهاstrlen
+ 
 
      if($empty==true || $isnumber==true || $isnegative==true ){
         return true;
@@ -47,6 +48,7 @@ function numvalid($inputvalue){
 }
 function validemail($email){
     // $filter_email=filter_var($email,FILTER_VALIDATE_EMAIL)==false;
+
  
     if(!filter_var($email,FILTER_VALIDATE_EMAIL)){
      return true;
@@ -59,6 +61,7 @@ function validemail($email){
 function validfilesize($filesize ,$size){
     $file_validation_size=($filesize/1024)/1024;
 // megabyteهكذا ينتج الحجم بال
+
 
 if($file_validation_size>$size){
     return true;
@@ -75,4 +78,38 @@ return false;
 else{
     return true;
 }
+}
+
+
+function uniqueemail($pdo, $email) {
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM users WHERE email = ?");
+    $stmt->execute([$email]);
+    $count = $stmt->fetchColumn();
+    
+    return $count == 0; 
+}
+
+// auth pages 
+// must add in all pages
+function AdminOnlyPage(){
+    if($_SESSION['role']=='user'){
+        header('Location:/PHP-Project/php_project-cafeteria/users/views/user-home.php');
+    }
+}
+
+function NotAuthRedirectToLogin(){
+    if($_SESSION['login']== false || !isset($_SESSION['login']) ){
+        header('Location:/PHP-Project/php_project-cafeteria/users/views/login.php');
+    }
+}
+
+function LogOut()
+{
+    if (isset($_GET['logout']) ) {
+        session_unset();
+        session_destroy();
+        header("Location:/PHP-Project/php_project-cafeteria/users/views/login.php");
+    
+    }
+    
 }

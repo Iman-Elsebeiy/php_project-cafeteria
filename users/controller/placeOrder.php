@@ -7,12 +7,11 @@
 require_once '../../includes/helper.php';
 require_once '../../includes/utils.php';
 require_once '../../includes/classDB.php';
-session_start();
 
 // validation 
 if (!isset($_SESSION['login']) || $_SESSION['login'] == false || !isset($_SESSION['cart']['user_id'])){   
 
-    header("Location:LOGIN"); 
+    header("Location:/PHP-Project/php_project-cafeteria/users/views/login.php"); 
     exit();
 }
 
@@ -100,9 +99,11 @@ $cafe->closeConnection();
 //clear cart
 unset($_SESSION['cart']);
 
-
-// مؤقتا هنروح علي ال pending orders to check 
-
-// No space after "Location:"
-
-header("Location: ../../orders/views/pendingOrders.php"); 
+if($_SESSION["role"]=="admin")
+{
+    header("Location: ../../orders/views/pendingOrders.php"); 
+}
+else if($_SESSION["role"]=="user")
+{
+    header("Location: ../../orders/views/myorder.php");
+}

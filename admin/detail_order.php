@@ -3,14 +3,12 @@ require_once '../includes/connect_to_db.php';
  
 $pdo = connectToDB();
  
-// تحقق من أن order_id موجود في الرابط
 if (!isset($_GET['order_id'])) {
     die("Order ID is missing.");
 }
  
 $orderId = $_GET['order_id'];
  
-// جلب تفاصيل الطلب والعميل
 $orderStmt = $pdo->prepare("
     SELECT orders.*, users.name, users.room_no
     FROM orders
@@ -23,8 +21,7 @@ $order = $orderStmt->fetch(PDO::FETCH_ASSOC);
 if (!$order) {
     die("Order not found.");
 }
- 
-// جلب تفاصيل المنتجات داخل الطلب
+//  product details in order
 $itemStmt = $pdo->prepare("
     SELECT order_products.*,
            products.product_name,
@@ -38,12 +35,12 @@ $itemStmt = $pdo->prepare("
 $itemStmt->execute([$orderId]);
 $items = $itemStmt->fetchAll(PDO::FETCH_ASSOC);
  
-// جلب إجمالي سعر الطلب من الـ VIEW
+//  VIEW
 $orderTotalStmt = $pdo->prepare("SELECT total_price FROM order_total_price WHERE order_id = ?");
 $orderTotalStmt->execute([$orderId]);
 $totalOrderPrice = $orderTotalStmt->fetchColumn();
  
-// جلب إجمالي إنفاق العميل من الـ VIEW
+// VIEW
 $customerTotalStmt = $pdo->prepare("SELECT total_spent FROM customer_total_orders WHERE user_id = ?");
 $customerTotalStmt->execute([$order['user_id']]);
 $customerTotalSpent = $customerTotalStmt->fetchColumn();
@@ -176,7 +173,7 @@ $customerTotalSpent = $customerTotalStmt->fetchColumn();
 <p><strong>Date:</strong> <?= htmlspecialchars($order['date']) ?></p>
 </div>
  
-    <!-- جدول المنتجات -->
+    <!-- products table-->
 <div class="card">
 <h3>Ordered Items</h3>
 <div class="table-responsive">
@@ -194,8 +191,8 @@ $customerTotalSpent = $customerTotalStmt->fetchColumn();
 <tr>
 <td><?= htmlspecialchars($product['product_name']) ?></td>
 <td><?= htmlspecialchars($product['quantity']) ?></td>
-<td><?= htmlspecialchars(number_format($product['price'], 2)) ?> $</td>
-<td><?= htmlspecialchars(number_format($product['total_price'], 2)) ?> $</td>
+<td><?= htmlspecialchars(number_format($product['price'], 2)) ?> LE</td>
+<td><?= htmlspecialchars(number_format($product['total_price'], 2)) ?> LE</td>
 </tr>
 <?php endforeach; ?>
 </tbody>
@@ -203,27 +200,27 @@ $customerTotalSpent = $customerTotalStmt->fetchColumn();
 </div>
 </div>
  
-    <!-- عرض المنتجات -->
+    <!-- all products-->
 <div class="productbx">
 <div class="row">
 <?php foreach ($items as $product): ?>
 <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
 <div class="product">
-<p class="price">$<?= htmlspecialchars(number_format($product['price'], 2)) ?></p>
+<p class="price"><?= htmlspecialchars(number_format($product['price'])) ?> LE</p>
 <img src="<?= htmlspecialchars($product['image']) ?>" alt="<?= htmlspecialchars($product['product_name']) ?>">
 <p class="name"><?= htmlspecialchars($product['product_name']) ?></p>
 <p class="amount">Quantity: <?= htmlspecialchars($product['quantity']) ?></p>
-<p class="order">Order #<?= htmlspecialchars($product['order_id']) ?></p>
+<p class="order">Order Id<?= htmlspecialchars($product['order_id']) ?></p>
 </div>
 </div>
 <?php endforeach; ?>
 </div>
 </div>
  
-    <!-- إجمالي الطلب وإجمالي إنفاق العميل -->
+    <!-- Total -->
 <div class="card">
-<h4>Total Order Price: <strong>$<?= htmlspecialchars(number_format($totalOrderPrice, 2)) ?></strong></h4>
-<h4>Total Spent by Customer: <strong>$<?= htmlspecialchars(number_format($customerTotalSpent, 2)) ?></strong></h4>
+<h4>Total Order Price: <strong><?= htmlspecialchars(number_format($totalOrderPrice, 2)) ?> LE</strong></h4>
+<h4>Total Spent by Customer: <strong><?= htmlspecialchars(number_format($customerTotalSpent, 2)) ?> LE</strong></h4>
 </div>
  
     <a href="checks.php" class="btn btn-secondary mt-3">🔙 Back to Orders</a>

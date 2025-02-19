@@ -17,5 +17,5 @@ $itemStmt->execute([$orderId]);
 $orderStmt = $pdo->prepare("DELETE FROM orders WHERE order_id = ?");
 $orderStmt->execute([$orderId]);
 
-header("Location: ccc.php?message=Order Deleted Successfully");
+header("Location: checks.php?message=Order Deleted Successfully");
 exit;

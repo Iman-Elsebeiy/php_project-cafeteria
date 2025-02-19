@@ -87,7 +87,7 @@ $orders = $ordersStmt->fetchAll(PDO::FETCH_ASSOC);
 <h2 class="mb-0">Orders of <?= htmlspecialchars($user['name']) ?></h2>
 </div>
 <div class="card-body">
-<p><strong>Total Spent:</strong> $<?= number_format($totalSpent, 2) ?></p>
+<p><strong>Total Spent:</strong> LE<?= number_format($totalSpent, 2) ?></p>
 <?php if (count($orders) > 0): ?>
 <div class="table-responsive">
 <table class="table table-striped table-hover align-middle">

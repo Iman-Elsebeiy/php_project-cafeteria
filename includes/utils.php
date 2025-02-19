@@ -1,11 +1,8 @@
 <?php
      ini_set('display_errors', 1);
      ini_set('display_startup_errors', 1);
-<<<<<<< HEAD
      ini_set('SMTP', 'smtp.mailtrap.io');
      ini_set('smtp_port', '2525');
-=======
->>>>>>> 209fa927db9eae09195ea702b946066decaf42bd
      error_reporting(E_ALL);
 
     echo '<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -14,22 +11,17 @@
     # I will add the commonly used parts
     echo "<div class='container'><pre>";
 
-<<<<<<< HEAD
     # 1- define function generate title
     function generate_title($message, $size=1, $color='black'){
         echo '<hr>';
         echo "<h{$size}  style='color:{$color}' class='text-center'>{$message}</h{$size}>";
 
     }
-=======
-    
->>>>>>> 209fa927db9eae09195ea702b946066decaf42bd
     function displayError($errorMessage){
         echo "<h5 style='color: red'> {$errorMessage} </h5>";
         
     }
     
-<<<<<<< HEAD
 function displaySuccess($message)
 {
     echo "<h4 style='color: green'>{$message}</h4>";
@@ -90,10 +82,3 @@ function drawTable2($categories){
 //    generate_title("iti", 1, 'red');
 //    generate_title("iti", 2, 'blue');
 //    generate_title("iti", 3, 'green');
-=======
-    function displaySuccess($message)
-    {
-        echo "<h4 style='color: green'>{$message}</h4>";
-
-    }
->>>>>>> 209fa927db9eae09195ea702b946066decaf42bd

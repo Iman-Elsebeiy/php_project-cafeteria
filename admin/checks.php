@@ -127,7 +127,6 @@ $filteredUsers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <tr>
 <th>Customer Name</th>
 <th>Total Spent (LE)</th>
-<th>Delete</th>
 </tr>
 </thead>
 <tbody>
@@ -140,11 +139,7 @@ $filteredUsers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </a>
 </td>
 <td><?= number_format($user['total_spent'], 2) ?></td>
-<td>
-<a href="cus_orders.php?user_id=<?= $user['user_id'] ?>&date_from=<?= $dateFrom ?>&date_to=<?= $dateTo ?>" class="btn btn-danger btn-delete">
-                        Delete
-</a>
-</td>
+
 </tr>
 <?php endforeach; ?>
 <?php else: ?>

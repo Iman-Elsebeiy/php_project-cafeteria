@@ -1,13 +1,19 @@
 <?php
  require_once "classDB.php";
  require_once "config.php";
-  
-  function displayUserNavbar($userImage,$cart){
+  session_start();
+  function displayUserNavbar($userImage){
+    if(isset($_SESSION["cart"])){
+        $cart = $_SESSION["cart"];
+    }
+    else{
+        $cart=null;
+    }
         echo '
-        <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body fixed-top left-0 right-0" id="navbar-example2" data-bs-theme="dark">
+        <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body  fixed-top left-0 right-0" id="navbar-example2" data-bs-theme="dark">
             <div class="container-fluid px-5">
                 <a class="navbar-brand" href="#">
-                    <img src="../../app-images/logo.png" alt="logo" width="85" height="50">
+                    <img src="/PHP-Project/php_project-cafeteria/app-images/logo.png" alt="logo" width="85" height="50">
                 </a>
                 <div class="d-flex align-items-center gap-2 d-block d-lg-none">
                     <button class="navbar-toggler justify-content-center" type="button" data-bs-toggle="collapse"
@@ -16,7 +22,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="image border rounded-circle" style="width:40px;height:40px">
-                        <img src="../imgs/' . $userImage . '" alt="" class="rounded-circle w-100 h-100">
+                        <img src="/PHP-Project/php_project-cafeteria/users/imgs/'. $userImage . '" alt="" class="rounded-circle w-100 h-100">
                     </div>
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -25,14 +31,15 @@
                                 d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                         </svg>
                         <ul class="cart-items p-3 d-none">';
-                        if (!empty($cart)) {
+                        if (!empty($cart) && !empty($cart["products"])) {
+                            
                             getCartProducts($cart["products"]);
                         } else {
                             echo '
                             <li class="d-flex gap-2 p-5 w-100">
                                 <h4> Cart Is Empty</h4>
                             </li>
-                            <a class="btn w-100" href="#products"> Shop Now </a>';
+                            <a class="btn w-100" href="/PHP-Project/php_project-cafeteria/users/views/user-home.php"> Shop Now </a>';
                         }
                         echo '</ul>
                     </div>
@@ -41,16 +48,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                         <li class="nav-item mx-2">
-                            <a class="nav-link" aria-current="page" href="#home">Home</a>
+                            <a class="nav-link" aria-current="page" href="/PHP-Project/php_project-cafeteria/users/views/user-home.php">Home</a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link" href="user-home.php?#about">Products</a>
+                            <a class="nav-link" href="/PHP-Project/php_project-cafeteria/users/views/user-home.php">Products</a>
                         </li>
                         <li class="nav-item mx-2">
                             <a class="nav-link" href="#about">About</a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link" href="#">My Orders</a>
+                            <a class="nav-link" href="/PHP-Project/php_project-cafeteria/orders/views/myorder.php">My Orders</a>
                         </li>
                         <li class="nav-item mx-2">
                             <a class="nav-link" href="#contact">Contact</a>
@@ -58,7 +65,7 @@
                     </ul>
                     <div class="align-items-center gap-2 d-none d-lg-flex">
                         <div class="image border rounded-circle" style="width:40px;height:40px">
-                            <img src="../imgs/' . $userImage . '" alt="" class="rounded-circle w-100 h-100">
+                            <img src="/PHP-Project/php_project-cafeteria/users/imgs/'. $userImage. ' " alt="" class="rounded-circle w-100 h-100">
                         </div>
                         <div>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -67,28 +74,46 @@
                                     d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                             </svg>
                             <ul class="cart-items p-3 d-none">';
-                            if (!empty($cart)) {
+                            if (!empty($cart) && !empty($cart["products"])) {
+                            
                                 getCartProducts($cart["products"]);
                             } else {
                                 echo '
                                 <li class="d-flex gap-2 p-5 w-100">
                                     <h4> Cart Is Empty</h4>
                                 </li>
-                                <a class="btn w-100" href="#products"> Shop Now </a>';
+                                <a class="btn w-100" href="/PHP-Project/php_project-cafeteria/users/views/user-home.php"> Shop Now </a>';
                             }
                             echo '</ul>
+                             <a href="/PHP-Project/php_project-cafeteria/users/controller/logout.php" class="btn text-white border border-white">Logout</a>
                         </div>
                     </div>
                 </div>
             </div>
         </nav>';
    }
-  function displayAdminNavbar($userImage,$cart,$userName){
+  function displayAdminNavbar($userImage){
+    if(!empty($_SESSION["cart"])){
+        $cart = $_SESSION["cart"];
+        if(!empty($cart["user_id"]))
+        {
+            $cart_userName= getUserData($cart["user_id"]);
+            $userName= $cart_userName["name"];
+            $_GET["error"]='';
+        }
+        else{
+            $userName= null; 
+        } 
+    }
+    else{
+        $cart=null;
+        $userName= null;
+    }
         echo '
-        <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body " id="navbar-example2" data-bs-theme="dark">
+        <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body z-3 position-relative" id="navbar-example2" data-bs-theme="dark">
             <div class="container-fluid px-5">
-                <a class="navbar-brand" href="admin-home.php">
-                    <img src="../../app-images/logo.png" alt="logo" width="85" height="50">
+                <a class="navbar-brand" href="/PHP-Project/php_project-cafeteria/users/views/admin-home.php">
+                    <img src="/PHP-Project/php_project-cafeteria/app-images/logo.png" alt="logo" width="85" height="50">
                 </a>
                 <div class="d-flex align-items-center gap-2 d-block d-lg-none">
                     <button class="navbar-toggler justify-content-center" type="button" data-bs-toggle="collapse"
@@ -97,7 +122,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="image border rounded-circle" style="width:40px;height:40px">
-                        <img src="../imgs/' . $userImage . '" alt="" class="rounded-circle w-100 h-100">
+                        <img src="/PHP-Project/php_project-cafeteria/users/imgs/'. $userImage. '" class="rounded-circle w-100 h-100">
                     </div>
                     <div>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -124,7 +149,7 @@
                             <li class="d-flex gap-2 p-5 w-100">
                                 <h4> Cart Is Empty</h4>
                             </li>
-                            <a class="btn w-100" href="#products"> Shop Now </a>';
+                            <a class="btn w-100" href="/PHP-Project/php_project-cafeteria/users/views/user-home.php"> Shop Now </a>';
                         }
                         echo '</ul>
                     </div>
@@ -133,26 +158,25 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                         <li class="nav-item mx-2">
-                            <a class="nav-link" href="admin-home.php?#products">Shop</a>
+                            <a class="nav-link" href="/PHP-Project/php_project-cafeteria/users/views/admin-home.php">Shop</a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link" href="admin-home.php?#about">Products</a>
+                            <a class="nav-link" href="/PHP-Project/php_project-cafeteria/products/views/products.php">Products</a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link" href="./allUsers.php">Uesrs</a>
+                            <a class="nav-link" href="/PHP-Project/php_project-cafeteria/users/views/allUsers.php">Uesrs</a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link" href="../../orders/views/pendingOrders.php">Orders</a>
+                            <a class="nav-link" href="/PHP-Project/php_project-cafeteria/orders/views/pendingOrders.php">Orders</a>
                         </li>
                         
                         <li class="nav-item mx-2">
-                            
-                            <a class="nav-link" href="#contact">Checks</a>
+                            <a class="nav-link" href="/PHP-Project/php_project-cafeteria/checks/checks.php">Checks</a>
                         </li>
                     </ul>
                     <div class="align-items-center gap-2 d-none d-lg-flex">
                         <div class="image border rounded-circle" style="width:40px;height:40px">
-                            <img src="../imgs/' . $userImage . '" alt="" class="rounded-circle w-100 h-100">
+                            <img src="/PHP-Project/php_project-cafeteria/users/imgs/'. $userImage. '"  class="rounded-circle w-100 h-100">
                         </div>
                         <div>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -176,67 +200,62 @@
                                 <li class="d-flex gap-2 p-5 w-100">
                                     <h4> Cart Is Empty</h4>
                                 </li>
-                                <a class="btn w-100" href="#products"> Add Product </a>';
+                                <a class="btn w-100" href="/PHP-Project/php_project-cafeteria/users/views/user-home.php"> Add Product </a>';
                             }
                             echo '</ul>
+                            <a href="/PHP-Project/php_project-cafeteria/users/controller/logout.php" class="btn text-white border border-white">Logout</a>
                         </div>
                     </div>
                 </div>
             </div>
         </nav>';
   }
-
-  function displayAdminNavbarAtPendingOrders($userImage){
-    echo '
-    <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body " id="navbar-example2" data-bs-theme="dark">
-        <div class="container-fluid px-5">
-            <a class="navbar-brand" href="../../users/views/admin-home.php">
-                <img src="../../app-images/logo.png" alt="logo" width="85" height="50">
-            </a>
-            <div class="d-flex align-items-center gap-2 d-block d-lg-none">
-                <button class="navbar-toggler justify-content-center" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation" style="width: 50px; height:40px;">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="image border rounded-circle" style="width:40px;height:40px">
-                    <img src="../../users/imgs/' . $userImage . '" alt="" class="rounded-circle w-100 h-100">
+  
+  function getUserData($user_id) { 
+    $db_conn= new DataBase();
+    $db_conn->connectToDB(DB_HOST,DB_NAME,DB_USER,DB_PASSWORD);
+    $user_data= $db_conn->selectRowData("users","user_id",$user_id);
+    $user_data=reset($user_data);
+    $db_conn->closeConnection();
+    return [
+        "name"=>$user_data["name"],"email"=>$user_data["email"],"image"=>$user_data["image"],"role"=>$user_data["role"]
+    ];
+  }
+  function getCartProducts($cart_product_id){
+    $products_ids = array_keys($cart_product_id);
+    $db_conn= new DataBase();
+    $db_conn->connectToDB(DB_HOST,DB_NAME,DB_USER,DB_PASSWORD);
+    $cart_product_data= $db_conn->select_cart_product($products_ids);
+    displayCartList($cart_product_data);
+    $db_conn->closeConnection();
+   
+  }
+  function displayCartList($products){
+     if(sizeof($products)>0)
+     {
+        foreach($products as $product)
+        {
+            echo  '
+             <li class="d-flex  gap-2  p-2  w-100">
+                <div>
+                    <img src="../../products/imgs/'."{$product["image"]}".'" alt="product-imge">
                 </div>
-
-            </div>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item mx-2">
-                        <a class="nav-link" href="../../users/views/admin-home.php">Shop</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link" href="../../users/views/admin-home.php">Products</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link" href="../../users/views/allUsers.php">Uesrs</a>
-                    </li>
-                    <li class="nav-item mx-2">
-                        <a class="nav-link" href="#">Orders</a>
-                    </li>
-                    
-                    <li class="nav-item mx-2">
-                        <a class="nav-link" href="#contact">Checks</a>
-                    </li>
-                </ul>
-                <div class="align-items-center gap-2 d-none d-lg-flex">
-                    <div class="image border rounded-circle" style="width:40px;height:40px">
-                        <img src="../../users/imgs/' . $userImage . '" alt="" class="rounded-circle w-100 h-100">
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </nav>';
-}
-
-    echo '<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>';
+                <span>
+                    <h6>'."{$product["product_name"]}".'</h6>
+                    <p>'."{$product["price"]}".'</p>
+                </span>
+            </li>';
+        }
+        echo ' <a class="btn w-100 " href="/PHP-Project/php_project-cafeteria/users/views/cart.php"> Go To Cart</a>';
+     }
+     else{
+      echo  '
+      <li class="d-flex  gap-2  p-5  w-100">
+          <h4> Cart Is Empty</h4>
+      </li>';
+      echo ' <a class="btn w-100 " href="#products"> Shop Now </a>';
+     }
+  }
 
     function generate_title($message, $size=1, $color='black'){
         echo '<hr>';
@@ -336,28 +355,34 @@ function drawActiveOrder($orders){
 function drawActiveOrderDetails($orderProducts) {
     $totalPrice = 0;
 
-    echo '<div class="row gap-5 justify-content-start">';
+    echo '<div class="row gap-4 justify-content-start">';
+    
 
     foreach ($orderProducts as $product) {
         // Calculate total price for this order
         $orderTotal = (isset($product["price"]) ? $product["price"] : 0) * (isset($product["quantity"]) ? $product["quantity"] : 0);
         $totalPrice += $orderTotal;
+       
 
         // Display product card
         echo '
-            <div class="card shadow-lg m-1 p-2" style="width: 10rem;">
-                <img src="../../products/imgs/'. $product["image"] . '" class="card img-fluid rounded fixed-image " alt="Drink Image" style="height: 150px; width: 200px; object-fit: cover;">
+            <div class="card  active-order m-1 p-2" style="width: 10rem;">
+                <img src="../../products/imgs/'. $product["image"] . '" class="card img-fluid rounded fixed-image " alt="Drink Image" style="height: 150px; width: 200px; object-fit:contain; object-position:center;">
                 <div class="card-body text-center p-1">
-                    <h5 class="card-title">' . $product["product_name"] . '</h5>
+                    <h5 class="card-title fs-6">' . $product["product_name"] . '</h5>
                     <p class="card-text text-muted">L.E ' . number_format($product["price"], 2) . '</p>
                     <p class="card-text text-muted">' . (isset($product["quantity"]) ? $product["quantity"] : 'N/A') . ' X</p>
                 </div>
             </div>';
     }
-
+    echo '<div class="text-end total-price ">
+     <button>
+       Total Price: L.E ' . number_format($totalPrice, 2)
+    
+   . '  </button></div>';
     // Display total price at the end
     echo '<div class="w-100"></div>';
-    echo '<h5 class="text-end w-100">Total Price: L.E ' . number_format($totalPrice, 2) . '</h5>';
+  
 
     echo '</div>';
 }
@@ -366,10 +391,10 @@ function cartItem($productsData,$quantity){
     foreach($productsData as $productData)
     {
     echo '
-            <div class="card shadow-lg m-1 p-2 " style="width: 10rem;">
-                <img src="../../products/imgs/' . $productData["image"] . '" class="card img-fluid rounded fixed-image " alt="Drink Image" style="height: 150px; width: 200px; object-fit: cover;">
+            <div class="card cart-iproduct m-1 p-2 " style="width: 10rem;">
+                <img src="../../products/imgs/' . $productData["image"] . '" class="card img-fluid rounded fixed-image " alt="Drink Image" style="height: 150px; width: 200px; object-fit:contain;object-poistion:center;">
                 <div class="card-body text-center p-2">
-                    <h5 class="card-title">' . $productData["product_name"] . '</h5>
+                    <h5 class="card-title fs-6"style="min-height:60px;">' . $productData["product_name"] . '</h5>
                     <p class="card-text text-muted ">L.E ' . number_format($productData["price"], 2) . '</p>
                    <span><a href="../controller/incQan.php?id=' . $productData['product_id'] . '" type="button" class="btn btn-sm m-2 res ">+</a></span>
                     <span class="card-text text-muted">' . (isset($quantity) ? $quantity: 'N/A') . '</span>

@@ -4,6 +4,14 @@ require_once '../../includes/utils.php';
 require_once '../../includes/classDB.php';
 $url='Location: ../views/editUser.php';
 // users/views/editUser.php
+session_start();
+$loginStatus=$_SESSION["login"];
+if($loginStatus==false)
+{
+    header("Location: /PHP-Project/php_project-cafeteria/users/views/login.php");
+    exit();
+
+}
 $url=$url.'?id='.$_GET['id'];
 session_start();
 $loginStatus=$_SESSION["login"];

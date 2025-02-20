@@ -2,25 +2,22 @@
 require_once '../../includes/helper.php';
 require_once '../../includes/utils.php';
 require_once '../../includes/classDB.php';
-require_once "../controller/home.php";
-
+require_once "../../includes/functions.php";
+NotAuthRedirectToLogin();
 $cafe = new dataBase();
 $cafe->connectToDB(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
-session_start();
-$_SESSION["user_id"]=37;
-extract(getUserData($_SESSION["user_id"]));
-$_SESSION["role"]=$role;
-$loginStatus=$_SESSION["login"];
-
-if($loginStatus==false)
-{
-    // header("Location: ./login.php");
-    // exit();
-
+if (isset($_GET['error'])&& !empty($_GET['error'])){
+    $errors = json_decode($_GET['error'],true);
+    foreach ($errors as $key => $error) {
+    $productData = $cafe->selectRowData('products', 'product_id', $key);           
+    echo '<div class="alert alert-danger mb-3 position-fixed bottom-0 end-0 z-3 txt-sm" role="alert" style="font-weight: bold;">'
+    . $error . ' of ' . $productData[0]["product_name"]
+    . ' The Maximum Quantity that we can provide is '
+    . $productData[0]['quantity'] . ' cup</div>';
+    }
 }
 
-
-
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,53 +30,44 @@ if($loginStatus==false)
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../style/style.css">
+    <link rel="stylesheet" href="../../style/navbar.css">
 </head>
 
 <body>
     <?php
     
-if($role=="user")
-{
-    displayUserNavbar($image,$cart);}
-if($role=="admin")
-{
-    displayAdminNavbar($image,$cart,$cart_userName);
-}
-
-if (isset($_GET['error'])){
-    $errors = json_decode($_GET['error']);
-    foreach ($errors as $key => $error) {
-    $productData = $cafe->selectRowData('products', 'product_id', $key);           
-    echo '<div class="alert alert-danger mb-3 mt-1" role="alert" style="font-weight: bold;">'
-    . $error . ' of ' . $productData[0]["product_name"]
-    . ' The Maximum Quantity that we can provide is '
-    . $productData[0]['quantity'] . ' cup</div>';
+    if($_SESSION["role"]=="user")
+    {
+        displayUserNavbar($_SESSION["image"]);
     }
-}
-
+    if($_SESSION["role"]=="admin")
+    {
+        displayAdminNavbar($_SESSION["image"]);
+    }
     if (isset($_GET['error1'])){
-    $errors = json_decode($_GET['error1']);
-    echo'
-    <div class="alert alert-danger">'
-        . htmlspecialchars($_GET['error1'])
-        . '</div>
-    ';
-    }
-    if (isset($_GET['succ'])){
-    $errors = json_decode($_GET['succ']);
-    echo'
-    <div class="alert alert-success">'
-        . htmlspecialchars($_GET['succ'])
-        . '</div>
-    ';
-    }
-
-    ?>
-
-    <div class="container">
-        <div class="row p-1 m-5">
+        $errors = json_decode($_GET['error1']);
+        echo'
+        <div class="alert alert-danger">'
+            . htmlspecialchars($_GET['error1'])
+            . '</div>
+        ';
+        }
+        if (isset($_GET['succ'])){
+        $errors = json_decode($_GET['succ']);
+        echo'
+        <div class="alert alert-success">'
+            . htmlspecialchars($_GET['succ'])
+            . '</div>
+        ';
+        }
+    
+    
+    
+        ?>
+    <div class="container-fluid p-4 mt-3">
+        <div class="row p-1 ">
             <h1 class="my-4">Your Cart</h1>
-            <div class="row col-6">
+            <div class="row col-7">
 
                 <?php
             $totalprice = 0;
@@ -103,7 +91,7 @@ if (isset($_GET['error'])){
             <div class="alert alert-info">Your cart is empty.</div>
             <a href="user-home.php" class="btn btn-info ad">Go to Home Page to Place Order</a>
             <?php else: ?>
-            <div class="col-6">
+            <div class="col-5">
                 <div class="card p-4">
                     <h3 class="mb-4">Cart Summary</h3>
 
@@ -126,18 +114,8 @@ if (isset($_GET['error'])){
                     <div class="row mt-4">
 
                         <div class="col-12 text-center">
-                            <?php
-                        
-                        if (isset($_GET['error']) || isset($_GET['error1'])){
-                            // echo '<a class="btn btn-danger btn-lg ">Place Order</a>';
-                            echo '<a  href="../controller/placeOrder.php" class="btn ad  btn-lg ">Place Order</a>';
+                            <a href="../controller/placeOrder.php" class="btn add  btn-lg ">Place Order</a>
 
-
-                        }else{
-                            echo '<a  href="../controller/placeOrder.php" class="btn ad  btn-lg ">Place Order</a>';
-
-                        }
-                        ?>
                         </div>
 
                     </div>
@@ -149,9 +127,14 @@ if (isset($_GET['error'])){
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../../javascript/index.js"></script>
 </body>
 
 </html>

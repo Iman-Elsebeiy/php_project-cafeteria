@@ -1,19 +1,12 @@
 <?php
    require_once "../../includes/utils.php";
    require_once "../controller/home.php";
-   session_start();
-    $_SESSION["user_id"]=37;
-    extract(getUserData(  $_SESSION["user_id"]));
-    $_SESSION["role"]=$role;
-    if($role=="admin")
+   require_once "../../includes/functions.php";
+   NotAuthRedirectToLogin();
+    if( $_SESSION["role"]=="admin")
     {
         header("Location: ./admin-home.php");
-    }
-    if(isset($_SESSION["cart"])){
-        $cart = $_SESSION["cart"];
-    }
-    else{
-        $cart=null;
+        exit();
     }
    ?>
 
@@ -26,11 +19,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../../style/style.css">
+    <link rel="stylesheet" href="../../style/navbar.css">
     <title>Cafertia</title>
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#navbar-example2">
-    <?php displayUserNavbar($image,$cart);?>
+    <?php displayUserNavbar($_SESSION['image']);?>
     <header id=" home">
         <div class="container-fluid h-100 ">
             <div class="row border h-100 align-items-center px-5">
@@ -100,6 +94,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="../../javascript/user-home.js"></script>
     <script src="../../javascript/home-main.js"></script>
+    <script src="../../javascript/index.js"></script>
 
 </body>
 

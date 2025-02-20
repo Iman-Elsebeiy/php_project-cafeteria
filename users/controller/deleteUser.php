@@ -1,13 +1,18 @@
 <?php
 require_once '../../includes/utils.php';
 require_once '../../includes/classDB.php';
-
 session_start();
 $loginStatus=$_SESSION["login"];
 if($loginStatus==false)
 {
-    // header("Location: ./login.php");
-    // exit();
+    header("Location: /PHP-Project/php_project-cafeteria/users/views/login.php");
+    exit();
+
+$loginStatus=$_SESSION["login"];
+if($loginStatus==false)
+{  header("Location: /PHP-Project/php_project-cafeteria/users/views/login.php");
+    exit();
+}
 
 }
 if(isset($_GET["id"])){

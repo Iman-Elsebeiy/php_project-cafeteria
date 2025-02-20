@@ -1,25 +1,18 @@
 <?php
 require_once '../../includes/helper.php';
 require_once '../../includes/utils.php';
+require_once '../../includes/functions.php';
 require_once '../../includes/classDB.php';
 $cafe=new dataBase();
 $cafe->connectToDB(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
-require_once "../../users/controller/home.php";
-session_start();
- $_SESSION["user_id"]=37;
- extract(getUserData($_SESSION["user_id"]));
- $_SESSION["role"]=$role;
- if($role=="user")
+
+NotAuthRedirectToLogin();
+if( $_SESSION["role"]=="user")
  {
      header("Location: ./user-home.php");
- }
-$loginStatus=$_SESSION["login"];
-if($loginStatus==false)
-{
-    // header("Location: ./login.php");
-    // exit();
+     exit();
 
-}
+ }
  
 ?>
 
@@ -34,16 +27,15 @@ if($loginStatus==false)
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../../style/style.css">
+    <link rel="stylesheet" href="../../style/navbar.css">
 
 </head>
 
 <body>
     <?php 
-
-
-displayAdminNavbarAtPendingOrders($image);
+    displayAdminNavbar($_SESSION["image"]);
     ?>
-    <div class="container">
+    <div class="container mt-100 ">
 
 
         <?php
@@ -76,8 +68,13 @@ displayAdminNavbarAtPendingOrders($image);
     </div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../../javascript/index.js"></script>
 
 </body>

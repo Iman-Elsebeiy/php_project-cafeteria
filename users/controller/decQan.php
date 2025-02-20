@@ -7,6 +7,16 @@ $id=$_GET['id'];
 $loginStatus=$_SESSION["login"];
 if($loginStatus==false)
 {
+    header("Location: /PHP-Project/php_project-cafeteria/users/views/login.php");
+    exit();
+
+}
+
+$cafe=new dataBase();
+$cafe->connectToDB(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
+$quan=$cafe->selectCell('products','quantity','product_id',$id);
+if ($_SESSION['cart']['products'][$id]> 1)
+{
     // header("Location: ./login.php");
     // exit();
 

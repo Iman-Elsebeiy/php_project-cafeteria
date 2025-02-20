@@ -8,8 +8,8 @@ session_start();
 $loginStatus=$_SESSION["login"];
 if($loginStatus==false)
 {
-    // header("Location: ./login.php");
-    // exit();
+    header("Location: /PHP-Project/php_project-cafeteria/users/views/login.php");
+    exit();
 
 }
 $id=$_GET['id'];

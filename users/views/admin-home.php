@@ -1,11 +1,9 @@
 <?php
    require_once "../../includes/utils.php";
    require_once "../controller/home.php";
-   session_start();
-    $_SESSION["user_id"]=37;
-    extract(getUserData($_SESSION["user_id"]));
-    $_SESSION["role"]=$role;
-    if($role=="user")
+   require_once "../../includes/functions.php";
+   NotAuthRedirectToLogin();
+    if($_SESSION["role"]=="user")
     {
         header("Location: ./user-home.php");
     }
@@ -17,23 +15,7 @@
           $_SESSION["cart"]  =["products"=>[],"user_id"=>$_POST["cart_user_id"]]; 
         }
     }
-    // unset($_SESSION["cart"]);
-    if(!empty($_SESSION["cart"])){
-        $cart = $_SESSION["cart"];
-        if(!empty($cart["user_id"]))
-        {
-            $cart_userName= getUserData($cart["user_id"]);
-            $cart_userName= $cart_userName["name"];
-            $_GET["error"]='';
-        }
-        else{
-            $cart_userName= null; 
-        } 
-    }
-    else{
-        $cart=null;
-        $cart_userName= null;
-    }
+   
    ?>
 
 
@@ -46,13 +28,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../../style/style.css">
-
+    <link rel="stylesheet" href="../../style/navbar.css">
     <title>Cafertia</title>
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#navbar-example2">
     <?php 
-     displayAdminNavbar($image,$cart,$cart_userName);
+     displayAdminNavbar($_SESSION['image']);
     ?>
 
 
@@ -133,6 +115,7 @@
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="../../javascript/home-main.js"></script>
+    <script src="../../javascript/index.js"></script>
 
 </body>
 

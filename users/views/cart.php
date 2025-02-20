@@ -56,8 +56,8 @@ $cafe->connectToDB(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
                     . '</div>
                 ';
                 }
-                if (isset($_GET['error'])&& !empty($_GET['error'])){
-                    $errors = json_decode($_GET['error'],true);
+                if (isset($_GET['error2'])&& !empty($_GET['error2'])){
+                    $errors = json_decode($_GET['error2'],true);
                     foreach ($errors as $key => $error) {
                     $productData = $cafe->selectRowData('products', 'product_id', $key);           
                     echo '<div class="alert alert-danger" role="alert" style="font-weight: bold;">'

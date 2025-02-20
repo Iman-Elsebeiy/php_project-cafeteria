@@ -29,7 +29,7 @@ if ( $quan >$_SESSION['cart']['products'][$id])
 {
     $error = [$id=>'*You have reached the maximum quantity limit'];
     $error = json_encode($error); 
-    header("Location: ../views/cart.php?error=" . $error);
+    header("Location: ../views/cart.php?error2=" . $error);
 }
 
 

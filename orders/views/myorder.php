@@ -193,7 +193,7 @@ try {
         <?php else: ?>
 
         <div class="alert alert-danger  container mt-100 col-lg-6 text-center ">
-            <p>You Dont Have Any Orders Yet </p>
+            <p> <i class="fa-solid fa-face-sad-tear ms-3"></i> You Dont Have Any Orders Yet </p>
             <a class="btn add" href="/PHP-Project/php_project-cafeteria/users/views/user-home.php">Go To Shop</a>
         </div>
 

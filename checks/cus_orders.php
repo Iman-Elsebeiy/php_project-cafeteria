@@ -29,7 +29,7 @@ $ordersStmt = $pdo->prepare("
     SELECT orders.order_id, orders.date, order_total_price.total_price
     FROM orders
     JOIN order_total_price ON orders.order_id = order_total_price.order_id
-    WHERE orders.user_id = ?
+    WHERE orders.user_id = ? And orders.status = 'completed'
     ORDER BY orders.date DESC
 ");
 $ordersStmt->execute([$userId]);

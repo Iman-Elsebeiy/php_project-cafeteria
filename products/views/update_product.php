@@ -10,11 +10,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $price = $_POST['price'];
     $quantity = $_POST['quantity'];
     $category_id = $_POST['category_id'];
+    $image = $_POST['image'];
+
+    
+    $errors = [];
+    
+    if (!$product_name) $errors['product_name'] = "Product name is required.";
+    if (!is_numeric($price)) {
+        $errors['price'] = "Price must be a valid number.";
+    } elseif ($price <= 10) {
+        $errors['price'] = "Price cannot be negative.or Zero and should be more than 10";
+    }
+   if (!is_numeric($quantity)) {
+            $errors['quantity'] = "quantity must be a valid number.";
+        } elseif ($quantity < 0) {
+            $errors['quantity'] = "quantity cannot be negative.";              
+        } 
+  
+
+    if (!empty($errors)) {
+        $errors = json_encode($errors);
+        header("location: edit_product.php?id={$id}&errors={$errors}");
+        exit();
+    }
+
     
     // Handle file upload if a new image is uploaded
     if (!empty($_FILES['image']['name'])) {
-        $target_dir = "../imgs/";
-        $target_file = $target_dir . basename($_FILES["image"]["name"]);
+        $target_file = basename($_FILES["image"]["name"]);
         move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
         $image = $target_file;
     } else {

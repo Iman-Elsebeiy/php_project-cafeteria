@@ -10,6 +10,14 @@ if($_SESSION['role']=='user'){
 NotAuthRedirectToLogin();
 $pdo = connectToDB();
 
+
+$errors = [];
+
+if (isset($_GET['errors'])) {
+    $errors = json_decode($_GET['errors'], true);
+}
+
+
 // Get product ID from URL
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
@@ -40,6 +48,19 @@ $categories = $pdo->query("SELECT * FROM categories")->fetchAll(PDO::FETCH_ASSOC
     <!-- Animate.css for animations -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="../../style/navbar.css">
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll("input[type='number']").forEach(input => {
+            input.addEventListener("input", function() {
+                if (this.value < 0) {
+                    this.value = "";
+                    alert("Negative values are not allowed!");
+                }
+            });
+        });
+    });
+    </script>
+
 </head>
 
 <body>
@@ -59,7 +80,9 @@ $categories = $pdo->query("SELECT * FROM categories")->fetchAll(PDO::FETCH_ASSOC
                             <label for="product_name" class='form-label col-3'>Product:</label>
                             <div>
                                 <input type="text" class="form-control" id="product_name" name="product_name"
-                                    value="<?= htmlspecialchars($product['product_name']); ?>" required>
+                                    value="<?= htmlspecialchars($product['product_name']); ?>">
+                                <p class="text-danger txt-sm"><?php echo $errors['product_name'] ?? ''; ?></p>
+
                             </div>
                         </div>
 
@@ -68,7 +91,8 @@ $categories = $pdo->query("SELECT * FROM categories")->fetchAll(PDO::FETCH_ASSOC
                             <label for="quantity" class="form-label col-4">Quantity:</label>
                             <div>
                                 <input type="number" class="form-control" id="quantity" name="quantity"
-                                    value="<?= htmlspecialchars($product['quantity']); ?>" required>
+                                    value="<?= htmlspecialchars($product['quantity']); ?>">
+                                <p class="text-danger txt-sm"><?php echo $errors['quantity']?? ''; ?></p>
                             </div>
                         </div>
                     </div>
@@ -78,7 +102,8 @@ $categories = $pdo->query("SELECT * FROM categories")->fetchAll(PDO::FETCH_ASSOC
                         <label for="price" class="form-label">Price:</label>
                         <div>
                             <input type="number" class="form-control col-12" id="price" name="price" step="0.01"
-                                value="<?= htmlspecialchars($product['price']); ?>" required>
+                                value="<?= htmlspecialchars($product['price']); ?>">
+                            <p class="text-danger txt-sm"><?php echo $errors['price']?? ''; ?></p>
                         </div>
                     </div>
 
@@ -104,8 +129,9 @@ $categories = $pdo->query("SELECT * FROM categories")->fetchAll(PDO::FETCH_ASSOC
                         <img src="../imgs/<?= htmlspecialchars($product['image']); ?>" width="100" height="100"
                             class="rounded"><br>
 
-                        <label for="formFile" class="form-label mt-3">Change Image:</label>
-                        <input class="form-control" type="file" id="formFile" name="image">
+                        <label for="image" class="form-label mt-3">Change Image:</label>
+                        <input class="form-control" type="file" id="image" name="image">
+                        <p class="text-danger"><?php echo $errors['image']?? '';?></p>
                     </div>
 
                     <!-- Buttons -->

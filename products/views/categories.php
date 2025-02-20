@@ -43,7 +43,10 @@ try {
     <?php 
      displayAdminNavbar($_SESSION["image"])?>
     <main>
-
+    <div class="container mt-5">
+        <div class="mt-1 text-end my-4  justify-content-between d-flex gap-2">
+            <a href="add_category.php" class="btn add text-white  px-4 fs-6 ">+ Add Category</a>
+        </div>
         <div class="container ">
             <div class=" p-5 rounded">
                 <h2 class=" fs-2 mb-2 pb-2">All categories</h2>

@@ -26,20 +26,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } elseif ($quantity < 0) {
             $errors['quantity'] = "quantity cannot be negative.";              
         } 
-    // Handle image upload
-    // if ($image) {
-    //     $image_name = "imgs/" . time() . "_" . basename($image);
-    //     if (!move_uploaded_file($_FILES['image']['tmp_name'], $image_name)) {
-    //         $errors['image'] = "Failed to upload image.";
-    //     }
-    // } else {
-    //     $image_name = null;
-    // }
+  
 
     if (!empty($errors)) {
         $errors = json_encode($errors);
-        $old = json_encode($old);
-        header("location: edit_product.php?id={$id}&errors={$errors}&old={$old}");
+        header("location: edit_product.php?id={$id}&errors={$errors}");
         exit();
     }
 

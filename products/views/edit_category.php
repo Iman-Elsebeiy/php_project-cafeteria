@@ -4,6 +4,7 @@ require_once "../../includes/utils.php";
 require_once "../../includes/connect_to_db.php";
 $pdo = connectToDB();
 
+
 // Get category ID from URL
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
@@ -11,11 +12,8 @@ $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 $stmt = $pdo->prepare("SELECT * FROM categories WHERE category_id = ?");
 $stmt->execute([$id]);
 $category = $stmt->fetch(PDO::FETCH_ASSOC);
+// var_dump($category);
 
-if (!$category) {
-    echo "Category not found!";
-    exit;
-}
 ?>
 
 <!DOCTYPE html>
@@ -50,6 +48,9 @@ if (!$category) {
                     <label for="name" class="form-label">Category Name:</label>
                     <input type="text" class="form-control" id="name" name="name"
                         value="<?= htmlspecialchars($category['name']); ?>" required>
+                        <p class="text-danger"><?php echo $errors['category_name'] ?? ''; ?></p>
+
+
                 </div>
 
                 <!-- Buttons -->

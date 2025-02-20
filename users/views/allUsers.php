@@ -21,6 +21,7 @@ require_once "../../includes/functions.php";
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../../style/style.css">
+    <link rel="stylesheet" href="../../style/navbar.css">
 
 </head>
 
@@ -28,7 +29,7 @@ require_once "../../includes/functions.php";
     <?php
       displayAdminNavbar($_SESSION["image"]);
     ?>
-    <div class="container mt-100">
+    <div class="container mt-5">
         <div class="mt-1 text-end">
             <a href="add_user.php" class="btn add ">Add User</a>
         </div>

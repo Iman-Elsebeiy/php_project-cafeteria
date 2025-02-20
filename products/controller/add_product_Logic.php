@@ -25,9 +25,12 @@ require_once "../../includes/Validtion.php";
         $result = $db_conn->select_product($_POST["p_name"]);
         if(!$result)
         {
-           $$db_conn->insert_product($_POST["p_name"] ,$imge_name, $_POST["p_price"]  ,(int)$_POST["p_quantity"] , (int)$_POST["p_category"]  );
+           $db_conn->insert_product($_POST["p_name"] ,$imge_name,(int) $_POST["p_price"]  ,(int)$_POST["p_quantity"] , $_POST["p_category"]  );
             move_uploaded_file($_FILES["p_image"]['tmp_name'],"../imgs/".$imge_name);
+           
             $db_conn->closeConnection();
+            header("Location: ../views/products.php");
+            exit();
         }
         else{
             $db_conn->closeConnection();

@@ -3,7 +3,9 @@ include '../../includes/functions.php';
 include '../../includes/config.php';
 include '../../includes/utils.php';
 // session_start();
-
+if($_SESSION['role']=='admin'){
+    header('Location:/PHP-Project/php_project-cafeteria/users/views/admin-home.php');
+}
 LogOut();
 
 NotAuthRedirectToLogin();
@@ -60,6 +62,7 @@ try {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="/PHP-Project/php_project-cafeteria/style/style.css">
+    <link rel="stylesheet" href="../../style/navbar.css">
 </head>
 
 <body>
@@ -70,97 +73,112 @@ try {
      displayUserNavbar($_SESSION["image"]);
              ?>
     <?php if ($order_total):  ?>
-    <div class="col-lg-6 container myorder tablebx mt-100">
+    <div class="container myorder tablebx mt-100">
+        <div class="col-lg-9">
+            <div class="d-flex justify-content-between align-items-end">
+                <h1>My Orders</h1>
+                <?php foreach ($all_order_total as $total):  ?>
 
-        <h1>my orders</h1>
-        <form action="filter_order.php" class="filterdate col-lg-8" method="POST">
-            <div class="container-fluid">
-                <div class="d-flex justify-content-between">
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">from</label>
-                        <input type="date" name="from" class="form-control">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">to</label>
-                        <input type="date" name="to" class="form-control">
-                    </div>
-                </div>
+                <h2 class="text-center total ">TOTAL : EGP
+                    <?php echo $total['total']  ?>
+                </h2>
             </div>
+            <?php endforeach;  ?>
+            <form action="filter_order.php" class="filterdate col-lg-12" method="POST">
+                <div class="container-fluid">
+                    <div class="d-flex justify-content-between align-items-end gap-3 w-100">
+                        <div class="col-4">
+                            <label for="exampleFormControlInput1" class="form-label">from</label>
+                            <input type="date" name="from" class="form-control w-100">
+                        </div>
+                        <div class="col-4">
+                            <label for="exampleFormControlInput1" class="form-label">to</label>
+                            <input type="date" name="to" class="form-control w-100">
+                        </div>
+                        <button>filter</button>
+                    </div>
 
-            <button>filter</button>
-
-
-        </form>
-
-
-
-        <table class="table tablee">
-            <thead>
-                <tr>
-                    <th scope="col">order #</th>
-                    <th scope="col">order date</th>
-                    <th scope="col">status</th>
-                    <th scope="col">amount</th>
-                    <th scope="col">action</th>
-                </tr>
-            </thead>
-            <tbody>
-
-                <?php foreach ($order_total as $order):  ?>
-
-                <tr>
-                    <th>
-                        <?php echo $order['order_id'] ?>
-                    </th>
-                    <th>
-                        <?php echo $order['date'] ?>
-                    </th>
-                    <th>
-                        <?php echo $order['status'] ?>
-                    </th>
-                    <th>
-                        <?php echo $order['total'] ?>
-                    </th>
-                    <?php if ($order['status'] == 'pending'): ?>
-
-                    <th><a href="/PHP-Project/php_project-cafeteria/orders/views/myorder.php?cancel=<?php echo $order['order_id'] ?> "
-                            class="btn btn-danger">cancel</a> </th>
+                </div>
 
 
-                    <?php else: ?>
-                    <th><button disabled class="btn btn-danger">cancel</button> </th>
-
-                    <?php endif; ?>
-
-                </tr>
-                <?php endforeach;  ?>
 
 
-            </tbody>
-        </table>
+            </form>
 
-        <div class="productbx col-lg-12">
+
+
+            <table class="table tablee">
+                <thead>
+                    <tr>
+                        <th scope="col">order #</th>
+                        <th scope="col">order date</th>
+                        <th scope="col">status</th>
+                        <th scope="col">amount</th>
+                        <th scope="col">action</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <?php foreach ($order_total as $order):  ?>
+
+                    <tr>
+                        <th>
+                            <?php echo $order['order_id'] ?>
+                        </th>
+                        <th>
+                            <?php echo $order['date'] ?>
+                        </th>
+                        <th>
+                            <?php echo $order['status'] ?>
+                        </th>
+                        <th>
+                            <?php echo $order['total'] ?>
+                        </th>
+                        <?php if ($order['status'] == 'pending'): ?>
+
+                        <th><a href="/PHP-Project/php_project-cafeteria/orders/views/myorder.php?cancel=<?php echo $order['order_id'] ?> "
+                                class="btn ">cancel</a> </th>
+
+
+                        <?php else: ?>
+                        <th><button disabled class="btn ">cancel</button> </th>
+
+                        <?php endif; ?>
+
+                    </tr>
+                    <?php endforeach;  ?>
+
+
+                </tbody>
+            </table>
+        </div>
+        <div class="productbx col-lg-10 mx-auto">
             <div class="container">
-                <div class="row">
+                <div class="row g-2">
+
                     <?php foreach ($order_detail as $product): ?>
-                    <div class="product col-lg-3">
+
+                    <div class=" col-3 ">
+                        <div class="product">
 
 
-                        <p class="price">
-                            <?php echo $product['price'] ?>
-                        </p>
-                        <img src="../../products/imgs/<?php echo $product['image'] ?>" alt="">
+                            <p class="price">
+                                <?php echo $product['price'] ?>
+                            </p>
+                            <img src="../../products/imgs/<?php echo $product['image'] ?>" alt="">
 
-                        <p class="name">
-                            <?php echo $product['product_name'] ?>
-                        </p>
-                        <p class="amount">
-                            <?php echo $product['quantity'] ?>
-                        </p>
-                        <p class="order">order #
-                            <?php echo $product['order_id'] ?>
-                        </p>
+                            <p class="name">
+                                <?php echo $product['product_name'] ?>
+                            </p>
+                            <p class="amount">
+                                <span>quantity:</span>
+                                <?php echo $product['quantity'] ?>
+                            </p>
+                            <p class="order">order #
+                                <?php echo $product['order_id'] ?>
+                            </p>
 
+                        </div>
                     </div>
 
                     <?php endforeach;  ?>
@@ -168,12 +186,7 @@ try {
             </div>
 
 
-            <?php foreach ($all_order_total as $total):  ?>
 
-            <h2 class="text-center total">TOTAL : EGP
-                <?php echo $total['total']  ?>
-            </h2>
-            <?php endforeach;  ?>
 
 
         </div>

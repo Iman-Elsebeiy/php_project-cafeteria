@@ -98,15 +98,19 @@ AdminOnlyPage();
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="../../style/style.css">
-    <title>task1</title>
+    <link rel="stylesheet" href="../../style/navbar.css">
+    <title>Add User</title>
 </head>
+<?php
+      displayAdminNavbar($_SESSION["image"]);
+    ?>
 
 <body>
 
 
 
-    <div class="container adduser col-lg-5">
-        <h1 class="text-center">add user</h1>
+    <div class="container adduser col-lg-6 mt-4">
+        <h1 class=" fs-4 p-2">Add user</h1>
         <form class="pd-3" method="POST" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">name</label>
@@ -192,14 +196,16 @@ AdminOnlyPage();
     </div>
 
 
-    <!-- <footer>
-        <h3>copyright &copy cafeteria All rights reserved</h3>
-    </footer> -->
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../../javascript/index.js"></script>
 
 </body>
 

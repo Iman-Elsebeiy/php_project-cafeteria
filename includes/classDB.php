@@ -1,5 +1,5 @@
 <?php
-require_once "../../includes/utils.php";
+require_once "utils.php";
 class DataBase{
     private $pdo;
   function connectToDB($db_host,$db_name,$db_user,$db_password) {
@@ -291,5 +291,3 @@ class DataBase{
     
     }
 }
-
-

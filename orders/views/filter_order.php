@@ -1,9 +1,12 @@
 <?php
     include '../../includes/functions.php';
     include '../../includes/config.php';
+     include '../../includes/utils.php';
 
-    session_start();
-
+    // session_start();
+    if($_SESSION['role']=='admin'){
+        header('Location:/PHP-Project/php_project-cafeteria/users/views/admin-home.php');
+    }
     LogOut();
 
     NotAuthRedirectToLogin();
@@ -62,15 +65,18 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="/cafeteria/style/style.css">
+    <link rel="stylesheet" href="/PHP-Project/php_project-cafeteria/style/style.css">
+    <link rel="stylesheet" href="../../style/navbar.css">
 </head>
 
 <body>
 
-
+    <?php
+ displayUserNavbar($_SESSION["image"]);
+ ?>
     <?php if ($order_total):  ?>
 
-    <div class="col-lg-6 container tablebx">
+    <div class="col-lg-6 container tablebx mt-5">
 
         <h1>my orders</h1>
         <form action="filter_order.php" class="filterdate col-lg-8" method="POST">
@@ -138,7 +144,7 @@
 
 
                         <p class="price"><?php echo $product['price'] ?></p>
-                        <img src="../../users/imgs/1738958254_green.jpeg" alt="">
+                        <img src="../../products/imgs/<?php echo $product['image'] ?>" alt="">
 
                         <p class="name"><?php echo $product['product_name'] ?></p>
                         <p class="amount"><?php echo $product['quantity'] ?></p>
@@ -171,9 +177,14 @@
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../../javascript/index.js"></script>
 </body>
 
 </html>

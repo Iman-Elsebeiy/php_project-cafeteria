@@ -10,10 +10,10 @@
         $cart=null;
     }
         echo '
-        <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body fixed-top left-0 right-0" id="navbar-example2" data-bs-theme="dark">
+        <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body  fixed-top left-0 right-0" id="navbar-example2" data-bs-theme="dark">
             <div class="container-fluid px-5">
                 <a class="navbar-brand" href="#">
-                    <img src="../../app-images/logo.png" alt="logo" width="85" height="50">
+                    <img src="/PHP-Project/php_project-cafeteria/app-images/logo.png" alt="logo" width="85" height="50">
                 </a>
                 <div class="d-flex align-items-center gap-2 d-block d-lg-none">
                     <button class="navbar-toggler justify-content-center" type="button" data-bs-toggle="collapse"
@@ -110,10 +110,10 @@
         $userName= null;
     }
         echo '
-        <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body " id="navbar-example2" data-bs-theme="dark">
+        <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body z-3 position-relative" id="navbar-example2" data-bs-theme="dark">
             <div class="container-fluid px-5">
                 <a class="navbar-brand" href="#">
-                    <img src="../../app-images/logo.png" alt="logo" width="85" height="50">
+                    <img src="/PHP-Project/php_project-cafeteria/app-images/logo.png" alt="logo" width="85" height="50">
                 </a>
                 <div class="d-flex align-items-center gap-2 d-block d-lg-none">
                     <button class="navbar-toggler justify-content-center" type="button" data-bs-toggle="collapse"
@@ -161,7 +161,7 @@
                             <a class="nav-link" href="/PHP-Project/php_project-cafeteria/users/views/admin-home.php">Shop</a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link" href="/PHP-Project/php_project-cafeteria/users/views/admin-home.php">Products</a>
+                            <a class="nav-link" href="/PHP-Project/php_project-cafeteria/products/views/products.php">Products</a>
                         </li>
                         <li class="nav-item mx-2">
                             <a class="nav-link" href="/PHP-Project/php_project-cafeteria/users/views/allUsers.php">Uesrs</a>
@@ -171,7 +171,7 @@
                         </li>
                         
                         <li class="nav-item mx-2">
-                            <a class="nav-link" href="/PHP-Project/php_project-cafeteria/orders/views/checks.php">Checks</a>
+                            <a class="nav-link" href="/PHP-Project/php_project-cafeteria/checks/checks.php">Checks</a>
                         </li>
                     </ul>
                     <div class="align-items-center gap-2 d-none d-lg-flex">
@@ -211,55 +211,7 @@
         </nav>';
   }
   
-  function displayAdminNavbarAtPendingOrders($userImage){
-  echo '
-  <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body " id="navbar-example2" data-bs-theme="dark">
-      <div class="container-fluid px-5">
-          <a class="navbar-brand" href="../../users/views/admin-home.php">
-              <img src="../../app-images/logo.png" alt="logo" width="85" height="50">
-          </a>
-          <div class="d-flex align-items-center gap-2 d-block d-lg-none">
-              <button class="navbar-toggler justify-content-center" type="button" data-bs-toggle="collapse"
-                  data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                  aria-expanded="false" aria-label="Toggle navigation" style="width: 50px; height:40px;">
-                  <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="image border rounded-circle" style="width:40px;height:40px">
-                  <img src="../../users/imgs/' . $userImage . '" alt="" class="rounded-circle w-100 h-100">
-              </div>
-
-          </div>
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                  <li class="nav-item mx-2">
-                      <a class="nav-link" href="../../users/views/admin-home.php">Shop</a>
-                  </li>
-                  <li class="nav-item mx-2">
-                      <a class="nav-link" href="../../users/views/admin-home.php">Products</a>
-                  </li>
-                  <li class="nav-item mx-2">
-                      <a class="nav-link" href="../../users/views/allUsers.php">Uesrs</a>
-                  </li>
-                  <li class="nav-item mx-2">
-                      <a class="nav-link" href="#">Orders</a>
-                  </li>
-                  
-                  <li class="nav-item mx-2">
-                      <a class="nav-link" href="#contact">Checks</a>
-                  </li>
-              </ul>
-              <div class="align-items-center gap-2 d-none d-lg-flex">
-                  <div class="image border rounded-circle" style="width:40px;height:40px">
-                      <img src="src="/PHP-Project/php_project-cafeteria/users/imgs/'. $userImage. '" alt="" class="rounded-circle w-100 h-100">
-                  </div>
-                   <a href="/PHP-Project/php_project-cafeteria/users/controller/logout.php" class="btn text-white border border-white">Logout</a>
-
-              </div>
-          </div>
-      </div>
-  </nav>';
-}
+ 
   function getUserData($user_id) { 
     $db_conn= new DataBase();
     $db_conn->connectToDB(DB_HOST,DB_NAME,DB_USER,DB_PASSWORD);
@@ -404,28 +356,34 @@ function drawActiveOrder($orders){
 function drawActiveOrderDetails($orderProducts) {
     $totalPrice = 0;
 
-    echo '<div class="row gap-5 justify-content-start">';
+    echo '<div class="row gap-4 justify-content-start">';
+    
 
     foreach ($orderProducts as $product) {
         // Calculate total price for this order
         $orderTotal = (isset($product["price"]) ? $product["price"] : 0) * (isset($product["quantity"]) ? $product["quantity"] : 0);
         $totalPrice += $orderTotal;
+       
 
         // Display product card
         echo '
-            <div class="card shadow-lg m-1 p-2" style="width: 10rem;">
-                <img src="../../products/imgs/'. $product["image"] . '" class="card img-fluid rounded fixed-image " alt="Drink Image" style="height: 150px; width: 200px; object-fit: cover;">
+            <div class="card  active-order m-1 p-2" style="width: 10rem;">
+                <img src="../../products/imgs/'. $product["image"] . '" class="card img-fluid rounded fixed-image " alt="Drink Image" style="height: 150px; width: 200px; object-fit:contain; object-position:center;">
                 <div class="card-body text-center p-1">
-                    <h5 class="card-title">' . $product["product_name"] . '</h5>
+                    <h5 class="card-title fs-6">' . $product["product_name"] . '</h5>
                     <p class="card-text text-muted">L.E ' . number_format($product["price"], 2) . '</p>
                     <p class="card-text text-muted">' . (isset($product["quantity"]) ? $product["quantity"] : 'N/A') . ' X</p>
                 </div>
             </div>';
     }
-
+    echo '<div class="text-end total-price ">
+     <button>
+       Total Price: L.E ' . number_format($totalPrice, 2)
+    
+   . '  </button></div>';
     // Display total price at the end
     echo '<div class="w-100"></div>';
-    echo '<h5 class="text-end w-100">Total Price: L.E ' . number_format($totalPrice, 2) . '</h5>';
+  
 
     echo '</div>';
 }
@@ -434,10 +392,10 @@ function cartItem($productsData,$quantity){
     foreach($productsData as $productData)
     {
     echo '
-            <div class="card shadow-lg m-1 p-2 " style="width: 10rem;">
-                <img src="../../products/imgs/' . $productData["image"] . '" class="card img-fluid rounded fixed-image " alt="Drink Image" style="height: 150px; width: 200px; object-fit: cover;">
+            <div class="card cart-iproduct m-1 p-2 " style="width: 10rem;">
+                <img src="../../products/imgs/' . $productData["image"] . '" class="card img-fluid rounded fixed-image " alt="Drink Image" style="height: 150px; width: 200px; object-fit:contain;object-poistion:center;">
                 <div class="card-body text-center p-2">
-                    <h5 class="card-title">' . $productData["product_name"] . '</h5>
+                    <h5 class="card-title fs-6"style="min-height:60px;">' . $productData["product_name"] . '</h5>
                     <p class="card-text text-muted ">L.E ' . number_format($productData["price"], 2) . '</p>
                    <span><a href="../controller/incQan.php?id=' . $productData['product_id'] . '" type="button" class="btn btn-sm m-2 res ">+</a></span>
                     <span class="card-text text-muted">' . (isset($quantity) ? $quantity: 'N/A') . '</span>

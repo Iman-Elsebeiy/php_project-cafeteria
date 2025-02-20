@@ -6,27 +6,6 @@ require_once "../../includes/functions.php";
 NotAuthRedirectToLogin();
 $cafe = new dataBase();
 $cafe->connectToDB("localhost", "cafe", "root", "root");
-
-// Handle error messages
-
-if (isset($_GET['error'])){
-    $errors = json_decode($_GET['error']);
-    foreach ($errors as $key => $error) {
-    $productData = $cafe->selectRowData('products', 'product_id', $key);           
-    echo '<div class="alert alert-danger mb-3 mt-1" role="alert" style="font-weight: bold;">'
-    . $error . ' of ' . $productData[0]["product_name"]
-    . ' The Maximum Quantity that we can provide is '
-    . $productData[0]['quantity'] . ' cup</div>';
-    }
-}
-if (isset($_GET['error1'])){
-    $errors = json_decode($_GET['error1']);
-echo'
-    <div class="alert alert-danger">'
-    . htmlspecialchars($_GET['error1'])
-    . '</div>
-';
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,6 +18,7 @@ echo'
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../style/style.css">
+    <link rel="stylesheet" href="../../style/navbar.css">
 </head>
 
 <body>
@@ -50,11 +30,40 @@ echo'
     else if($_SESSION["role"]=="admin"){
         displayAdminNavbar($_SESSION["image"]);
     }
+    if (!empty($_GET['error'])){
+        $errors = json_decode($_GET['error']);
+        foreach ($errors as $key => $error) {
+        $productData = $cafe->selectRowData('products', 'product_id', $key);           
+        echo '<div class="alert alert-danger mb-3 mt-1" role="alert" style="font-weight: bold;">'
+        . $error . ' of ' . $productData[0]["product_name"]
+        . ' The Maximum Quantity that we can provide is '
+        . $productData[0]['quantity'] . ' cup</div>';
+        }
+    }
+    
+        if (!empty($_GET['error1'])){
+        $errors = json_decode($_GET['error1']);
+        echo'
+        <div class="alert alert-danger">'
+            . htmlspecialchars($_GET['error1'])
+            . '</div>
+        ';
+        }
+        if (!empty($_GET['succ'])){
+        $errors = json_decode($_GET['succ']);
+        echo'
+        <div class="alert alert-success">'
+            . htmlspecialchars($_GET['succ'])
+            . '</div>
+        ';
+        }
+    
+        
   ?>
-    <div class="container mt-100">
+    <div class="container-fluid p-3 mt-3">
         <div class="row p-1 m-5">
             <h1 class="my-4">Your Cart</h1>
-            <div class="row col-6">
+            <div class="row col-7">
 
                 <?php
             $totalprice = 0;
@@ -78,7 +87,7 @@ echo'
             <div class="alert alert-info">Your cart is empty.</div>
             <a href="user-home.php" class="btn btn-info add">Go to Home Page to Place Order</a>
             <?php else: ?>
-            <div class="col-6">
+            <div class="col-5">
                 <div class="card p-4">
                     <h3 class="mb-4">Cart Summary</h3>
 

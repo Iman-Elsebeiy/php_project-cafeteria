@@ -121,8 +121,8 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
             <div class="d-flex justify-content-center">
                 <button type="submit" name="send">Submit</button>
             </div>
-            <div class="d-flex justify-content-center mt-3 forget">
-                <a href="./forgetpassword.php">forget password ?</a>
+            <div class="d-flex justify-content-center mt-2 forget">
+                <a href="./forget_password.php">forget password ?</a>
             </div>
 
         </form>

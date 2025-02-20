@@ -16,7 +16,7 @@ $sql = "SELECT users.user_id, users.name, SUM(order_total_price.total_price) AS 
         FROM users
         JOIN orders ON users.user_id = orders.user_id
         JOIN order_total_price ON orders.order_id = order_total_price.order_id
-        WHERE 1";
+        WHERE orders.status = 'completed'";
  
 $params = [];
  

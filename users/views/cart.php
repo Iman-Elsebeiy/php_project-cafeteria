@@ -6,16 +6,7 @@ require_once "../../includes/functions.php";
 NotAuthRedirectToLogin();
 $cafe = new dataBase();
 $cafe->connectToDB(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
-if (isset($_GET['error'])&& !empty($_GET['error'])){
-    $errors = json_decode($_GET['error'],true);
-    foreach ($errors as $key => $error) {
-    $productData = $cafe->selectRowData('products', 'product_id', $key);           
-    echo '<div class="alert alert-danger mb-3 position-fixed bottom-0 end-0 z-3 txt-sm" role="alert" style="font-weight: bold;">'
-    . $error . ' of ' . $productData[0]["product_name"]
-    . ' The Maximum Quantity that we can provide is '
-    . $productData[0]['quantity'] . ' cup</div>';
-    }
-}
+
 
     
 ?>
@@ -44,29 +35,38 @@ if (isset($_GET['error'])&& !empty($_GET['error'])){
     {
         displayAdminNavbar($_SESSION["image"]);
     }
-    if (isset($_GET['error1'])){
-        $errors = json_decode($_GET['error1']);
-        echo'
-        <div class="alert alert-danger">'
-            . htmlspecialchars($_GET['error1'])
-            . '</div>
-        ';
-        }
-        if (isset($_GET['succ'])){
-        $errors = json_decode($_GET['succ']);
-        echo'
-        <div class="alert alert-success">'
-            . htmlspecialchars($_GET['succ'])
-            . '</div>
-        ';
-        }
-    
-    
-    
         ?>
-    <div class="container-fluid p-4 mt-3">
-        <div class="row p-1 ">
-            <h1 class="my-4">Your Cart</h1>
+    <div class="container-fluid p-4  mt-3">
+        <div class="row p-1 mt-3 ">
+            <h1 class="mt-4">Your Cart</h1>
+            <?php
+            if (isset($_GET['error1'])){
+                $errors = json_decode($_GET['error1']);
+                echo'
+                <div class="alert alert-danger">'
+                    . htmlspecialchars($_GET['error1'])
+                    . '</div>
+                ';
+                }
+                if (isset($_GET['succ'])){
+                $errors = json_decode($_GET['succ']);
+                echo'
+                <div class="alert alert-success">'
+                    . htmlspecialchars($_GET['succ'])
+                    . '</div>
+                ';
+                }
+                if (isset($_GET['error'])&& !empty($_GET['error'])){
+                    $errors = json_decode($_GET['error'],true);
+                    foreach ($errors as $key => $error) {
+                    $productData = $cafe->selectRowData('products', 'product_id', $key);           
+                    echo '<div class="alert alert-danger" role="alert" style="font-weight: bold;">'
+                    . $error . ' of ' . $productData[0]["product_name"]
+                    . ' The Maximum Quantity that we can provide is '
+                    . $productData[0]['quantity'] . ' cup</div>';
+                    }
+                }
+            ?>
             <div class="row col-7">
 
                 <?php

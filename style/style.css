@@ -12,6 +12,7 @@
   --bg-300: #cccbc8;
   --bage-color: #8f5f49;
   --bg-opacity-200: #f5f4f19d;
+  --dng: #dc3545;
   --primary-font: "Poppins", serif;
 }
 * {
@@ -23,14 +24,48 @@ body {
   font-family: var(--primary-font) !important;
   color: var(--text-100);
 }
+.total-price {
+  display: flex;
+  justify-content: end;
+  color: var(--bage-color);
+}
+.total-price button {
+  border: 2px solid var(--bage-color);
+  background-color: var(--bg-body);
+  color: var(--bage-color);
+}
+
+td {
+  padding: 15px !important;
+  text-align: center;
+  background-color: var(--bg-200, #f9f9f9) !important; /* Fallback color */
+}
+
+th {
+  padding: 15px;
+  text-align: center;
+  background-color: var(--bg-300, #e0e0e0) !important; /* Fallback color */
+  /* font-weight: bold; */
+}
+
+table {
+  width: 100%; /* Ensures the table takes full width */
+  border-collapse: collapse; /* Prevents double borders */
+  border-radius: 10px; /* Rounds corners */
+  overflow: hidden; /* Ensures border-radius applies properly */
+  /* box-shadow: 2px 6px 12px rgba(0, 0, 0, 0.15);  */
+  /* Improved shadow */
+}
+
 .adduser {
   padding: 20px;
-  border-radius: 15px;
-  background-color: var(--bg-300);
+  border-radius: 7px;
+  background-color: #f5f4f1d5;
   font-weight: bold;
   color: var(--text-100);
   accent-color: var(--accent-100);
   margin-bottom: 10px;
+  box-shadow: 1px 1px 3px var(--bg-300);
 }
 
 .adduser button {
@@ -48,7 +83,8 @@ body {
   color: darkred;
 }
 .forget a {
-  color: darkred;
+  color: var(--bage-color);
+  font-weight: lighter;
 }
 div.form {
   background-color: var(--bg-opacity-200);
@@ -73,23 +109,34 @@ input.form-control::placeholder {
 .form-select + button {
   border: 1px solid var(--text-200);
   color: var(--text-200);
+  padding: 0px;
+  height: 100%;
 }
 
 .form-select + button:hover {
   background-color: var(--text-200);
   color: var(--bg-body);
 }
+.ad {
+  background-color: var(--text-100);
+  border: 2px solid var(--primary-300);
+  color: white;
+}
+.ad:hover {
+  background-color: var(--bage-color);
+  color: var(--bg-body);
+}
 button.add,
 .reset {
   font-size: 15px;
 }
-button.add {
-  background-color: var(--text-200);
-  color: var(--bg-body);
+.add {
+  background-color: var(--text-100) !important ;
+  color: white !important ;
 }
-button.add:hover {
-  background-color: var(--text-200);
-  color: var(--bg-body);
+.add:hover {
+  background-color: var(--bage-color) !important ;
+  color: white !important ;
 }
 .btn:disabled {
   background-color: var(--bage-color);
@@ -113,7 +160,7 @@ h2 {
 .txt-sm {
   font-size: 10px;
 }
-nav.navbar ul {
+/* nav.navbar ul {
   font-size: 18px;
 }
 .navbar-toggler:focus {
@@ -124,7 +171,7 @@ nav.navbar ul {
 }
 .nav-link .active {
   color: var(--bg-body) !important;
-}
+} */
 header {
   background-color: var(--bg-200);
   height: 100vh;
@@ -229,12 +276,12 @@ button.search:hover {
   border: 1px solid var(--bage-color);
   box-shadow: none;
 }
-ul.cart-items {
+/* ul.cart-items {
   background-color: var(--bg-200);
   position: absolute;
   right: 10px;
   /* left: 0; */
-  top: 100%;
+/*top: 100%;
   padding-left: 0;
   width: 400px;
   border: 2px solid var(--bg-300);
@@ -267,6 +314,14 @@ ul.cart-items p {
 }
 .cart-icon {
   cursor: pointer;
+} */
+select#user {
+  border: 1px solid var(--bage-color);
+  outline: none;
+}
+select#user {
+  outline: none;
+  border: 1px solid var(--bage-color);
 }
 
 @media only screen and (max-width: 600px) {
@@ -384,4 +439,182 @@ ul.cart-items p {
   button.search {
     font-size: 16px;
   }
+}
+
+div.form {
+  background-color: var(--bg-opacity-200);
+  box-shadow: 2px 6px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+}
+
+form button {
+  width: 150px;
+}
+
+.ad {
+  background-color: var(--text-100);
+  border: 2px solid var(--primary-300);
+  color: var(--primary-100);
+}
+.ad:hover {
+  background-color: var(--bage-color);
+  color: var(--bg-body);
+}
+
+.res:hover {
+  /* background-color: var(--text-200); */
+  border: 2px solid var(--dng);
+  color: var(--dng);
+}
+
+.res {
+  /* background-color: var(--text-200); */
+  border: 1px solid var(--bage-color) !important;
+  color: var(--bage-color);
+}
+.form-control {
+  font-size: 15px;
+}
+
+.form-control:focus {
+  font-size: 15px;
+  box-shadow: 0 0 0 0.09rem var(--primary-100);
+}
+
+.fixed-image {
+  width: 20px; /* Adjust as needed */
+  height: 20px; /* Keep it square */
+  object-fit: cover; /* Crop the image while maintaining aspect ratio */
+}
+
+/* add user */
+
+.login {
+  margin-top: 100px;
+}
+
+.error {
+  color: darkred;
+}
+
+/* my orders */
+.tablebx {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.tablebx .filterdate {
+  margin: 30px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.tablebx .filterdate label {
+  color: var(--text-200);
+  font-weight: bold;
+}
+
+.tablebx .filterdate button {
+  background-color: var(--text-100);
+  color: white;
+  width: 100px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+}
+.mt-100 {
+  margin-top: 100px;
+}
+.tablebx h1 {
+  color: var(--text-200);
+}
+
+.tablebx table {
+  --bs-table-color: var(--text-100);
+}
+
+.tablebx table thead {
+  --bs-table-bg: var(--bg-200);
+  --bs-table-color: var(--text-100);
+}
+
+.tablebx .productbx {
+  margin-top: 20px;
+  padding: 30px;
+}
+
+.tablebx .productbx .row {
+  justify-content: space-around;
+  align-items: center;
+}
+
+.tablebx .total {
+  padding: 10px;
+  background-color: var(--bg-opacity-200);
+  color: var(--text-200);
+  border: 1px solid var(--bage-color);
+}
+.active-order {
+  background-color: var(--bg-opacity-200);
+}
+.amount span {
+  color: var(--bage-color);
+  font-size: 12px;
+}
+.tablebx .productbx .product {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  color: var(--text-100);
+  background-color: var(--bg-opacity-200);
+  border-radius: 5px;
+}
+
+.tablebx .productbx .product img {
+  width: 100px;
+  height: 90px;
+}
+
+.tablebx .productbx .product .price {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 10px;
+  right: 0;
+  z-index: 100;
+  background-color: var(--bage-color);
+  color: white;
+}
+
+.tablebx .productbx .product .name {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: var(--text-100);
+  font-size: 12px;
+  width: 100%;
+  text-align: center;
+}
+
+.tablebx .productbx .product .order {
+  /* background-color: var(--ac); */
+  color: var(--text-100);
+  font-weight: bold;
+  border: 1px solid gray;
+  border-radius: 99px;
+  padding: 8px;
+  font-size: 12px;
+}
+.cart-iproduct {
+  background-color: var(--bg-opacity-200);
 }

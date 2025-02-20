@@ -1,4 +1,5 @@
 <?php
+require_once "../../includes/utils.php";
 require_once "../../includes/connect_to_db.php";
 
 $pdo = connectToDB();
@@ -9,11 +10,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $price = $_POST['price'];
     $quantity = $_POST['quantity'];
     $category_id = $_POST['category_id'];
+    $image = $_POST['image'];
+
+    
+    $errors = [];
+    
+    if (!$product_name) $errors['product_name'] = "Product name is required.";
+    if (!is_numeric($price)) {
+        $errors['price'] = "Price must be a valid number.";
+    } elseif ($price < 0) {
+        $errors['price'] = "Price cannot be negative.";
+    }
+   if (!is_numeric($quantity)) {
+            $errors['quantity'] = "quantity must be a valid number.";
+        } elseif ($quantity < 0) {
+            $errors['quantity'] = "quantity cannot be negative.";              
+        } 
+    // Handle image upload
+    // if ($image) {
+    //     $image_name = "imgs/" . time() . "_" . basename($image);
+    //     if (!move_uploaded_file($_FILES['image']['tmp_name'], $image_name)) {
+    //         $errors['image'] = "Failed to upload image.";
+    //     }
+    // } else {
+    //     $image_name = null;
+    // }
+
+    if (!empty($errors)) {
+        $errors = json_encode($errors);
+        $old = json_encode($old);
+        header("location: edit_product.php?id={$id}&errors={$errors}&old={$old}");
+        exit();
+    }
+
     
     // Handle file upload if a new image is uploaded
     if (!empty($_FILES['image']['name'])) {
-        $target_dir = "../imgs/";
-        $target_file = $target_dir . basename($_FILES["image"]["name"]);
+        $target_file = basename($_FILES["image"]["name"]);
         move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
         $image = $target_file;
     } else {

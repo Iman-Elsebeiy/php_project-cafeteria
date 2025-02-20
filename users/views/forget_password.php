@@ -1,6 +1,7 @@
 <?php
     // forgot_password.php
-    require_once '../../includes/connect_to_db.php';
+    require_once "../../includes/utils.php";
+    require_once "../../includes/connect_to_db.php";
     // require_once "../includes/utils.php";
     require '../../vendor/autoload.php'; // Load PHPMailer
 
@@ -34,7 +35,7 @@
                 $insert->execute([$email, $token]);
 
                 // Construct reset link
-                $resetLink = "localhost/php_project-cafeteria/views/reset_password.php?token=" . $token;
+                $resetLink = "localhost/PHP-Project/php_project-cafeteria/users/views/reset_password.php?token=" . $token;
 
                 // Send email using PHPMailer
                 $mail = new PHPMailer(true);
@@ -44,8 +45,8 @@
                     $mail->isSMTP();
                     $mail->Host       = 'sandbox.smtp.mailtrap.io';
                     $mail->SMTPAuth   = true;
-                    $mail->Username   = 'af16c4f320fcf8';
-                    $mail->Password   = '14d4fd22622035';
+                    $mail->Username   = '5bc887318c2018';
+                    $mail->Password   = '8f80ce434ebdd9';
                     $mail->SMTPSecure = 'tls';
                     $mail->Port       = 587;
 
@@ -74,34 +75,37 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Forgot Password</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../style/style.css">
-<!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<!-- Animate.css for animations -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<!-- Animate.css for animations -->
- <link rel="stylesheet" href="../../style/style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <meta charset="UTF-8">
+    <title>Forgot Password</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../style/style.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Animate.css for animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Animate.css for animations -->
+    <link rel="stylesheet" href="../../style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
+
 <body>
 
-<div class="container adduser login col-lg-5">
-<?php if ($error): ?>
-<div class="alert alert-danger animate__animated animate__shakeX">
-<?php echo htmlspecialchars($error) ?>
-</div>
-<?php endif; ?>
+    <div class="container adduser login col-lg-5">
+        <?php if ($error): ?>
+        <div class="alert alert-danger animate__animated animate__shakeX">
+            <?php echo htmlspecialchars($error) ?>
+        </div>
+        <?php endif; ?>
         <h1 class="text-center">forget password </h1>
         <form class="pd-3" method="POST">
 
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">email</label>
-                <input type="text" class="form-control" name="email" id="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
+                <input type="text" class="form-control" name="email" id="email"
+                    value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
 
 
             </div>
@@ -112,7 +116,8 @@
 
         </form>
     </div>
-<!-- Bootstrap Bundle JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

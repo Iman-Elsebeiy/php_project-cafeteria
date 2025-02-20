@@ -1,7 +1,7 @@
 <?php
 // reset_password.php
-require_once '../../includes/connect_to_db.php';
-// require_once "../includes/utils.php";
+require_once "../../includes/utils.php";
+require_once "../../includes/connect_to_db.php";
  
 $pdo = connectToDB();
 $token = $_GET['token'] ?? '';
@@ -45,78 +45,85 @@ if ($token) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Reset Password</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<!-- Animate.css for animations -->
- <link rel="stylesheet" href="../style/style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-<style>
+    <meta charset="UTF-8">
+    <title>Reset Password</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Animate.css for animations -->
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
     body {
-     
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1rem;
+
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
     }
+
     .card {
-      border: none;
-      border-radius: 1rem;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-      background-color:#cccbc8;
+        border: none;
+        border-radius: 1rem;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        background-color: #cccbc8;
     }
+
     .card-body {
-      padding: 2rem;
+        padding: 2rem;
     }
-    .form-control, .btn {
-      border-radius: 0.5rem;
+
+    .form-control,
+    .btn {
+        border-radius: 0.5rem;
     }
-</style>
+    </style>
 </head>
+
 <body>
-<div class="container">
-<div class="row justify-content-center">
-<div class="col-md-6">
-<div class="card animate__animated animate__fadeInDown">
-<div class="card-body">
-<h2 class="card-title text-center mb-4">Reset Password</h2>
-<?php if ($error): ?>
-<div class="alert alert-danger animate__animated animate__shakeX">
-<?= htmlspecialchars($error) ?>
-</div>
-<?php endif; ?>
-<?php if ($message): ?>
-<div class="alert alert-success animate__animated animate__fadeIn">
-<?= htmlspecialchars($message) ?>
-</div>
-<script>
-                // Redirect to login page after 3 seconds
-                setTimeout(function() {
-                  window.location.href = "login.php?message=password_reset_success";
-                }, 3000);
-</script>
-<?php endif; ?>
-<?php if (!$message && !$error): ?>
-<form action="reset_password.php?token=<?= htmlspecialchars($token) ?>" method="POST">
-<div class="mb-3">
-<label for="password" class="form-label">Enter your new password:</label>
-<input type="password" name="password" id="password" class="form-control" required>
-</div>
-<div class="d-flex justify-content-center">
-  <button type="submit" name="send">Submit</button>
- </div>
-</form>
-<?php endif; ?>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Bootstrap Bundle JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card animate__animated animate__fadeInDown">
+                    <div class="card-body">
+                        <h2 class="card-title text-center mb-4">Reset Password</h2>
+                        <?php if ($error): ?>
+                        <div class="alert alert-danger animate__animated animate__shakeX">
+                            <?= htmlspecialchars($error) ?>
+                        </div>
+                        <?php endif; ?>
+                        <?php if ($message): ?>
+                        <div class="alert alert-success animate__animated animate__fadeIn">
+                            <?= htmlspecialchars($message) ?>
+                        </div>
+                        <script>
+                        // Redirect to login page after 3 seconds
+                        setTimeout(function() {
+                            window.location.href = "login.php?message=password_reset_success";
+                        }, 3000);
+                        </script>
+                        <?php endif; ?>
+                        <?php if (!$message && !$error): ?>
+                        <form action="reset_password.php?token=<?= htmlspecialchars($token) ?>" method="POST">
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Enter your new password:</label>
+                                <input type="password" name="password" id="password" class="form-control" required>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" name="send">Submit</button>
+                            </div>
+                        </form>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

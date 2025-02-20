@@ -1,6 +1,6 @@
 <?php
+require_once "../../includes/utils.php";
 require_once "../../includes/connect_to_db.php";
-
 $pdo = connectToDB();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

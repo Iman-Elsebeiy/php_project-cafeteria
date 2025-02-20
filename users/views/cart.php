@@ -6,6 +6,18 @@ require_once "../../includes/functions.php";
 NotAuthRedirectToLogin();
 $cafe = new dataBase();
 $cafe->connectToDB("localhost", "cafe", "root", "root");
+if (isset($_GET['error'])&& !empty($_GET['error'])){
+    $errors = json_decode($_GET['error'],true);
+    foreach ($errors as $key => $error) {
+    $productData = $cafe->selectRowData('products', 'product_id', $key);           
+    echo '<div class="alert alert-danger mb-3 position-fixed bottom-0 end-0 z-3 txt-sm" role="alert" style="font-weight: bold;">'
+    . $error . ' of ' . $productData[0]["product_name"]
+    . ' The Maximum Quantity that we can provide is '
+    . $productData[0]['quantity'] . ' cup</div>';
+    }
+}
+
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,25 +35,16 @@ $cafe->connectToDB("localhost", "cafe", "root", "root");
 
 <body>
     <?php
+    
     if($_SESSION["role"]=="user")
     {
         displayUserNavbar($_SESSION["image"]);
     }
-    else if($_SESSION["role"]=="admin"){
+    if($_SESSION["role"]=="admin")
+    {
         displayAdminNavbar($_SESSION["image"]);
     }
-    if (!empty($_GET['error'])){
-        $errors = json_decode($_GET['error']);
-        foreach ($errors as $key => $error) {
-        $productData = $cafe->selectRowData('products', 'product_id', $key);           
-        echo '<div class="alert alert-danger mb-3 mt-1" role="alert" style="font-weight: bold;">'
-        . $error . ' of ' . $productData[0]["product_name"]
-        . ' The Maximum Quantity that we can provide is '
-        . $productData[0]['quantity'] . ' cup</div>';
-        }
-    }
-    
-        if (!empty($_GET['error1'])){
+    if (isset($_GET['error1'])){
         $errors = json_decode($_GET['error1']);
         echo'
         <div class="alert alert-danger">'
@@ -49,7 +52,7 @@ $cafe->connectToDB("localhost", "cafe", "root", "root");
             . '</div>
         ';
         }
-        if (!empty($_GET['succ'])){
+        if (isset($_GET['succ'])){
         $errors = json_decode($_GET['succ']);
         echo'
         <div class="alert alert-success">'
@@ -58,10 +61,11 @@ $cafe->connectToDB("localhost", "cafe", "root", "root");
         ';
         }
     
-        
-  ?>
-    <div class="container-fluid p-3 mt-3">
-        <div class="row p-1 m-5">
+    
+    
+        ?>
+    <div class="container-fluid p-4 mt-3">
+        <div class="row p-1 ">
             <h1 class="my-4">Your Cart</h1>
             <div class="row col-7">
 

@@ -116,19 +116,21 @@ AdminOnlyPage();
                 <label for="exampleInputEmail1" class="form-label">name</label>
                 <input type="text" class="form-control" name="name"
                     value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>">
-                <p class="error"><?php if (isset($errors['name'])) echo $errors['name'] ?></p>
+                <p class="error txt-sm p-0 text-danger"><?php if (isset($errors['name'])) echo $errors['name'] ?></p>
 
             </div>
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">email</label>
                 <input type="text" class="form-control" name="email"
                     value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
-                <p class="error"><?php if (isset($errors['email'])) echo $errors['email'] ?></p>
+                <p class="error txt-sm p-0 text-danger"><?php if (isset($errors['email'])) echo $errors['email'] ?></p>
                 <?php if (!isset($errors['email'])): ?>
-                <p class="error"><?php if (isset($errors['validemail'])) echo $errors['validemail'] ?></p>
+                <p class="error txt-sm p-0 text-danger">
+                    <?php if (isset($errors['validemail'])) echo $errors['validemail'] ?></p>
                 <?php endif; ?>
                 <?php if (!isset($errors['validemail'])): ?>
-                <p class="error"><?php if (isset($errors['uniqueemail'])) echo $errors['uniqueemail'] ?></p>
+                <p class="error txt-sm p-0 text-danger">
+                    <?php if (isset($errors['uniqueemail'])) echo $errors['uniqueemail'] ?></p>
                 <?php endif; ?>
             </div>
 
@@ -136,7 +138,8 @@ AdminOnlyPage();
             <div class="mb-3">
                 <label for="exampleInputPassword1" class="form-label">Password</label>
                 <input type="password" class="form-control" name="password" id="exampleInputPassword1">
-                <p class="error"><?php if (isset($errors['password'])) echo $errors['password'] ?></p>
+                <p class="error txt-sm p-0 text-danger">
+                    <?php if (isset($errors['password'])) echo $errors['password'] ?></p>
 
             </div>
 
@@ -167,14 +170,14 @@ AdminOnlyPage();
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">profile picture</label>
                 <input type="file" class="form-control" name="img">
-                <p class="error"><?php if (isset($errors['image'])) echo $errors['image'] ?></p>
+                <p class="error txt-sm"><?php if (isset($errors['image'])) echo $errors['image'] ?></p>
                 <?php if (!isset($errors['image'])): ?>
                 <?php if (!isset($errors['imagetype'])): ?>
-                <p class="error"><?php if (isset($errors['imagesize'])) echo $errors['imagesize'] ?></p>
+                <p class="error txt-sm"><?php if (isset($errors['imagesize'])) echo $errors['imagesize'] ?></p>
 
                 <?php endif; ?>
 
-                <p class="error"><?php if (isset($errors['imagetype'])) echo $errors['imagetype'] ?></p>
+                <p class="error txt-sm"><?php if (isset($errors['imagetype'])) echo $errors['imagetype'] ?></p>
                 <?php endif; ?>
 
 
@@ -195,9 +198,6 @@ AdminOnlyPage();
         </form>
     </div>
 
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
@@ -206,6 +206,7 @@ AdminOnlyPage();
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="../../javascript/index.js"></script>
+    <script src="../../javascript/add-user-validation.js"></script>
 
 </body>
 

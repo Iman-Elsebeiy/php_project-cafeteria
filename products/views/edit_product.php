@@ -1,5 +1,4 @@
 <?php
-// require_once "../includes/utils.php";
 require_once "../../includes/utils.php";
 require_once "../../includes/connect_to_db.php";
 require_once "../../includes/functions.php";
@@ -49,17 +48,17 @@ $categories = $pdo->query("SELECT * FROM categories")->fetchAll(PDO::FETCH_ASSOC
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="../../style/navbar.css">
     <script>
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll("input[type='number']").forEach(input => {
-        input.addEventListener("input", function () {
-            if (this.value < 0) {
-                this.value = "";
-                alert("Negative values are not allowed!");
-            }
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll("input[type='number']").forEach(input => {
+            input.addEventListener("input", function() {
+                if (this.value < 0) {
+                    this.value = "";
+                    alert("Negative values are not allowed!");
+                }
+            });
         });
     });
-});
-</script>
+    </script>
 
 </head>
 
@@ -80,8 +79,8 @@ document.addEventListener("DOMContentLoaded", function () {
                             <label for="product_name" class='form-label col-3'>Product:</label>
                             <div>
                                 <input type="text" class="form-control" id="product_name" name="product_name"
-                                    value="<?= htmlspecialchars($product['product_name']); ?>" >
-                                    <p class="text-danger"><?php echo $errors['product_name'] ?? ''; ?></p>
+                                    value="<?= htmlspecialchars($product['product_name']); ?>">
+                                <p class="text-danger"><?php echo $errors['product_name'] ?? ''; ?></p>
 
                             </div>
                         </div>
@@ -91,8 +90,8 @@ document.addEventListener("DOMContentLoaded", function () {
                             <label for="quantity" class="form-label col-4">Quantity:</label>
                             <div>
                                 <input type="number" class="form-control" id="quantity" name="quantity"
-                                    value="<?= htmlspecialchars($product['quantity']); ?>" >
-                                     <p class="text-danger"><?php echo $errors['quantity']?? ''; ?></p>
+                                    value="<?= htmlspecialchars($product['quantity']); ?>">
+                                <p class="text-danger"><?php echo $errors['quantity']?? ''; ?></p>
 
                             </div>
                         </div>
@@ -103,9 +102,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         <label for="price" class="form-label">Price:</label>
                         <div>
                             <input type="number" class="form-control col-12" id="price" name="price" step="0.01"
-                                value="<?= htmlspecialchars($product['price']); ?>" >
-                                 <p class="text-danger"><?php echo $errors['price']?? ''; ?></p>
-                       
+                                value="<?= htmlspecialchars($product['price']); ?>">
+                            <p class="text-danger"><?php echo $errors['price']?? ''; ?></p>
+
                         </div>
                     </div>
 
@@ -148,10 +147,6 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
     </div>
     <?php include '../../includes/footer.php'; ?>
-<<<<<<< HEAD
-
-=======
->>>>>>> 597d909990e370e8ea06b6823aa801fd2e0b270d
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>

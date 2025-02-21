@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Handle file upload if a new image is uploaded
     if (!empty($_FILES['image']['name'])) {
         $target_file = basename($_FILES["image"]["name"]);
-        move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
+        move_uploaded_file($_FILES["image"]["tmp_name"],"../imgs/".$target_file);
         $image = $target_file;
     } else {
         // Keep the existing image if no new file is uploaded

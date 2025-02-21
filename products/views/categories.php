@@ -43,52 +43,48 @@ try {
     <?php 
      displayAdminNavbar($_SESSION["image"])?>
     <main>
-    <div class="container mt-5">
-        <div class="mt-1 text-end my-4  justify-content-between d-flex gap-2">
-            <a href="add_category.php" class="btn add text-white  px-4 fs-6 ">+ Add Category</a>
-        </div>
-        <div class="container ">
-            <div class=" p-5 rounded">
-                <h2 class=" fs-2 mb-2 pb-2">All categories</h2>
-                <div class="table-responsive">
-                    <table class="table ">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col " class="text-center">Category</th>
-                                <th scope="col" class="text-center">Edit</th>
-                                <th scope="col" class="text-center">Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
+        <div class="container mt-5">
+            <div class="mt-1 text-end my-4  justify-content-between d-flex gap-2">
+                <a href="add_category.php" class="btn add text-white  px-4 fs-6 ">+ Add Category</a>
+            </div>
+            <div class="container ">
+                <div class=" p-5 rounded">
+                    <h2 class=" fs-2 mb-2 pb-2">All categories</h2>
+                    <div class="table-responsive">
+                        <table class="table ">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col " class="text-center">Category</th>
+                                    <th scope="col" class="text-center">Edit</th>
+                                    <th scope="col" class="text-center">Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
               foreach ($categories as $category) {
               ?>
-                            <tr>
-                                <th scope="row"><?php echo $category['category_id']?></th>
-                                <td><?php echo $category['name'] ?></td>
-                                <td><a href="edit_category.php?id=<?php echo $category['category_id'] ?>"
-                                        class="text-decoration-none"><i><img src="../imgs/edit.png"
-                                                style="max-width: 25px" alt="edit.png"></i></a></td>
-                                <td><a href="delete_category.php?id=<?php echo $category['category_id'] ?>"
-                                        onclick="return confirm('Are you sure you want to delete?')"
-                                        class="text-decoration-none"><img src="../imgs/delete.png" alt=""
-                                            style="max-width: 25px"></a></td>
-                            </tr>
-                            <?php
+                                <tr>
+                                    <th scope="row"><?php echo $category['category_id']?></th>
+                                    <td><?php echo $category['name'] ?></td>
+                                    <td><a href="edit_category.php?id=<?php echo $category['category_id'] ?>"
+                                            class="text-decoration-none"><i><img src="../imgs/edit.png"
+                                                    style="max-width: 25px" alt="edit.png"></i></a></td>
+                                    <td><a href="delete_category.php?id=<?php echo $category['category_id'] ?>"
+                                            onclick="return confirm('Are you sure you want to delete?')"
+                                            class="text-decoration-none"><img src="../imgs/delete.png" alt=""
+                                                style="max-width: 25px"></a></td>
+                                </tr>
+                                <?php
                  }
                 ?>
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
     </main>
     <?php include '../../includes/footer.php'; ?>
-<<<<<<< HEAD
-
-=======
->>>>>>> 597d909990e370e8ea06b6823aa801fd2e0b270d
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>

@@ -54,13 +54,13 @@
                             <a class="nav-link" href="/PHP-Project/php_project-cafeteria/users/views/user-home.php">Products</a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link" href="#about">About</a>
+                            <a class="nav-link" href="/PHP-Project/php_project-cafeteria/users/views/about.php">About</a>
                         </li>
                         <li class="nav-item mx-2">
                             <a class="nav-link" href="/PHP-Project/php_project-cafeteria/orders/views/myorder.php">My Orders</a>
                         </li>
                         <li class="nav-item mx-2">
-                            <a class="nav-link" href="#contact">Contact</a>
+                            <a class="nav-link" href="/PHP-Project/php_project-cafeteria/users/views/contact.php">Contact</a>
                         </li>
                     </ul>
                     <div class="align-items-center gap-2 d-none d-lg-flex">

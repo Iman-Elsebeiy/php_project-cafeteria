@@ -35,7 +35,7 @@ if( $_SESSION["role"]=="user")
     <?php 
     displayAdminNavbar($_SESSION["image"]);
     ?>
-    <div class="container mt-100 ">
+    <div class="container mt-100  ">
 
 
         <?php

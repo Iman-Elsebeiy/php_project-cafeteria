@@ -172,6 +172,7 @@ $filteredUsers = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </div>
     </div>
+    <?php include '../includes/footer.php'; ?>
     <!-- Bootstrap Bundle JS -->
     <?php include '../includes/footer.php'; ?>
 

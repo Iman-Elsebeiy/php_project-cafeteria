@@ -6,7 +6,7 @@ const DB_NAME='cafe';
 const DB_PORT=3306;
 $DB_USER = 'root';
 $DB_PASSWORD = '';
-$DB_PASSWORD = 'root';
+$DB_PASSWORD = '';
 $BD_HOST = 'localhost';
 $DB_NAME = 'cafe';
 

@@ -93,6 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 <input type="number" class="form-control" id="quantity" name="quantity"
                                     value="<?= htmlspecialchars($product['quantity']); ?>" >
                                      <p class="text-danger"><?php echo $errors['quantity']?? ''; ?></p>
+
                             </div>
                         </div>
                     </div>
@@ -104,6 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             <input type="number" class="form-control col-12" id="price" name="price" step="0.01"
                                 value="<?= htmlspecialchars($product['price']); ?>" >
                                  <p class="text-danger"><?php echo $errors['price']?? ''; ?></p>
+                       
                         </div>
                     </div>
 

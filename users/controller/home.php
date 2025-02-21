@@ -34,11 +34,12 @@ function displayCategoriesLinks(){
     $db_conn->closeConnection();
   }
   function displayProduct($products){
-    if(!empty($products)){ 
-        foreach($products as $product)
-    { 
+  if(!empty($products)){ 
+    $flag_product=false;
+      foreach($products as $product){ 
        if($product["quantity"]>0)
        {
+        $flag_product=true;
         echo'<div class="col">
         <div class="product-card p-3 rounded">
             <img src="../../products/imgs/'."{$product['image']}".  '
@@ -57,6 +58,10 @@ function displayCategoriesLinks(){
               </form>
         </div>
          </div>';
+       }
+       else if(!$flag_product)
+       {
+        echo '<h4 class="p-3 mt-2 col-10 mx-auto fs-5"> No Products in Founded !</h4>';
        }
       
     }

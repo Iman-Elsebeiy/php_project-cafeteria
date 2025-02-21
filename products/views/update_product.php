@@ -18,8 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!$product_name) $errors['product_name'] = "Product name is required.";
     if (!is_numeric($price)) {
         $errors['price'] = "Price must be a valid number.";
-    } elseif ($price <= 10) {
-        $errors['price'] = "Price cannot be negative.or Zero and should be more than 10";
+    } elseif ($price < 0) {
+        $errors['price'] = "Price cannot be negative.";
     }
    if (!is_numeric($quantity)) {
             $errors['quantity'] = "quantity must be a valid number.";

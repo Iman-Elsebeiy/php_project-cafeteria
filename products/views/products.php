@@ -51,7 +51,7 @@ try {
             <thead>
                 <tr>
                     <th>Product</th>
-                    <th>Price</th>
+                    <th>Price L.E</th>
                     <th>Image</th>
                     <th>Quantity</th>
                     <th>Availability</th>
@@ -69,7 +69,7 @@ try {
                     <th><?php echo $product['price']?> L.E</th>
                     <td> <img src="../imgs/<?php echo $product['image'] ?>" width="100px" height="100px"
                             style="object-fit:contain;object-poistion:center;" alt=""></td>
-                    <th><?php echo $product['quantity']?></th>
+                    <th><?php echo $product['quantity']?> items</th>
                     <td><?php if($product['quantity']>0){
                             echo 'Available';
                   	      } else {
@@ -93,6 +93,10 @@ try {
         </table>
     </div>
     <?php include '../../includes/footer.php'; ?>
+<<<<<<< HEAD
+
+=======
+>>>>>>> 597d909990e370e8ea06b6823aa801fd2e0b270d
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>

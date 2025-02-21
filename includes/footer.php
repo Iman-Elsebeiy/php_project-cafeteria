@@ -1,77 +1,71 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-
     <style>
-    @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+        .site-footer {
+            background: black;
+            padding: 60px 0;
+            color: #fff;
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0px -5px 20px rgba(0, 0, 0, 0.3);
+        }
 
-    .site-footer {
-        background: black;
-        padding: 60px 0;
-        color: #fff;
-        /* border-radius: 10px 10px 0 0; */
-        font-family: "Poppins", serif;
-        /* box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.3); */
-    }
+        .site-footer-title {
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-    .site-footer-title {
-        font-weight: 400;
-        font-size: 26px;
-        margin-bottom: 15px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
+        .footer-link {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 15px;
+            transition: 0.3s;
+        }
 
-    .footer-link {
-        color: #ddd;
-        text-decoration: none;
-        font-size: 15px;
-        transition: 0.3s;
-    }
+        .footer-link:hover {
+            color: #ffcc00;
+            text-decoration: underline;
+        }
+        .site-footer {
+    position: relative;
+    background: black;
+    padding: 60px 0;
+    color: #fff;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0px -5px 20px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
 
-    .footer-link:hover {
-        color: #8f5f49;
-        text-decoration: underline;
-    }
+/* Upper left circle */
+.site-footer::before,
+.site-footer::after {
+    content: "";
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+    border-radius: 50%;
+    z-index: 0;
+}
 
-    .site-footer {
-        position: relative;
-        background: rgba(5, 5, 5, 0.9);
-        padding: 60px 0;
-        color: white;
-        margin-top: 20px;
-        /* border-radius: 10px 10px 0 0; */
-        /* box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.3); */
-        overflow: hidden;
-    }
+/* Top left circle */
+.site-footer::before {
+    top: -50px;
+    left: -50px;
+}
 
-    /* Upper left circle */
-    .site-footer::before,
-    .site-footer::after {
-        content: "";
-        position: absolute;
-        width: 150px;
-        height: 150px;
-        background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
-        border-radius: 50%;
-        z-index: 0;
-    }
+/* Bottom right circle */
+.site-footer::after {
+    bottom: -50px;
+    right: -50px;
+}
 
-    /* Top left circle */
-    .site-footer::before {
-        top: -50px;
-        left: -50px;
-    }
 
-    /* Bottom right circle */
-    .site-footer::after {
-        bottom: -50px;
-        right: -50px;
-    }
     </style>
 </head>
-
 <body>
     <footer class="site-footer">
         <div class="container">
@@ -100,5 +94,4 @@
         </div>
     </footer>
 </body>
-
 </html>

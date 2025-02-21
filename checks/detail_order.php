@@ -239,7 +239,7 @@ $customerTotalSpent = $customerTotalStmt->fetchColumn();
                 </strong>LE</h5>
         </div>
 
-        <a href="checks.php" class="btn btn-secondary mt-3">🔙 Back to Orders</a>
+        <a href="checks.php" class="btn btn-secondary mb-5 mt-3">🔙 Back to Orders</a>
     </div>
     <?php include '../includes/footer.php'; ?>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

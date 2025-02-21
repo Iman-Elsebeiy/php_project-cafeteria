@@ -43,7 +43,10 @@ try {
     <?php 
      displayAdminNavbar($_SESSION["image"])?>
     <main>
-
+    <div class="container mt-5">
+        <div class="mt-1 text-end my-4  justify-content-between d-flex gap-2">
+            <a href="add_category.php" class="btn add text-white  px-4 fs-6 ">+ Add Category</a>
+        </div>
         <div class="container ">
             <div class=" p-5 rounded">
                 <h2 class=" fs-2 mb-2 pb-2">All categories</h2>
@@ -82,6 +85,10 @@ try {
         </div>
     </main>
     <?php include '../../includes/footer.php'; ?>
+<<<<<<< HEAD
+
+=======
+>>>>>>> 597d909990e370e8ea06b6823aa801fd2e0b270d
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>

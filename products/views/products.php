@@ -72,9 +72,9 @@ try {
                     <th><?php echo $product['quantity']?> items</th>
                     <td><?php if($product['quantity']>0){
                             echo 'Available';
-                  	      } else {
-                           echo 'Unvailable';
-                     	}?></td>
+                    } else {
+                            echo 'Unvailable';
+                        	}?></td>
                     <td><?php echo $product['name'] ?></td>
                     <td><a href="edit_product.php?id=<?php echo $product['product_id'] ?>"
                             class="text-decoration-none"><i><img src="../imgs/edit(1).png" style="max-width: 20px"

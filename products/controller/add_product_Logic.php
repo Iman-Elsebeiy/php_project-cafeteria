@@ -6,7 +6,7 @@ require_once "../../includes/Validtion.php";
   $validation =form_validate($_POST);
    extract($validation);
   $errors=vaildate_unEmpty_ProductField($_POST,$errors);
-  $imge_error=image_validation($_FILES["p_image"],$valid_exten,200000);
+  $imge_error=image_validation($_FILES["p_image"],$valid_exten,2000000);
    if($imge_error){
         $errors["image"]=$imge_error; }
     if($errors){

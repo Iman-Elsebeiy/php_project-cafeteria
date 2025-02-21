@@ -44,7 +44,7 @@ if(isset($_GET))
     ?>
     <div class="container  p-4  mt-2">
         <div class="row">
-            <div class="col-12 col-md-6  p-md-5 p-3  rounded  form ">
+            <div class="col-12 col-md-8  mx-auto p-md-5 p-3  rounded  form ">
                 <h1 class="fs-5 mb-4">Add New Category</h1>
                 <form action="../controller/add_category_Logic.php" method="POST" enctype="multipart/form-data"
                     class="p-2">
@@ -82,13 +82,6 @@ if(isset($_GET))
                     </div>
 
                 </form>
-            </div>
-            <div class="col-4 d-none d-md-block image">
-                <img src="../imgs/addproduct.jpg" alt="add catgory">
-                <h2>Seamless Product Management</h2>
-                <p>Easily add new products to your store with our user-friendly form. Manage your inventory efficiently
-                    and provide customers with accurate product details to enhance their shopping experience. Stay
-                    organized, update listings effortlessly, and grow your business with ease!</p>
             </div>
 
         </div>

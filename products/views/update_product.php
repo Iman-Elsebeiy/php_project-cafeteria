@@ -37,19 +37,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Handle file upload if a new image is uploaded
     if (!empty($_FILES['image']['name'])) {
-        $target_file = basename($_FILES["image"]["name"]);
-        move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
-        $image = $target_file;
+        $imge_name = $_POST['product_name'].".".pathinfo($_FILES["image"]["name"], PATHINFO_EXTENSION);
+        move_uploaded_file($_FILES["image"]['tmp_name'],"../imgs/".$imge_name);
+
     } else {
         // Keep the existing image if no new file is uploaded
         $stmt = $pdo->prepare("SELECT image FROM products WHERE product_id = ?");
         $stmt->execute([$id]);
-        $image = $stmt->fetchColumn();
+        $imge_name = $stmt->fetchColumn();
     }
 
     // Update the product in the database
     $stmt = $pdo->prepare("UPDATE products SET product_name = ?, price = ?, quantity = ?, category_id = ?, image = ? WHERE product_id = ?");
-    $stmt->execute([$product_name, $price, $quantity, $category_id, $image, $id]);
+    $stmt->execute([$product_name, $price, $quantity, $category_id, $imge_name, $id]);
 
     // Redirect to product list
     header("Location: products.php?success=updated");

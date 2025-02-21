@@ -98,7 +98,7 @@
                     crafting the finest coffee using high-quality beans sourced from around the world. Whether you're
                     here for a quick espresso, a relaxing afternoon with friends, or a cozy corner to work, our café
                     offers a warm and inviting atmosphere.</p>
-                <img src="https://source.unsplash.com/800x400/?coffee,cafe" class="about-image mt-4" alt="Cafe Image">
+                <img src="/PHP-Project/php_project-cafeteria/app-images/logo.png" alt="logo" width="85" height="50">
             </div>
         </section>
     </main>

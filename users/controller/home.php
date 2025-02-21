@@ -59,11 +59,12 @@ function displayCategoriesLinks(){
         </div>
          </div>';
        }
-       else if(!$flag_product)
-       {
-        echo '<h4 class="p-3 mt-2 col-10 mx-auto fs-5"> No Products in Founded !</h4>';
-       }
       
+      
+    }
+     if(!$flag_product)
+    {
+     echo '<h4 class="p-3 mt-2 col-10 mx-auto fs-5"> No Products in Founded !</h4>';
     }
     }
     else{

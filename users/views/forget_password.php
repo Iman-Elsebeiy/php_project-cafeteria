@@ -45,8 +45,8 @@
                     $mail->isSMTP();
                     $mail->Host       = 'sandbox.smtp.mailtrap.io';
                     $mail->SMTPAuth   = true;
-                    $mail->Username   = 'af16c4f320fcf8';
-                    $mail->Password   = '14d4fd22622035';
+                    $mail->Username   = '5bc887318c2018';
+                    $mail->Password   = '8f80ce434ebdd9';
                     $mail->SMTPSecure = 'tls';
                     $mail->Port       = 587;
 

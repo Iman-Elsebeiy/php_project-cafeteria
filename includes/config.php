@@ -1,10 +1,11 @@
 <?php
 const DB_USER='root';
-const DB_PASSWORD='root';
+const DB_PASSWORD='';
 const DB_HOST='localhost';
 const DB_NAME='cafe';
 const DB_PORT=3306;
 $DB_USER = 'root';
+$DB_PASSWORD = '';
 $DB_PASSWORD = 'root';
 $BD_HOST = 'localhost';
 $DB_NAME = 'cafe';

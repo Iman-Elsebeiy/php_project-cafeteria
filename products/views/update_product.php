@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors['price'] = "Price must be a valid number.";
     } elseif ($price < 0) {
         $errors['price'] = "Price cannot be negative.";
-      
+    }
    if (!is_numeric($quantity)) {
             $errors['quantity'] = "quantity must be a valid number.";
         } elseif ($quantity < 0) {

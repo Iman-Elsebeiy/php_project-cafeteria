@@ -88,7 +88,8 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
 
 <body>
     <div class="container adduser login col-lg-5">
-        <h1 class="text-center">log in</h1>
+        <h2 class="fs-2 text-center my-2 login-head"> Cafeteria</h2>
+        <h3 class="fs-4">Log in</h3>
         <form class="p-3" method="POST">
             <p class="error text-center">
                 <?php if (isset($errors['invalid'])) echo $errors['invalid']  ?>

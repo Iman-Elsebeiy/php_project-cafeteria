@@ -3,9 +3,13 @@
  session_start();
  if ($_SESSION["role"] == "user") {
     if (isset($_SESSION["cart"])) {
+
         if (isset($_SESSION["cart"]["products"])) {
+
             $_SESSION["cart"]["products"][$_POST['product_id']] = 1;
-        } else {
+        } 
+        else
+         {
             $_SESSION["cart"]["products"] = [
                 $_POST['product_id'] => 1
             ];
@@ -20,11 +24,17 @@
     }
     header("Location: ../views/user-home.php?message=Product Add Successfully&product=" . $_POST['product_id']);
     exit();
-} else if ($_SESSION["role"] == "admin") {
+} 
+else if ($_SESSION["role"] == "admin") {
+
     if (!empty($_SESSION["cart"]["user_id"])) {
+        
         if (!empty($_SESSION["cart"]["products"])) {
+            
             $_SESSION["cart"]["products"][$_POST['product_id']] = 1;
-        } else {
+        } 
+        else {
+            
             $_SESSION["cart"]["products"] = [
                 $_POST['product_id'] => 1
             ];

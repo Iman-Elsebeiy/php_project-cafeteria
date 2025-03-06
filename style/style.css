@@ -27,6 +27,9 @@ body {
 .mb-50 {
   margin-bottom: 50px;
 }
+.login-head {
+  color: var(--bage-color);
+}
 .total-price {
   display: flex;
   justify-content: end;
@@ -73,7 +76,7 @@ table {
 
 .adduser button {
   background-color: #1d1c1c;
-  color: var(--primary-100);
+  color: white;
   width: 150px;
   height: 40px;
   border: none;

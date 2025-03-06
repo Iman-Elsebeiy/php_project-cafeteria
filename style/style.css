@@ -621,3 +621,6 @@ form button {
 .cart-iproduct {
   background-color: var(--bg-opacity-200);
 }
+.login-head {
+  color: var(--bage-color);
+}

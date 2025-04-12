@@ -87,19 +87,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Animate.css for animations -->
-    <link rel="stylesheet" href="../../style/style.css">
+    <link rel="stylesheet" href="../../style/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 
 <body>
 
-    <div class="container adduser login col-lg-5">
+    <div class="container  login-forget col-lg-5">
         <?php if ($error): ?>
         <div class="alert alert-danger animate__animated animate__shakeX">
             <?php echo htmlspecialchars($error) ?>
         </div>
         <?php endif; ?>
-        <h1 class="text-center">forget password </h1>
+        <h1>Forget Password </h1>
         <form class="pd-3" method="POST">
 
             <div class="mb-3">

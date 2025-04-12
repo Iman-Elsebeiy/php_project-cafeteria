@@ -1,4 +1,5 @@
 <?php
+require_once '../includes/navbar.php';
 require_once '../includes/connect_to_db.php';
 require_once '../includes/utils.php';
 require_once "../includes/functions.php";
@@ -63,23 +64,10 @@ $customerTotalSpent = $customerTotalStmt->fetchColumn();
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../style/navbar.css">
 
+    <link rel="stylesheet" href="../style/style.css">
+    <!-- Replace the existing style block with this updated one -->
     <style>
-    :root {
-        --primary-color: #2c3e50;
-        --accent-color: #e74c3c;
-        --light-bg: #f8f9fa;
-        --text-color: #333;
-        --border-radius: 8px;
-        --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    body {
-        background-color: var(--light-bg);
-        color: var(--text-color);
-        font-family: 'Segoe UI', system-ui, sans-serif;
-    }
-
-    .container {
+    .check-detail.container {
         margin-top: 2rem;
         max-width: 1200px;
     }
@@ -87,49 +75,67 @@ $customerTotalSpent = $customerTotalStmt->fetchColumn();
     h2,
     h3,
     h4 {
-        color: var(--primary-color);
+        color: var(--text-600);
+        font-size: 20px;
+        margin-block: 10px
+    }
+
+    h5 {
+        color: var(--text-600);
+        font-size: 16px;
+        font-weight: 400;
+
+    }
+
+    p {
+        color: var(--text-600)
     }
 
     .card {
-        background-color: white;
+        background-color: var(--bg-nav);
         border: none;
-        border-radius: var(--border-radius);
-        box-shadow: var(--box-shadow);
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         padding: 1.5rem;
         margin-bottom: 1.5rem;
     }
 
     .table {
-        background-color: white;
-        color: var(--text-color);
-        border-radius: var(--border-radius);
+        background-color: var(--bg-200);
+        color: var(--text-600);
+        border-radius: 8px;
         overflow: hidden;
-        box-shadow: var(--box-shadow);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     }
 
-    .table thead {
-        background-color: var(--primary-color);
-        color: white;
-    }
+    /* .table thead {
+        background-color: var(--bage-300);
+        color: var(--bg-200);
+    } */
 
-    .table th,
-    .table td {
+    .table>thead>tr>th,
+    .table>tbody>tr>td {
         padding: 1rem;
-        vertical-align: middle;
+        vertical-align: middle !important;
+        border-color: var(--bage-100) !important;
+        background-color: var(--bg-200);
+
     }
 
     .table tbody tr:hover {
-        background-color: rgba(0, 0, 0, 0.05);
+        background-color: var(--bg-body-bage);
     }
 
     .productbx .product {
-        background-color: white;
-        border-radius: var(--border-radius);
-        box-shadow: var(--box-shadow);
+        background-color: var(--bg-200);
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         padding: 1rem;
         margin-bottom: 1rem;
         text-align: center;
-        transition: transform 0.2s ease;
+        transition: all 0.3s ease;
+        position: relative;
+
     }
 
     .productbx .product:hover {
@@ -137,49 +143,77 @@ $customerTotalSpent = $customerTotalStmt->fetchColumn();
     }
 
     .productbx .product img {
-        object-fit: cover;
-        border-radius: var(--border-radius);
+        object-fit: contain;
+        border-radius: 8px;
         margin-bottom: 1rem;
+        background-color: var(--bg-nav);
+        padding: 0.5rem;
     }
 
     .productbx .product .price {
-        background-color: var(--accent-color);
-        color: white;
+        background-color: var(--bage-300);
+        color: var(--bg-200);
         padding: 0.5rem;
-        border-radius: 50%;
+        /* border-radius: 50%; */
         display: inline-block;
         width: 55px;
         height: 50px;
         line-height: 40px;
-        font-weight: bold;
+        font-weight: 500;
         margin-bottom: 2rem;
+        position: absolute;
+        top: 0;
+        right: 0;
     }
 
     .productbx .product .name {
-        font-weight: bold;
+        font-weight: 500;
         text-transform: uppercase;
-        color: var(--primary-color);
+        color: var(--text-600);
+        margin-bottom: 0.5rem;
+    }
+
+    .productbx .product .amount {
+        color: var(--bage-300);
+        font-size: 0.9rem;
     }
 
     .btn-secondary {
-        background-color: var(--primary-color);
+        background-color: var(--bage-300);
         border: none;
         padding: 0.75rem 1.5rem;
-        border-radius: var(--border-radius);
-        transition: background-color 0.3s ease;
+        border-radius: 99px;
+        transition: all 0.3s ease;
+        color: var(--bg-200);
     }
 
     .btn-secondary:hover {
-        background-color: rgb(43, 60, 77);
+        background-color: var(--bage-500);
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+        .check-detail.container {
+            padding: 1rem;
+        }
+
+        .card {
+            padding: 1rem;
+        }
+
+        .productbx .product img {
+            width: 120px;
+            height: 120px;
+        }
     }
     </style>
 </head>
 
 <body>
     <?php
-      displayAdminNavbar($_SESSION["image"])  
+      displayAdminNavbar()  
     ?>
-    <div class="container">
+    <div class="container check-detail">
         <div class="card">
             <h2 class="mb-4">Order Details</h2>
             <p><strong>Customer Name:</strong> <?= htmlspecialchars($order['name']) ?></p>
@@ -191,7 +225,7 @@ $customerTotalSpent = $customerTotalStmt->fetchColumn();
         <div class="card">
             <h3>Ordered Items</h3>
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table">
                     <thead>
                         <tr>
                             <th>Product</th>
@@ -239,7 +273,8 @@ $customerTotalSpent = $customerTotalStmt->fetchColumn();
                 </strong>LE</h5>
         </div>
 
-        <a href="checks.php" class="btn btn-secondary mt-3">🔙 Back to Orders</a>
+        <a href="checks.php" class="btn btn-secondary mt-3">
+            <- Back to Orders</a>
     </div>
     <?php include '../includes/footer.php'; ?>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

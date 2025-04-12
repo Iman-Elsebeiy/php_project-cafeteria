@@ -1,6 +1,7 @@
 <?php
 require_once '../../includes/helper.php';
 require_once '../../includes/utils.php';
+require_once '../../includes/navbar.php';
 require_once '../../includes/classDB.php';
 require_once "../../includes/functions.php";
    NotAuthRedirectToLogin();
@@ -22,15 +23,13 @@ require_once "../../includes/functions.php";
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../../style/style.css">
     <link rel="stylesheet" href="../../style/navbar.css">
+    <link rel="stylesheet" href="../../style/alluser.css">
 
 </head>
 
 <body>
-    <?php displayAdminNavbar($_SESSION["image"]); ?>
+    <?php displayAdminNavbar(); ?>
     <div class="container mt-5">
-        <div class="mt-1 text-end">
-            <a href="add_user.php" class="btn ad ">Add User</a>
-        </div>
 
         <?php
 

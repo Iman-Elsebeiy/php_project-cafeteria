@@ -1,6 +1,7 @@
 <?php
 // require_once "../includes/utils.php";
 require_once "../../includes/utils.php";
+require_once "../../includes/navbar.php";
 require_once "../../includes/connect_to_db.php";
 require_once "../../includes/functions.php";
 
@@ -42,11 +43,9 @@ $categories = $pdo->query("SELECT * FROM categories")->fetchAll(PDO::FETCH_ASSOC
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Product</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../style/style.css">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Animate.css for animations -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="../../style/allProducts.css">
     <link rel="stylesheet" href="../../style/navbar.css">
     <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -65,85 +64,67 @@ $categories = $pdo->query("SELECT * FROM categories")->fetchAll(PDO::FETCH_ASSOC
 
 <body>
     <?php 
-     displayAdminNavbar($_SESSION["image"])?>
-    <div class="container p-4 mt-2">
-        <div class="row">
-            <div class="col-12 col-md-8 mx-auto p-md-5 p-3 rounded form">
-                <h1 class="fs-4 mb-4">Edit Product</h1>
+     displayAdminNavbar()?>
+    <div class="container addproduct col-lg-6 mt-4 p-5">
+        <h1 class="fs-4 p-2 col-9">Edit Product</h1>
 
-                <form action="update_product.php" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="product_id" value="<?= htmlspecialchars($product['product_id']); ?>">
+        <form action="update_product.php" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="product_id" value="<?= htmlspecialchars($product['product_id']); ?>">
 
-                    <!-- Product Name -->
-                    <div class="mb-3 d-flex col-12 gap-2 flex-wrap">
-                        <div class="d-flex align-items-baseline col-12 col-md-7">
-                            <label for="product_name" class='form-label col-3'>Product:</label>
-                            <div>
-                                <input type="text" class="form-control" id="product_name" name="product_name"
-                                    value="<?= htmlspecialchars($product['product_name']); ?>">
-                                <p class="text-danger txt-sm"><?php echo $errors['product_name'] ?? ''; ?></p>
-
-                            </div>
-                        </div>
-
-                        <!-- Quantity -->
-                        <div class="d-flex align-items-baseline gap-md-4 col-12 col-md-4">
-                            <label for="quantity" class="form-label col-4">Quantity:</label>
-                            <div>
-                                <input type="number" class="form-control" id="quantity" name="quantity"
-                                    value="<?= htmlspecialchars($product['quantity']); ?>">
-                                <p class="text-danger txt-sm"><?php echo $errors['quantity']?? ''; ?></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Price -->
-                    <div class="mb-4">
-                        <label for="price" class="form-label">Price:</label>
-                        <div>
-                            <input type="number" class="form-control col-12" id="price" name="price" step="0.01"
-                                value="<?= htmlspecialchars($product['price']); ?>">
-                            <p class="text-danger txt-sm"><?php echo $errors['price']?? ''; ?></p>
-                        </div>
-                    </div>
-
-                    <!-- Category -->
-                    <div class="mb-4 col-12">
-                        <label for="category_id" class="form-label col-2">Category:</label>
-                        <div class="input-group align-items-baseline">
-                            <select class="form-select rounded-start" id="category_id" name="category_id">
-                                <?php foreach ($categories as $category): ?>
-                                <option value="<?= $category['category_id']; ?>"
-                                    <?= ($category['category_id'] == $product['category_id']) ? 'selected' : ''; ?>>
-                                    <?= htmlspecialchars($category['name']); ?>
-                                </option>
-                                <?php endforeach; ?>
-                            </select>
-
-                        </div>
-                    </div>
-
-                    <!-- Product Image -->
-                    <div class="mb-5 mt-3">
-                        <label class="form-label">Current Image:</label><br>
-                        <img src="../imgs/<?= htmlspecialchars($product['image']); ?>" width="100" height="100"
-                            class="rounded"><br>
-
-                        <label for="image" class="form-label mt-3">Change Image:</label>
-                        <input class="form-control" type="file" id="image" name="image">
-                        <p class="text-danger"><?php echo $errors['image']?? '';?></p>
-                    </div>
-
-                    <!-- Buttons -->
-                    <div class="mb-4">
-                        <button class="btn add col-3" type="submit">Update</button>
-                        <button class="btn reset " type="reset">Reset</button>
-                    </div>
-                </form>
+            <div class="mb-3">
+                <label for="product_name" class="form-label">Product Name</label>
+                <input type="text" class='form-control <?php if(isset($errors['product_name'])) echo "is-invalid"; ?>'
+                    id="product_name" placeholder="Product Name" name="product_name"
+                    value="<?= htmlspecialchars($product['product_name']); ?>">
+                <?php if(isset($errors['product_name'])) echo "<p class='text-danger txt-sm'>{$errors['product_name']}</p>"; ?>
             </div>
 
+            <div class="mb-3">
+                <label for="quantity" class="form-label">Quantity</label>
+                <input type="number" class='form-control <?php if(isset($errors['quantity'])) echo "is-invalid"; ?>'
+                    id="quantity" placeholder="Quantity" name="quantity"
+                    value="<?= htmlspecialchars($product['quantity']); ?>">
+                <?php if(isset($errors['quantity'])) echo "<p class='text-danger txt-sm'>{$errors['quantity']}</p>"; ?>
+            </div>
 
-        </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input type="number" class='form-control <?php if(isset($errors['price'])) echo "is-invalid"; ?>'
+                    id="price" placeholder="Price" name="price" step="0.01"
+                    value="<?= htmlspecialchars($product['price']); ?>">
+                <?php if(isset($errors['price'])) echo "<p class='text-danger txt-sm'>{$errors['price']}</p>"; ?>
+            </div>
+
+            <div class="mb-3">
+                <label for="category_id" class="form-label">Category</label>
+                <select class='form-select <?php if (isset($errors['category_id'])) echo "is-invalid"; ?>'
+                    id="category_id" name="category_id">
+                    <option value="" selected>Choose...</option>
+                    <?php foreach ($categories as $category): ?>
+                    <option value="<?= $category['category_id']; ?>"
+                        <?= ($category['category_id'] == $product['category_id']) ? 'selected' : ''; ?>>
+                        <?= htmlspecialchars($category['name']); ?>
+                    </option>
+                    <?php endforeach; ?>
+                </select>
+                <?php if(isset($errors['category_id'])) echo "<p class='text-danger txt-sm'>{$errors['category_id']}</p>"; ?>
+            </div>
+
+            <div class="mb-3">
+                <label for="image" class="form-label">Product Image</label>
+                <input class='form-control <?php if(isset($errors['image'])) echo "is-invalid"; ?>' type="file"
+                    id="image" name="image">
+                <?php if(isset($errors['image'])) echo "<p class='text-danger txt-sm'>{$errors['image']}</p>"; ?>
+                <label class="form-label">Current Image:</label><br>
+                <img src="../imgs/<?= htmlspecialchars($product['image']); ?>" width="100" height="100"
+                    class="rounded"><br>
+            </div>
+
+            <div class="d-flex  gap-2 mt-4">
+                <button class="btn btn-primary px-5" type="submit">Update</button>
+                <button class="btn btn-secondary px-5" type="reset">Reset</button>
+            </div>
+        </form>
     </div>
     <?php include '../../includes/footer.php'; ?>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

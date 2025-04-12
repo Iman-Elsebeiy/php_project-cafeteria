@@ -1,0 +1,178 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+:root {
+  --bg-body-bage: #e6ddce;
+  --bg-nav: #eee8da;
+  --text-100: #ffffff;
+  --bage-200: #7d7367;
+  --bage-300: #8b6753;
+  --bage-color: #8f5f49;
+  --bage-500: #6d4332;
+  --bage-150: #eee8dc;
+  --bage-100: #ebe4dc;
+  --text-600: #120504;
+  --primary-font: "Poppins", serif;
+}
+body {
+  font-family: var(--primary-font) !important;
+  background-color: var(--bg-body-bage);
+}
+.alert a {
+  background-color: var(--bage-500);
+  color: var(--text-100);
+  border: none;
+  width: 35%;
+  height: 38px;
+  padding: 5px 10px;
+  border-radius: 99px;
+  display: flex;
+  justify-content: center;
+  margin-inline: auto;
+  margin-block: 15px;
+  text-decoration: none;
+}
+
+.myorder {
+  background-color: var(--bg-nav);
+  padding: 20px 20px;
+  color: var(--text-600);
+  /* border-radius: 10px;
+
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); */
+}
+
+.total {
+  color: var(--text-600);
+  font-weight: 400;
+  border-bottom: 1px solid var(--bage-300);
+  font-size: 20px;
+  padding: 10px;
+}
+
+.filter-form {
+  background-color: var(--bg-body-bage);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.filter-btn {
+  background-color: var(--bage-500);
+  color: var(--text-100);
+  border-radius: 99px;
+}
+
+.filter-btn:hover {
+  background-color: var(--bage-500);
+  color: var(--text-100);
+}
+.form-control:focus {
+  box-shadow: none;
+  outline: none;
+  border: 1px solid var(--bage-500);
+}
+
+.table > :not(caption) > * > * {
+  background-color: var(--bg-body-bage);
+  /* border-radius: 8px; */
+  overflow: hidden;
+  padding: 20px 20px;
+  border-bottom: 4px solid var(--bage-150);
+}
+
+.table thead {
+  color: var(--text-600);
+}
+
+.status-badge {
+  padding: 10px 10px;
+  font-size: 0.9rem;
+}
+
+.status-badge.pending {
+  background-color: var(--bage-150);
+  color: var(--text-600);
+}
+
+/* .status-badge.processing {
+  background-color: #87ceeb;
+  color: var(--text-600);
+} */
+
+.status-badge.completed {
+  background-color: var(--bage-150);
+  color: var(--text-600);
+}
+
+.cancel-btn {
+  background-color: var(--bage-500);
+  color: var(--text-100);
+  padding: 5px 15px;
+  border-radius: 99px;
+  transition: all 0.3s ease;
+}
+
+.cancel-btn:hover:not(.disabled) {
+  background-color: var(--bage-500);
+}
+
+.cancel-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.product-card {
+  background-color: var(--bg-nav);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  border-bottom: 3px solid var(--bage-300);
+}
+
+/* .product-card:hover {
+  transform: translateY(-5px);
+} */
+
+.product-card img {
+  width: 100%;
+  height: 100px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.product-details {
+  padding: 15px;
+}
+
+.product-details h5 {
+  color: var(--text-600);
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.price {
+  color: var(--bage-500);
+  font-weight: 400;
+  margin-bottom: 3px;
+}
+
+.quantity {
+  color: var(--bage-200);
+  font-size: 12px;
+  margin-bottom: 0;
+}
+
+.order-products {
+  border-bottom: 1px solid var(--bage-150);
+}
+
+.shop-btn {
+  background-color: var(--bage-300);
+  color: var(--text-100);
+  padding: 10px 30px;
+  border-radius: 99px;
+  transition: all 0.3s ease;
+}
+
+.shop-btn:hover {
+  background-color: var(--bage-500);
+  color: var(--text-100);
+}

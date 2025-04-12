@@ -1,0 +1,194 @@
+/* Container Styles */
+.container.allproducts {
+  background-color: var(--bg-nav) !important;
+  padding: 2rem !important;
+  box-shadow: 0 0 20px rgba(105, 55, 14, 0.1);
+  margin-top: 2rem !important;
+}
+
+.container.allproducts h1 {
+  color: var(--text-600);
+  font-size: 28px;
+  margin: 10px;
+  font-weight: 500;
+}
+
+/* Add Product Button */
+.allproducts .btn.add {
+  background-color: var(--bage-500) !important;
+  color: var(--bg-200) !important;
+  border: none !important;
+  border-radius: 99px !important;
+  padding: 0.5rem 1.5rem !important;
+  transition: all 0.3s ease !important;
+}
+
+.allproducts .btn.add:hover {
+  background-color: var(--bage-300) !important;
+  transform: translateY(-2px);
+}
+
+/* Table Base Styles */
+.allproducts .table {
+  background-color: var(--bg-200) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  margin-bottom: 2rem !important;
+  border: none !important;
+}
+
+/* Table Header */
+.allproducts .table > thead {
+  background-color: var(--bg-body-bage) !important;
+}
+
+.allproducts .table > thead > tr > th {
+  color: var(--text-600) !important;
+  font-weight: 500 !important;
+  padding: 1.2rem !important;
+  border: none !important;
+  background-color: transparent !important;
+  border-bottom: 8px solid var(--bage-100) !important;
+}
+
+/* Table Body */
+.allproducts .table > tbody > tr {
+  background-color: var(--bg-body-bage) !important;
+  border-bottom: 8px solid var(--bage-100);
+  text-align: center; /* Add this line */
+}
+
+.allproducts .table > tbody > tr:hover {
+  background-color: var(--bg-nav) !important;
+}
+
+.allproducts .table > tbody > tr > td,
+.allproducts .table > tbody > tr > th {
+  padding: 1rem !important;
+  vertical-align: middle !important;
+  color: var(--text-600) !important;
+  background-color: transparent !important;
+  border: none;
+}
+
+/* Product Image */
+.allproducts .table > tbody > tr > td > img {
+  width: 50px !important;
+  height: 50px !important;
+  object-fit: contain !important;
+  border-radius: 8px !important;
+  background-color: var(--bg-200) !important;
+  padding: 0.5rem !important;
+  transition: transform 0.3s ease;
+}
+
+/* Action Icons */
+.allproducts .table td a img {
+  transition: all 0.3s ease;
+  opacity: 0.7;
+}
+
+.allproducts .table td a:hover img {
+  transform: scale(1.2);
+  opacity: 1;
+}
+
+/* Action Buttons */
+.allproducts .table .actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  height: 100%;
+  padding: 1rem !important;
+}
+
+.allproducts .table .action-btn {
+  padding: 0.5rem 1.25rem !important;
+  border-radius: 99px !important;
+  font-size: 0.875rem !important;
+  transition: all 0.3s ease !important;
+  text-decoration: none !important;
+
+  text-align: center;
+}
+
+.allproducts .table .btn-edit {
+  color: var(--bage-500) !important;
+  border: 1.5px solid var(--bage-500) !important;
+  background-color: transparent !important;
+}
+
+.allproducts .table .btn-edit:hover {
+  background-color: var(--bage-500) !important;
+  color: var(--bg-200) !important;
+}
+
+.allproducts .table .btn-delete {
+  background-color: var(--bage-500) !important;
+  color: var(--bg-200) !important;
+  border: 1.5px solid var(--bage-500) !important;
+}
+
+.allproducts .table .btn-delete:hover {
+  opacity: 0.9 !important;
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .allproducts .container {
+    padding: 1rem;
+  }
+
+  .allproducts .table > thead {
+    display: none !important;
+  }
+
+  .allproducts .table > tbody > tr {
+    display: block !important;
+    margin-bottom: 1rem !important;
+    border-radius: 8px !important;
+  }
+
+  .allproducts .table > tbody > tr > td,
+  .allproducts .table > tbody > tr > th {
+    display: block !important;
+    text-align: right !important;
+    padding: 0.75rem 1rem !important;
+    position: relative !important;
+  }
+
+  .allproducts .table > tbody > tr > td::before,
+  .allproducts .table > tbody > tr > th::before {
+    content: attr(data-label);
+    float: left !important;
+    font-weight: 600 !important;
+    color: var(--bage-300) !important;
+  }
+
+  .allproducts .table > tbody > tr > td > img {
+    width: 80px !important;
+    height: 80px !important;
+    margin: 0 auto !important;
+  }
+
+  .allproducts .btn.add {
+    width: 100% !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .allproducts .table .actions {
+    flex-direction: row;
+    padding: 0.75rem 1rem !important;
+  }
+
+  .allproducts .table .action-btn {
+    flex: 1;
+  }
+
+  .allproducts .table .action-btn {
+    width: 100% !important;
+    text-align: center !important;
+  }
+}

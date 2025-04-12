@@ -1,7 +1,9 @@
 <?php
+include '../../includes/navbar.php';
 include '../../includes/config.php';
 include '../../includes/functions.php';
 include '../../includes/utils.php';
+
 
 try {
     if (isset($_POST['send'])) {
@@ -102,7 +104,7 @@ AdminOnlyPage();
     <title>Add User</title>
 </head>
 <?php
-      displayAdminNavbar($_SESSION["image"]);
+      displayAdminNavbar();
     ?>
 
 <body>
@@ -110,21 +112,18 @@ AdminOnlyPage();
 
 
     <div class="container adduser col-lg-6 mt-4">
-        <div class="text-end">
-            <a href="allUsers.php" class="btn ad ">Users List</a>
-        </div>
-        <h1 class=" fs-4 p-2">Add user</h1>
+        <h1>ADD USER</h1>
         <form class="pd-3" method="POST" enctype="multipart/form-data">
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">name</label>
-                <input type="text" class="form-control" name="name"
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter name"
                     value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>">
                 <p class="error txt-sm p-0 text-danger"><?php if (isset($errors['name'])) echo $errors['name'] ?></p>
-
             </div>
+
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">email</label>
-                <input type="text" class="form-control" name="email"
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email"
                     value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
                 <p class="error txt-sm p-0 text-danger"><?php if (isset($errors['email'])) echo $errors['email'] ?></p>
                 <?php if (!isset($errors['email'])): ?>
@@ -137,67 +136,52 @@ AdminOnlyPage();
                 <?php endif; ?>
             </div>
 
-
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" name="password" id="exampleInputPassword1">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
                 <p class="error txt-sm p-0 text-danger">
                     <?php if (isset($errors['password'])) echo $errors['password'] ?></p>
-
             </div>
 
-
             <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">room no</label>
-
-                <select class="form-select" aria-label="Default select example" name="room" value="">
-
-
-
-                    <option value="application1" selected>application1</option>
-                    <option value="application2">application2</option>
-                    <option value="cloud">cloud</option>
+                <label for="room" class="form-label">Room No</label>
+                <select class="form-select" id="room" name="room">
+                    <option value="application1"
+                        <?php if(isset($_POST['room']) && $_POST['room'] == 'application1') echo 'selected'; ?>>
+                        Application 1</option>
+                    <option value="application2"
+                        <?php if(isset($_POST['room']) && $_POST['room'] == 'application2') echo 'selected'; ?>>
+                        Application 2</option>
+                    <option value="cloud"
+                        <?php if(isset($_POST['room']) && $_POST['room'] == 'cloud') echo 'selected'; ?>>Cloud</option>
                 </select>
-
-
             </div>
 
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">ext.</label>
-                <input type="text" class="form-control" name="ext"
+                <label for="ext" class="form-label">Ext</label>
+                <input type="text" class="form-control" id="ext" name="ext" placeholder="Enter extension"
                     value="<?php echo isset($_POST['ext']) ? htmlspecialchars($_POST['ext']) : ''; ?>">
-                <p class="error"><?php if (isset($errors['ext'])) echo $errors['ext'] ?></p>
-
-
+                <p class="error txt-sm p-0 text-danger"><?php if (isset($errors['ext'])) echo $errors['ext'] ?></p>
             </div>
+
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">profile picture</label>
-                <input type="file" class="form-control" name="img">
-                <p class="error txt-sm"><?php if (isset($errors['image'])) echo $errors['image'] ?></p>
+                <label for="img" class="form-label">Profile Picture</label>
+                <input type="file" class="form-control" id="img" name="img">
+                <p class="error txt-sm p-0 text-danger"><?php if (isset($errors['image'])) echo $errors['image'] ?></p>
                 <?php if (!isset($errors['image'])): ?>
                 <?php if (!isset($errors['imagetype'])): ?>
-                <p class="error txt-sm"><?php if (isset($errors['imagesize'])) echo $errors['imagesize'] ?></p>
-
+                <p class="error txt-sm p-0 text-danger">
+                    <?php if (isset($errors['imagesize'])) echo $errors['imagesize'] ?></p>
                 <?php endif; ?>
-
-                <p class="error txt-sm"><?php if (isset($errors['imagetype'])) echo $errors['imagetype'] ?></p>
+                <p class="error txt-sm p-0 text-danger">
+                    <?php if (isset($errors['imagetype'])) echo $errors['imagetype'] ?></p>
                 <?php endif; ?>
-
-
-
-
-
             </div>
 
-
-
-
-            <div class="d-flex justify-content-evenly">
-                <button type="submit" name="send">Submit</button>
+            <div class="d-flex gap-3 mt-4">
+                <button type="submit" name="send" class="btn btn-primary">Submit</button>
                 <input type="reset" value="Reset" class="btn btn-secondary">
             </div>
-
-
         </form>
     </div>
     <?php include '../../includes/footer.php'; ?>
@@ -209,7 +193,6 @@ AdminOnlyPage();
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="../../javascript/index.js"></script>
-    <script src="../../javascript/add-user-validation.js"></script>
 
 </body>
 

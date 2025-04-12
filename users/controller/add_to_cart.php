@@ -22,8 +22,9 @@
             "user_id" => $_SESSION["id"]
         ];
     }
-    header("Location: ../views/user-home.php?message=Product Add Successfully&product=" . $_POST['product_id']);
-    exit();
+    header("Location: ../views/user-home.php?message=Product Added&product=" . $_POST['product_id'] );
+exit();
+
 } 
 else if ($_SESSION["role"] == "admin") {
 

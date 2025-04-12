@@ -1,4 +1,5 @@
 <?php
+require_once '../includes/navbar.php';
 require_once '../includes/connect_to_db.php';
 require_once '../includes/utils.php';
 require_once "../includes/functions.php";
@@ -60,20 +61,25 @@ $filteredUsers = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Animate.css for animations -->
     <link rel="stylesheet" href="../style/navbar.css">
+    <link rel="stylesheet" href="../style/style.css">
 
     <style>
-    body {
-        background-color: #f8f9fa;
+    .checks.container {
+        margin-top: 2rem;
+        color: var(--text-600)
     }
 
-    .container {
-        margin-top: 2rem;
+    h1 {
+        color: var(--text-600);
+        font-size: 24px;
+        margin-block: 10px
     }
 
     .card {
         border: none;
         border-radius: 0.75rem;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 8px rgba(131, 69, 18, 0.1);
+        background-color: var(--bg-nav)
     }
 
     /* Hover effect for table rows */
@@ -83,6 +89,14 @@ $filteredUsers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     tbody tr:hover {
         transform: translateX(5px);
+    }
+
+    .table>thead>tr>th {
+        background-color: var(--bage-500) !important;
+        color: var(--bage-100) !important;
+        font-weight: 400;
+        border-right: 1px solid var(--bage-300);
+        text-align: center;
     }
 
     /* Delete button hover effect */
@@ -99,14 +113,14 @@ $filteredUsers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
     <?php
-    displayAdminNavbar($_SESSION["image"]) 
+    displayAdminNavbar() 
     ?>
 
-    <div class="container mt-5">
+    <div class=" checks container mt-5">
         <!-- Filter Form Card -->
         <div class="card mb-4 animate__animated animate__fadeIn">
             <div class="card-body">
-                <h2 class="card-title mb-3">Checks</h2>
+                <h1 class="card-title mb-3">Checks</h1>
                 <form method="GET" action="">
                     <div class="row g-3">
                         <div class="col-md-4">
@@ -140,7 +154,7 @@ $filteredUsers = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover mb-0">
-                        <thead class="table-dark">
+                        <thead class="tableHead">
                             <tr>
                                 <th>Customer Name</th>
                                 <th>Total Spent (LE)</th>

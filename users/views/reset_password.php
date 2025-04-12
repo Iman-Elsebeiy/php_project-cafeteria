@@ -53,40 +53,14 @@ if ($token) {
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Animate.css for animations -->
-    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../../style/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <style>
-    body {
-
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 1rem;
-    }
-
-    .card {
-        border: none;
-        border-radius: 1rem;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        background-color: #cccbc8;
-    }
-
-    .card-body {
-        padding: 2rem;
-    }
-
-    .form-control,
-    .btn {
-        border-radius: 0.5rem;
-    }
-    </style>
 </head>
 
 <body>
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
+        <div class="row justify-content-center ">
+            <div class="col-md-6 login-head">
                 <div class="card animate__animated animate__fadeInDown">
                     <div class="card-body">
                         <h2 class="card-title text-center mb-4">Reset Password</h2>

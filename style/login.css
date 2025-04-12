@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+:root {
+  --bg-body-bage: #e6ddce;
+  --bg-nav: #eee8da;
+  --text-100: #ffffff;
+  --bage-200: #7d7367;
+  --bage-300: #8b6753;
+  --bage-color: #8f5f49;
+  --bage-500: #6d4332;
+  --bage-150: #eee8dc;
+  --bage-100: #ebe4dc;
+  --text-600: #120504;
+  --primary-font: "Poppins", serif;
+}
+body {
+  font-family: var(--primary-font) !important;
+  background-color: var(--bage-100);
+  background-image: url("../app-images/g3.jpg");
+  background-position: left;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.login-row {
+  background-color: #eee8dac0;
+  height: 500px;
+  margin-top: 45px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 15px var(--bage-300);
+}
+.login-row h1 {
+  font-size: 45px;
+  color: var(--text-600);
+  text-align: center;
+}
+.login-row p {
+  text-align: center;
+  font-size: 13px;
+  color: var(--bage-500);
+  font-weight: 500;
+}
+.login-img {
+  height: 100%;
+
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+form .form-control {
+  border: 1px solid var(--bage-100);
+  border-radius: 10px;
+}
+form .form-control:focus {
+  border: 1px solid var(--bage-500);
+  box-shadow: none;
+}
+form .form-control::placeholder {
+  color: var(--bage-300);
+}
+form button {
+  background-color: var(--bage-500);
+  color: var(--bage-100);
+  width: 150px;
+  height: 40px;
+  border: none;
+  border-radius: 99px;
+}
+
+.forget a {
+  color: var(--bage-300);
+  font-size: 14px;
+}
+.login-forget {
+  background-color: var(--bg-body-bage);
+  margin-top: 50px;
+  border-radius: 20px;
+  padding: 25px;
+  transform: translateY(50%);
+}
+.login-forget h1 {
+  font-size: 25px;
+}
+
+.login-head {
+  background-color: var(--bg-body-bage);
+  margin-top: 50px;
+  border-radius: 20px;
+  padding: 25px;
+  transform: translateY(50%);
+}
+.error {
+  color: darkred;
+}

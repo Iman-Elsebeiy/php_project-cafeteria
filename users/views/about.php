@@ -1,5 +1,6 @@
 <?php
   require_once "../../includes/utils.php";
+  require_once "../../includes/navbar.php";
   require_once "../../includes/functions.php";
   NotAuthRedirectToLogin();
    if( $_SESSION["role"]=="admin")
@@ -89,7 +90,7 @@
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#navbar-example2">
-    <?php displayUserNavbar($_SESSION['image']);?>
+    <?php displayUserNavbar();?>
     <main class="mx-auto mb-5 mt-100 col-8">
         <section class="section-bg text-center ">
             <div class="container fade-in">

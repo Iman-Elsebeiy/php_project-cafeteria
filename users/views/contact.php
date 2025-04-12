@@ -59,40 +59,7 @@
 <body data-bs-spy="scroll" data-bs-target="#navbar-example2">
     <?php displayUserNavbar($_SESSION['image']);?>
     <main class="mt-5">
-        <section class="section-bg">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="form-container">
-                            <h3 class=" mb-4 fs-4">We'd love to hear from you</h3>
-                            <form action="#" method="POST">
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">Name</label>
-                                    <input type="text" id="name" class="form-control" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" id="email" class="form-control" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="message" class="form-label">Message</label>
-                                    <textarea id="message" class="form-control" rows="4" required></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-sub w-20">Submit</button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 mt-4 mt-lg-0">
-                        <div class="map-container">
-                            <iframe class="w-100" height="250" src="https://www.google.com/maps/embed?..."
-                                style="border:0;" allowfullscreen></iframe>
-                            <h5 class="mt-3">Cafe Center</h5>
-                            <p>Downtown, Cairo, Egypt</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+
     </main>
 
     <?php include '../../includes/footer.php'; ?>

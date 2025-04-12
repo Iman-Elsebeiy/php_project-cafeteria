@@ -1,0 +1,192 @@
+.order-container {
+  background-color: var(--bg-nav);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+}
+.order-container h1 {
+  color: var(--text-600);
+  font-size: 28px;
+  font-weight: 500;
+  margin-block: 20px;
+}
+
+.order-header {
+  background-color: var(--bg-body-bage);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
+/* Table Styles */
+.order-container table > :not(caption) > * > * {
+  background-color: var(--bg-nav) !important;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  border-top: 1px solid var(--bage-300);
+}
+
+.order-container table > :not(caption) > * > *head {
+  background-color: var(--bage-300) !important;
+  color: var(--bg-200);
+}
+
+.order-container .table th {
+  font-weight: 500;
+  padding: 1rem;
+}
+
+.order-container .table td {
+  padding: 1rem;
+  vertical-align: middle;
+  color: var(--text-600);
+}
+.order-container h4 {
+  color: var(--text-600);
+  font-size: 18px;
+  font-weight: 500;
+}
+/* Product Card Styles */
+.order-container .active-order {
+  background-color: var(--bg-200);
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.order-container .active-order:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.order-container .active-order img {
+  width: 50%;
+  height: 50px;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 12px 12px 0 0;
+  background-color: var(--bg-nav);
+  transition: transform 0.3s ease;
+  margin: 2px;
+}
+
+.order-container .active-order:hover img {
+  transform: scale(1.05);
+}
+
+.order-container .active-order .card-body {
+  padding: 1rem;
+  background: linear-gradient(to bottom, var(--bg-200), var(--bg-nav));
+}
+
+.order-container .active-order .card-title {
+  color: var(--text-600);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.order-container .active-order .card-text {
+  color: var(--bage-300);
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.order-container .active-order .quantity-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: var(--bage-300);
+  color: var(--bg-200);
+  padding: 0.25rem 0.75rem;
+  border-radius: 99px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Product Grid Layout */
+.order-container .products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+/* Total Price Button */
+.order-container .total-price button {
+  background-color: var(--bage-500);
+  color: var(--bg-200);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 99px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.order-container .total-price button:hover {
+  background-color: var(--bage-300);
+}
+
+/* Action Button */
+.order-container .btn.ad {
+  background-color: var(--bage-500);
+  color: var(--bg-200);
+  border-radius: 99px;
+  padding: 0.5rem 1.5rem;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.order-container.btn.ad:hover {
+  background-color: var(--bage-300);
+  transform: translateY(-2px);
+}
+
+/* Alert Styles */
+.order-container .alert {
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.order-container .alert-success {
+  background-color: var(--bg-200);
+  color: var(--bage-500);
+  border: 1px solid var(--bage-300);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .order-container .container {
+    padding: 1rem;
+  }
+
+  .order-container .d-none.d-md-block {
+    display: none !important;
+  }
+
+  .order-container .active-order {
+    width: 100% !important;
+  }
+
+  .order-container .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+
+  .order-container .active-order img {
+    height: 120px;
+  }
+
+  .order-container .active-order .card-body {
+    padding: 0.75rem;
+  }
+}

@@ -1,6 +1,7 @@
 <?php
 // require_once "../includes/utils.php";
 require_once "../../includes/utils.php";
+require_once "../../includes/navbar.php";
 require_once "../../includes/connect_to_db.php";
 $pdo = connectToDB();
 
@@ -29,15 +30,16 @@ $category = $stmt->fetch(PDO::FETCH_ASSOC);
     <!-- Animate.css for animations -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="../../style/navbar.css">
+    <link rel="stylesheet" href="../../style/category.css">
+    <link rel="stylesheet" href="../../style/style.css"><!-- Add edit_category.css -->
 </head>
 
 <body>
     <?php 
-     displayAdminNavbar($_SESSION["image"])?>
-    <div class="container p-4 mt-5">
-
+     displayAdminNavbar()?>
+    <div class="container edit-category-container mt-5 col-6">
         <!-- Edit Category Form -->
-        <div class="col-12 col-md-8 mx-auto  p-md-5 p-3 rounded form">
+        <div class="edit-category-form">
             <h1 class="fs-4 mb-4">Edit Category</h1>
 
             <form action="update_category.php" method="post">
@@ -49,8 +51,6 @@ $category = $stmt->fetch(PDO::FETCH_ASSOC);
                     <input type="text" class="form-control" id="name" name="name"
                         value="<?= htmlspecialchars($category['name']); ?>" required>
                     <p class="text-danger"><?php echo $errors['category_name'] ?? ''; ?></p>
-
-
                 </div>
 
                 <!-- Buttons -->
@@ -60,13 +60,11 @@ $category = $stmt->fetch(PDO::FETCH_ASSOC);
                 </div>
             </form>
         </div>
-
-
-
     </div>
     <?php include '../../includes/footer.php'; ?>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">

@@ -1,0 +1,70 @@
+/* Container Styles */
+.edit-category-container {
+  background-color: var(--bg-nav);
+  padding: 2rem;
+  box-shadow: 0 0 20px rgba(105, 55, 14, 0.1);
+  margin-top: 2rem;
+  border-radius: 10px;
+}
+
+/* Form Styles */
+.edit-category-form {
+  /* background-color: var(--bg-200);  */
+  /* Single background color for the form */
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.edit-category-form h1 {
+  color: var(--text-600);
+  font-size: 28px;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.edit-category-form .form-label {
+  color: var(--text-600);
+  font-weight: 500;
+}
+
+.edit-category-form .form-control {
+  background-color: var(--bg-nav);
+  border: 1px solid var(--bage-200); /* Custom border color */
+  color: var(--text-600);
+  border-radius: 8px;
+  padding: 0.75rem;
+  transition: border-color 0.3s ease;
+}
+
+.edit-category-form .form-control:focus {
+  border-color: var(--bage-500); /* Custom focus border color */
+  outline: 0;
+  box-shadow: 0 0 0 0.05rem rgba(105, 55, 14, 0.25); /* Custom focus shadow */
+}
+
+.edit-category-form .btn.add {
+  background-color: var(--bage-500) !important;
+  color: var(--bg-200) !important;
+  border: none !important;
+  border-radius: 99px !important;
+  padding: 0.5rem 1.5rem !important;
+  transition: all 0.3s ease !important;
+}
+
+.edit-category-form .btn.add:hover {
+  background-color: var(--bage-300) !important;
+  transform: translateY(-2px);
+}
+
+.edit-category-form .btn.reset {
+  background-color: var(--bg-nav) !important;
+  color: var(--bage-500) !important;
+  border: 1px solid var(--bage-500) !important;
+  border-radius: 99px !important;
+  padding: 0.5rem 1.5rem !important;
+  transition: all 0.3s ease !important;
+}
+
+.edit-category-form .btn.reset:hover {
+  background-color: var(--bg-body-bage) !important;
+}

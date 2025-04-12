@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+:root {
+  --bg-200: #f5f4f1;
+  --bg-300: #cccbc8;
+  --bage-color: #8f5f49;
+  --bg-opacity-200: #f5f4f19d;
+  --primary-font: "Poppins", serif;
+
+  --bg-body-bage: #e6ddce;
+  --bg-nav: #eee8da;
+  --bage-200: #7d7367;
+  --bage-300: #8b6753;
+  --bage-color: #8f5f49;
+  --bage-500: #6d4332;
+  --bage-100: #eee8dc;
+  --bage-100: #ebe4dc;
+  --text-600: #120504;
+}
+.users-container {
+  background-color: var(--bg-nav);
+  padding-inline: 4rem;
+  padding-block: 2rem;
+  box-shadow: 0px 0px 10px #8b67537a;
+}
+
+.users-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.users-header h2 {
+  color: var(--text-600);
+  font-weight: 500;
+  margin: 0;
+  font-size: 28px;
+}
+
+.add-user-btn {
+  background-color: var(--bage-500);
+  color: var(--bage-100);
+  padding: 0.5rem 1.5rem;
+  border-radius: 99px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.add-user-btn:hover {
+  background-color: var(--bage-500);
+  color: var(--bage-100);
+}
+
+.table > :not(caption) > * > * {
+  background-color: var(--bg-body-bage) !important;
+  /* padding: 1rem; */
+  border-bottom: 5px solid var(--bage-100);
+  /* border-radius: 15px; */
+  vertical-align: middle;
+  text-align: center;
+}
+
+.table thead th {
+  color: var(--text-600);
+  font-weight: 500;
+  border-bottom: 10px solid var(--bage-100);
+}
+
+.user-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: contain;
+  border: 1px solid var(--bage-300);
+  font-size: 14px;
+}
+
+.action-buttons {
+  display: flex;
+  /* gap: 1rem; */
+  justify-content: space-evenly;
+}
+
+.btn.ad {
+  background-color: var(--bg-body-bage);
+  color: var(--text-600);
+  border-radius: 99px;
+  padding: 0.3rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn.res {
+  background-color: var(--bage-500);
+  color: var(--bage-100);
+  border-radius: 99px;
+  padding: 0.3rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn.ad:hover,
+.btn.res:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .d-none.d-md-block {
+    display: none !important;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .btn.ad,
+  .btn.res {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+}

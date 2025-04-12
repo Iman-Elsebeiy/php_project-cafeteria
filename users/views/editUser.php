@@ -1,5 +1,7 @@
 <?php
+require_once '../../includes/navbar.php';
 require_once '../../includes/utils.php';
+
 require_once '../../includes/classDB.php';
 require_once "../controller/home.php";
 $role=$_SESSION["role"];
@@ -52,115 +54,77 @@ if (!count($data)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit-User</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Edit User</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../style/style.css">
     <link rel="stylesheet" href="../../style/navbar.css">
-
 </head>
 
-
 <body>
+    <?php displayAdminNavbar(); ?>
 
-    <?php 
-     displayAdminNavbar($_SESSION["image"]);
+    <div class="container adduser col-lg-6 mt-4">
+        <div class="text-end d-flex">
 
-    ?>
-    <div class="container mt-4 mb-2 col-6 p-5  form  ">
-        <div class="text-end">
-            <a href="allUsers.php" class="btn ad ">Users List</a>
+            <h1 class="col-10">Edit User</h1>
+            <a href="allUsers.php" class="btn btn-primary  h-75  ">
+                UserList</a>
         </div>
-        <h2>Edit User</h2>
+
+
         <form action="../controller/edit2db.php?id=<?php echo $_GET['id'] ?>" method="post"
             enctype="multipart/form-data">
-            <label for="name">Name:</label>
-            <input class="form-control" value="<?php echo $old['name'] ?? $data[0]['name'] ?>" type="name" name="name">
-            <p class="text-danger"> <?php echo $errors['name'] ?? '' ?> </p>
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input class="form-control" value="<?php echo $old['name'] ?? $data[0]['name'] ?>" type="text"
+                    name="name" placeholder="Enter name">
+                <p class="error text-danger"> <?php echo $errors['name'] ?? '' ?> </p>
+            </div>
 
-            <label for="email">Email:</label>
-            <input class="form-control" value="<?php echo $old['email'] ?? $data[0]['email'] ?>" type="text"
-                name="email">
-            <p class="text-danger"> <?php echo $errors['email'] ?? '' ?> </p>
-            <p class="text-danger"> <?php echo $email ?? '' ?> </p>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input class="form-control" value="<?php echo $old['email'] ?? $data[0]['email'] ?>" type="email"
+                    name="email" placeholder="Enter email">
+                <p class="error text-danger"> <?php echo $errors['email'] ?? '' ?> </p>
+                <p class="error text-danger"> <?php echo $email ?? '' ?> </p>
+            </div>
 
-            <label for="ext">ext:</label>
-            <input class="form-control" value="<?php echo $old['ext'] ?? $data[0]['ext'] ?>" type="text" name="ext">
-            <p class="text-danger"> <?php echo $errors['ext'] ?? '' ?> </p>
-            <p class="text-danger"> <?php echo $ext ?? '' ?> </p>
-            <?php
-        if($data[0]['room_no']=='Application1')
-        {
+            <div class="mb-3">
+                <label for="ext" class="form-label">Ext</label>
+                <input class="form-control" value="<?php echo $old['ext'] ?? $data[0]['ext'] ?>" type="text" name="ext"
+                    placeholder="Enter extension">
+                <p class="error text-danger"> <?php echo $errors['ext'] ?? '' ?> </p>
+                <p class="error text-danger"> <?php echo $ext ?? '' ?> </p>
+            </div>
 
-echo'
+            <div class="mb-3">
+                <label for="room" class="form-label">Room Number</label>
+                <select name="room" class="form-select">
+                    <option value="Application1" <?php if($data[0]['room_no']=='Application1') echo 'selected'; ?>>
+                        Application1</option>
+                    <option value="Application2" <?php if($data[0]['room_no']=='Application2') echo 'selected'; ?>>
+                        Application2</option>
+                    <option value="Cloud" <?php if($data[0]['room_no']=='Cloud') echo 'selected'; ?>>Cloud</option>
+                </select>
+            </div>
 
-<div class="col-3">
-    <label for="room" class="form-label">Room Number:</label>
-    <select name="room" class="form-select form-control mb-3">
-        <option value="Application1" selected>Application1</option>
-        <option value="Application2">Application2</option>
-        <option value="Cloud">Cloud</option>
-    </select>
-</div>
+            <div class="mb-3">
+                <label for="profile_picture" class="form-label">Profile Picture</label>
+                <input class="form-control" type="file" name="image" accept="image/*">
+            </div>
 
-        
-';
-
-        }else if($data[0]['room_no']=='Application2'){
-            echo'
-
-            <div class="col-3">
-            <label for="room" class="form-label">Room Number:</label>
-            <select name="room" class="form-select form-control mb-3">
-                <option value="Application1" >Application1</option>
-                <option value="Application2"selected>Application2</option>
-                <option value="Cloud">Cloud</option>
-            </select>
-        </div>
-';
-
-        }
-        else{
-            echo'
-
-            <div class="col-3">
-            <label for="room" class="form-label">Room Number:</label>
-            <select name="room" class="form-select form-control mb-3">
-                <option value="Application1" >Application1</option>
-                <option value="Application2">Application2</option>
-                <option value="Cloud" selected >Cloud</option>
-            </select>
-        </div>
-        
-';
-
-        }
-
-
-        ?>
-
-
-
-            <label for="profile_picture">Profile Picture:</label>
-            <input class="form-control" type="file" name="image" accept="image/*">
-            <br>
-            <button type="submit" value="Submit" class="btn ad  ">Submit</button>
-            <button type="reset" value="reset" class="btn res ">Reset</button>
-
-
+            <div class="d-flex gap-3 mt-4">
+                <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+                <button type="reset" value="reset" class="btn btn-secondary">Reset</button>
+            </div>
         </form>
     </div>
 
+    <?php include '../../includes/footer.php'; ?>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../../javascript/index.js"></script>
 </body>
-<?php include '../../includes/footer.php'; ?>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-    integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
-</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-<script src="../../javascript/index.js"></script>
 
 </html>

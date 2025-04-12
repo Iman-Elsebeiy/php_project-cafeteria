@@ -1,4 +1,5 @@
 <?php
+require_once '../includes/navbar.php';
 require_once '../includes/connect_to_db.php';
 require_once '../includes/utils.php';
 require_once "../includes/functions.php";
@@ -47,18 +48,19 @@ $orders = $ordersStmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- Animate.css for animations -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="../style/navbar.css">
-    <style>
-    body {
-        background-color: #f8f9fa;
-    }
 
+    <link rel="stylesheet" href="../style/style.css">
+
+    <style>
     .card {
         margin-top: 2rem;
+        color: var(--text-600);
+        background-color: var(--bage-nav)
     }
 
-    .table thead {
-        background-color: #343a40;
-        color: #fff;
+    .table>thead>tr>th {
+        background-color: var(--bage-300);
+        color: var(--bage-100);
     }
 
     /* Table row hover animation */
@@ -73,13 +75,14 @@ $orders = $ordersStmt->fetchAll(PDO::FETCH_ASSOC);
 
     a {
         text-decoration: none;
+        color: var(--bage-500)
     }
     </style>
 </head>
 
 <body>
     <?php
-     displayAdminNavbar($_SESSION["image"]) 
+     displayAdminNavbar() 
     ?>
     <!-- Navigation Bar -->
 

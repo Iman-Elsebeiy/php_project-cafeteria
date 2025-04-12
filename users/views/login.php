@@ -82,51 +82,66 @@ if (isset($_SESSION['login']) && $_SESSION['login'] == true) {
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../style/style.css">
+    <link rel="stylesheet" href="../../style/login.css">
     <title>Login</title>
 </head>
 
 <body>
-    <div class="container adduser login col-lg-5">
-        <h2 class="fs-2 text-center my-2 login-head"> Cafeteria</h2>
-        <h3 class="fs-4">Log in</h3>
-        <form class="p-3" method="POST">
-            <p class="error text-center">
-                <?php if (isset($errors['invalid'])) echo $errors['invalid']  ?>
-            </p>
-            <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">email</label>
-                <input type="text" class="form-control" name="email"
-                    value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
-                <p class="error">
-                    <?php if (isset($errors['email'])) echo $errors['email'] ?>
-                </p>
-                <?php if (!isset($errors['email'])): ?>
-                <p class="error">
-                    <?php if (isset($errors['validemail'])) echo $errors['validemail'] ?>
-                </p>
-                <?php endif; ?>
+    <div class="container col-8 ">
+        <div class="row login-row">
+            <div class="col-6 login-img d-flex justify-content-center flex-column align-items-center">
+                <h1>Cafteria</h1>
+                <p class="w-75 mx-auto">Welcome to our café, where every sip is delightful, every bite is delicious, and
+                    every
+                    moment is a
+                    perfect blend of flavor and comfort!"</p>
+            </div>
+            <div class="col-6 p-5">
+
+                <h2>Login</h2>
+                <form class="p-3" method="POST">
+                    <p class="error text-center">
+                        <?php if (isset($errors['invalid'])) echo $errors['invalid']  ?>
+                    </p>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">email</label>
+                        <input type="text" class="form-control" name="email" placeholder="example@email.com"
+                            value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
+                        <p class="error">
+                            <?php if (isset($errors['email'])) echo $errors['email'] ?>
+                        </p>
+                        <?php if (!isset($errors['email'])): ?>
+                        <p class="error">
+                            <?php if (isset($errors['validemail'])) echo $errors['validemail'] ?>
+                        </p>
+                        <?php endif; ?>
+
+                    </div>
+
+
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input type="password" class="form-control" name="password" id="exampleInputPassword1"
+                            placeholder="************">
+                        <p class="error">
+                            <?php if (isset($errors['password'])) echo $errors['password'] ?>
+                        </p>
+
+                    </div>
+
+                    <div class="d-flex justify-content-center mt-4">
+                        <button type="submit" name="send">Login</button>
+                    </div>
+                    <div class="d-flex justify-content-center mt-2 forget">
+                        <a href="./forget_password.php">forget password ?</a>
+                    </div>
+
+                </form>
 
             </div>
+        </div>
 
 
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" name="password" id="exampleInputPassword1">
-                <p class="error">
-                    <?php if (isset($errors['password'])) echo $errors['password'] ?>
-                </p>
-
-            </div>
-
-            <div class="d-flex justify-content-center">
-                <button type="submit" name="send">Submit</button>
-            </div>
-            <div class="d-flex justify-content-center mt-2 forget">
-                <a href="./forget_password.php">forget password ?</a>
-            </div>
-
-        </form>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

@@ -1,6 +1,7 @@
 <?php
 require_once '../../includes/helper.php';
 require_once '../../includes/utils.php';
+require_once '../../includes/navbar.php';
 require_once '../../includes/functions.php';
 require_once '../../includes/classDB.php';
 $cafe=new dataBase();
@@ -27,16 +28,17 @@ if( $_SESSION["role"]=="user")
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="../../style/style.css">
+    <link rel="stylesheet" href="../../style/pendingOrder.css">
     <link rel="stylesheet" href="../../style/navbar.css">
 
 </head>
 
 <body>
     <?php 
-    displayAdminNavbar($_SESSION["image"]);
+    displayAdminNavbar();
     ?>
-    <div class="container mt-100  ">
-
+    <div class="container order-container ">
+        <h1>Pending Orders</h1>
 
         <?php
 
